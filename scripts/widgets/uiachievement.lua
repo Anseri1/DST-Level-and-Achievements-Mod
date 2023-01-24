@@ -264,7 +264,7 @@ local uiachievement = Class(Widget, function(self, owner)
 			self.mainui.allcoin:Hide()
 			self.mainui.levelbg:Hide()
 		end
-		self.maxnumpage = 11
+		self.maxnumpage = 12
 		self:setAllAchivCategoriesActive()
 		
 		if self.numpage == 1 then
@@ -299,6 +299,9 @@ local uiachievement = Class(Widget, function(self, owner)
 		end
 		if self.numpage == 11 then
 			self.mainui.infobutton.cat11:SetTextures("images/button/button_bg_inactive.xml", "button_bg_inactive.tex")
+		end
+		if self.numpage == 12 then
+			self.mainui.infobutton.cat12:SetTextures("images/button/button_bg_inactive.xml", "button_bg_inactive.tex")
 		end
 	end)
 
@@ -633,7 +636,7 @@ local uiachievement = Class(Widget, function(self, owner)
 	self.mainui.infobutton.cat10.label:SetMultilineTruncatedString(STRINGS.GUI["misc"], 1, 120, 50, "", true)
 	
 	self.mainui.infobutton.cat11 = self.mainui.infobutton:AddChild(ImageButton("images/button/button_bg_inactive.xml", "button_bg_inactive.tex"))
-	self.mainui.infobutton.cat11:SetPosition(90, -370, 0)
+	self.mainui.infobutton.cat11:SetPosition(-129, -405, 0)
 	self.mainui.infobutton.cat11:SetScale(0.65,0.6,1)
 	self.mainui.infobutton.cat11:SetOnClick(function()
 		if self.mainui.allachiv.shown then
@@ -644,10 +647,27 @@ local uiachievement = Class(Widget, function(self, owner)
 		end
 	end)
 	self.mainui.infobutton.cat11.label = self.mainui.infobutton.cat11:AddChild(Text(BUTTONFONT, 55))
-	--self.mainui.infobutton.cat11.label:SetString(STRINGS.GUI["mile"])
+	--self.mainui.infobutton.cat11.label:SetString(STRINGS.GUI["slayer"])
 	self.mainui.infobutton.cat11.label:SetScale(0.9,0.9,1)
 	self.mainui.infobutton.cat11.label:SetColour(0,0,0,1)
-	self.mainui.infobutton.cat11.label:SetMultilineTruncatedString(STRINGS.GUI["mile"], 1, 120, 50, "", true)
+	self.mainui.infobutton.cat11.label:SetMultilineTruncatedString(STRINGS.GUI["slayer"], 1, 120, 50, "", true)
+
+	self.mainui.infobutton.cat12 = self.mainui.infobutton:AddChild(ImageButton("images/button/button_bg_inactive.xml", "button_bg_inactive.tex"))
+	self.mainui.infobutton.cat12:SetPosition(90, -370, 0)
+	self.mainui.infobutton.cat12:SetScale(0.65,0.6,1)
+	self.mainui.infobutton.cat12:SetOnClick(function()
+		if self.mainui.allachiv.shown then
+			self.numpage = 12
+			self:build()
+			self:setAllAchivCategoriesActive()
+			self.mainui.infobutton.cat12:SetTextures("images/button/button_bg_inactive.xml", "button_bg_inactive.tex")
+		end
+	end)
+	self.mainui.infobutton.cat12.label = self.mainui.infobutton.cat12:AddChild(Text(BUTTONFONT, 55))
+	--self.mainui.infobutton.cat12.label:SetString(STRINGS.GUI["mile"])
+	self.mainui.infobutton.cat12.label:SetScale(0.9,0.9,1)
+	self.mainui.infobutton.cat12.label:SetColour(0,0,0,1)
+	self.mainui.infobutton.cat12.label:SetMultilineTruncatedString(STRINGS.GUI["mile"], 1, 120, 50, "", true)
 	
 	
 	--Buttons
@@ -938,7 +958,7 @@ local uiachievement = Class(Widget, function(self, owner)
 		self.perkpage = 1
 		self:loadlist()
 		self:loadcoinlist()
-		self.maxnumpage = 11
+		self.maxnumpage = 12
 		--self.achivlistbg = {}
 		self.achivlisttile = {}
 		self.coinlistbutton = {}
@@ -1013,6 +1033,7 @@ function uiachievement:setAllAchivCategoriesActive()
 	self.mainui.infobutton.cat9:SetTextures("images/button/button_bg.xml", "button_bg.tex")
 	self.mainui.infobutton.cat10:SetTextures("images/button/button_bg.xml", "button_bg.tex")
 	self.mainui.infobutton.cat11:SetTextures("images/button/button_bg.xml", "button_bg.tex")
+	self.mainui.infobutton.cat12:SetTextures("images/button/button_bg.xml", "button_bg.tex")
 	
 	self.mainui.achievement_bg.info:Hide()
 	self.mainui.achievement_bg.info:SetPosition(331, -150, 0)
@@ -1022,30 +1043,34 @@ end
 
 function uiachievement:updatepage(i)
 	local active = ""
-    if self.achivlist[i].check == 1 then active = "_active" end
-
+	if self.achivlist[i].check == 1 then active = "_active" end
+	
 	self.achivlisttile[i]:SetTexture("images/button/achievement"..active..".xml", "achievement"..active..".tex")
 	
-    if allachiv_eventdata[self.achivlist[i].name] ~= nil and self.achivlist[i].name ~= "king" and self.achivlist[i].name ~= "all" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..allachiv_eventdata[self.achivlist[i].name])
-    else
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].check.."/1")
-    end
-    if self.achivlist[i].name == "king" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["moose"]..self.achivlist[i].current1.."  "..STRINGS.GUI["ant"]..self.achivlist[i].current2.."  "..STRINGS.GUI["bear"]..self.achivlist[i].current3.."  "..STRINGS.GUI["deer"]..self.achivlist[i].current4)
-    end
-    if self.achivlist[i].name == "all" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..(#self.achivlist-1))
-    end
+	if allachiv_eventdata[self.achivlist[i].name] ~= nil and self.achivlist[i].name ~= "king" and self.achivlist[i].name ~= "all" and self.achivlist[i].name ~= "twins_of_terror" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..allachiv_eventdata[self.achivlist[i].name])
+	else
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].check.."/1")
+	end
+	if self.achivlist[i].name == "king" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["moose"]..self.achivlist[i].current1.."  "..STRINGS.GUI["ant"]..self.achivlist[i].current2.."  "..STRINGS.GUI["bear"]..self.achivlist[i].current3.."  "..STRINGS.GUI["deer"]..self.achivlist[i].current4)
+	end
+
+	if self.achivlist[i].name == "twins_of_terror" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["twin_of_terror1"]..self.achivlist[i].current1.."  "..STRINGS.GUI["twin_of_terror2"]..self.achivlist[i].current2)
+	end
+
+	if self.achivlist[i].name == "all" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..(#self.achivlist-1))
+	end
 	if self.achivlist[i].name == "alldiet" then
 		self.mainui.achievement_bg.info.header:SetString(STRINGS.GUI["foodlist"])
-    	self.mainui.achievement_bg.info.label:SetMultilineTruncatedString(self.achivlist[i].foodlist, 40, 250, 38, "...", true)
-    end
+		self.mainui.achievement_bg.info.label:SetMultilineTruncatedString(self.achivlist[i].foodlist, 40, 250, 38, "...", true)
+	end
 	if self.achivlist[i].name == "allgiantPlants" then
 		self.mainui.achievement_bg.info.header:SetString(STRINGS.GUI["giantPlantList"])
-    	self.mainui.achievement_bg.info.label:SetMultilineTruncatedString(self.achivlist[i].giantPlantList, 40, 250, 38, "...", true)
-    end
-	
+		self.mainui.achievement_bg.info.label:SetMultilineTruncatedString(self.achivlist[i].giantPlantList, 40, 250, 38, "...", true)
+	end
 end
 
 -- Achievements Categories number of entries
@@ -1053,12 +1078,13 @@ local cat_food = 11
 local cat_life = 11
 local cat_work = 12
 local cat_have = 12
-local cat_like = 12
+local cat_like = 10
 local cat_pain = 11
 local cat_fight = 12
 local cat_hunt = 11
 local cat_boss = 12
-local cat_misc = 11
+local cat_misc = 10
+local cat_slayer = 8
 local cat_mile = 10
 
 function uiachievement:OnUpdate(dt)
@@ -1221,10 +1247,19 @@ function uiachievement:OnUpdate(dt)
 		end
 	end
 	x = y + 1
+	y = y + cat_slayer
+
+	-- slayer
+	if self.numpage == 11 then
+		for i = x,y do
+			self:updatepage(i)
+		end
+	end
+	x = y + 1
 	y = y + cat_mile
 
 	-- Mile
-	if self.numpage == 11 then
+	if self.numpage == 12 then
 		for i = x,y do
 			self:updatepage(i)
 		end
@@ -1238,23 +1273,28 @@ function uiachievement:buildpage(j,i)
 	if math.ceil(j/2) ~= j/2 then x = -240 else x = 240 end
 
 	local active = ""
-    if self.achivlist[i].check == 1 then active = "_active" end
+	if self.achivlist[i].check == 1 then active = "_active" end
 
-    self.achivlisttile[i] = self.mainui.allachiv:AddChild(Image("images/button/achievement"..active..".xml", "achievement"..active..".tex"))
+	self.achivlisttile[i] = self.mainui.allachiv:AddChild(Image("images/button/achievement"..active..".xml", "achievement"..active..".tex"))
 	self.achivlisttile[i]:SetPosition(x-8, y, 0)
-    self.achivlisttile[i]:SetTint(1,1,1,1)
+	self.achivlisttile[i]:SetTint(1,1,1,1)
 
-    if allachiv_eventdata[self.achivlist[i].name] ~= nil and self.achivlist[i].name ~= "king" and self.achivlist[i].name ~= "all" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..allachiv_eventdata[self.achivlist[i].name])
-    else
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].check.."/1")
-    end
-    if self.achivlist[i].name == "king" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["moose"]..self.achivlist[i].current1.."  "..STRINGS.GUI["ant"]..self.achivlist[i].current2.."  "..STRINGS.GUI["bear"]..self.achivlist[i].current3.."  "..STRINGS.GUI["deer"]..self.achivlist[i].current4)
-    end
-    if self.achivlist[i].name == "all" then
-    	self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..(#self.achivlist-1))
-    end
+	if allachiv_eventdata[self.achivlist[i].name] ~= nil and self.achivlist[i].name ~= "king" and self.achivlist[i].name ~= "all" and self.achivlist[i].name ~= "twins_of_terror" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..allachiv_eventdata[self.achivlist[i].name])
+	else
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].check.."/1")
+	end
+	if self.achivlist[i].name == "king" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["moose"]..self.achivlist[i].current1.."  "..STRINGS.GUI["ant"]..self.achivlist[i].current2.."  "..STRINGS.GUI["bear"]..self.achivlist[i].current3.."  "..STRINGS.GUI["deer"]..self.achivlist[i].current4)
+	end
+
+	if self.achivlist[i].name == "twins_of_terror" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..STRINGS.GUI["twin_of_terror1"]..self.achivlist[i].current1.."  "..STRINGS.GUI["twin_of_terror2"]..self.achivlist[i].current2)
+	end
+
+	if self.achivlist[i].name == "all" then
+		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..(#self.achivlist-1))
+	end
 	self.infoopen = false
 	if self.achivlist[i].name == "alldiet" then
 		self.achivlisttile[i].OnMouseButton = function(inst, button, down, x, y)
@@ -1330,8 +1370,8 @@ function uiachievement:buildpage(j,i)
 	self.achivlisttile[i].name:SetHAlign(ANCHOR_LEFT)
 	
 	if self.achivlist[i].name == "all" then
-    	self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"].." "..self.achivlist[i].runcount+1, 250, 500, "")
-    else
+		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"].." "..self.achivlist[i].runcount+1, 250, 500, "")
+	else
 		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"], 250, 500, "")
 	end
 	local line = self.achivlisttile[i].name:GetString()
@@ -1361,7 +1401,6 @@ function uiachievement:buildpage(j,i)
 	self.achivlisttile[i].cost:SetRegionSize(60,60)
 	self.achivlisttile[i].cost:SetString("+"..allachiv_coinget[self.achivlist[i].name])
 	--self.achivlisttile[i].cost:SetColour(0,0,0,1)
-	
 end
 
 function uiachievement:build()
@@ -1457,10 +1496,19 @@ function uiachievement:build()
 		end
 	end
 	x = y + 1
+	y = y + cat_slayer
+
+	-- slayer
+	if self.numpage == 11 then
+		for i = x,y do
+			self:buildpage(i-(x-1) ,i)
+		end
+	end
+	x = y + 1
 	y = y + cat_mile
 
 	-- Mile
-	if self.numpage == 11 then
+	if self.numpage == 12 then
 		for i = x,y do
 			self:buildpage(i-(x-1) ,i)
 		end
@@ -1472,7 +1520,7 @@ local perk_attributes = 0;
 local perk_abilities = 0;
 local perk_crafting = 0;
 
-local modnameActual = KnownModIndex:GetModActualName("Achievements and Level System")
+local modnameActual = KnownModIndex:GetModActualName("Anseri Achievements and Level System")
 
 function uiachievement:perk_build()
 	local x = 1
@@ -1571,6 +1619,7 @@ function uiachievement:build_perkpage(j,i, adaptivecost)
 end
 
 function uiachievement:loadlist()
+
 	self.achivlist = {
 		--Food
 		{
@@ -1848,6 +1897,7 @@ function uiachievement:loadlist()
 			check = self.owner.checkpet:value(),
 			current = nil,
 		},
+		--[[
 		{
 			name = "shadowchester",
 			check = self.owner.checkshadowchester:value(),
@@ -1858,6 +1908,7 @@ function uiachievement:loadlist()
 			check = self.owner.checksnowchester:value(),
 			current = nil,
 		},
+		--]]
 		{
 			name = "musichutch",
 			check = self.owner.checkmusichutch:value(),
@@ -2141,11 +2192,13 @@ function uiachievement:loadlist()
 			check = self.owner.checkteleport:value(),
 			current = self.owner.currentteleportamount:value(),
 		},
+		--[[
 		{
 			name = "luck",
 			check = self.owner.checkluck:value(),
 			current = nil,
 		},
+		]]--
 		{
 			name = "lightning",
 			check = self.owner.checklightning:value(),
@@ -2161,6 +2214,48 @@ function uiachievement:loadlist()
 			check = self.owner.checkallgiantPlants:value(),
 			current = self.owner.currentgiantPlants:value(),
 			giantPlantList = self.owner.currentgiantPlantList:value(),
+		},
+		-- slayer
+		{
+			name = "spider",
+			check = self.owner.checkspider:value(),
+			current = self.owner.currentspider:value(),
+		},
+		{
+			name = "spider_warrior",
+			check = self.owner.checkspider_warrior:value(),
+			current = self.owner.currentspider_warrior:value(),
+		},
+		{
+			name = "hound",
+			check = self.owner.checkhound:value(),
+			current = self.owner.currenthound:value(),
+		},
+		{
+			name = "bee",
+			check = self.owner.checkbee:value(),
+			current = self.owner.currentbee:value(),
+		},
+		{
+			name = "frog",
+			check = self.owner.checkfrog:value(),
+			current = self.owner.currentfrog:value(),
+		},
+		{
+			name = "clockwork",
+			check = self.owner.checkclockwork:value(),
+			current = self.owner.currentclockwork:value(),
+		},
+		{
+			name = "eye_of_terror",
+			check = self.owner.checkeye_of_terror:value(),
+			current = nil,
+		},
+		{
+			name = "twins_of_terror",
+			check = self.owner.checktwins_of_terror:value(),
+			current1 = self.owner.checktwin_of_terror1:value(),
+			current2 = self.owner.checktwin_of_terror2:value(),
 		},
 		--Mile
 		{
@@ -2214,9 +2309,11 @@ function uiachievement:loadlist()
 			current = 0,
 			runcount = self.owner.currentruncount:value(),
 		},
+	
 	}
 
-	local achivvalue = 0
+
+local achivvalue = 0
 	for i=1, #self.achivlist do
 		if self.achivlist[i].name ~= "all" then
 			achivvalue = achivvalue + self.achivlist[i].check
@@ -2226,12 +2323,13 @@ function uiachievement:loadlist()
 	end
 end
 
+
 function uiachievement:loadcoinlist()
 	self.coinlist = {}
 	perk_attributes = 0;
 	perk_abilities = 0;
 	perk_crafting = 0;
-	modnameActual = KnownModIndex:GetModActualName("Achievements and Level System")
+	modnameActual = KnownModIndex:GetModActualName("Anseri Achievements and Level System")
 	if GetModConfigData('hungerup',modnameActual) then
 		table.insert(self.coinlist, 
 			{	
@@ -2351,7 +2449,7 @@ function uiachievement:loadcoinlist()
 			})
 		perk_attributes = perk_attributes + 1
 	end
-	
+	--[[
 	if GetModConfigData('scale',modnameActual) then
 		table.insert(self.coinlist, 
 			{
@@ -2361,6 +2459,7 @@ function uiachievement:loadcoinlist()
 			})
 		perk_attributes = perk_attributes + 1
 	end
+	]]--
 	
 	if GetModConfigData('krampusxmas',modnameActual) then
 		table.insert(self.coinlist, 
@@ -2628,6 +2727,7 @@ function uiachievement:updateAllStrings()
 	self.mainui.infobutton.cat9.label:SetSize(55)
 	self.mainui.infobutton.cat10.label:SetSize(55)
 	self.mainui.infobutton.cat11.label:SetSize(55)
+	self.mainui.infobutton.cat12.label:SetSize(55)
 	self.mainui.infobutton.cat1.label:SetMultilineTruncatedString(STRINGS.GUI["food"], 1, 120, 50, "", true)
 	self.mainui.infobutton.cat2.label:SetMultilineTruncatedString(STRINGS.GUI["life"], 1, 120, 50, "", true)
 	self.mainui.infobutton.cat3.label:SetMultilineTruncatedString(STRINGS.GUI["work"], 1, 120, 50, "", true)
@@ -2638,7 +2738,8 @@ function uiachievement:updateAllStrings()
 	self.mainui.infobutton.cat8.label:SetMultilineTruncatedString(STRINGS.GUI["hunt"], 1, 120, 50, "", true)
 	self.mainui.infobutton.cat9.label:SetMultilineTruncatedString(STRINGS.GUI["boss"], 1, 120, 50, "", true)
 	self.mainui.infobutton.cat10.label:SetMultilineTruncatedString(STRINGS.GUI["misc"], 1, 120, 50, "", true)
-	self.mainui.infobutton.cat11.label:SetMultilineTruncatedString(STRINGS.GUI["mile"], 1, 120, 50, "", true)
+	self.mainui.infobutton.cat11.label:SetMultilineTruncatedString(STRINGS.GUI["slayer"], 1, 120, 50, "", true)
+	self.mainui.infobutton.cat12.label:SetMultilineTruncatedString(STRINGS.GUI["mile"], 1, 120, 50, "", true)
 	self.mainui.perk_cat.perkcat1.label:SetSize(45)
 	self.mainui.perk_cat.perkcat2.label:SetSize(45)
 	self.mainui.perk_cat.perkcat3.label:SetSize(45)

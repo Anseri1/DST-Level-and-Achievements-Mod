@@ -12,7 +12,7 @@ local function currentdamageup(self,damageupamount) self.inst.currentdamageup:se
 local function currentcrit(self,crit) self.inst.currentcrit:set(crit) end
 local function currentlifestealup(self,lifesteal) self.inst.currentlifestealup:set(lifesteal) end
 local function currentfireflylightup(self,fireflylightup) self.inst.currentfireflylightup:set(fireflylightup) end
-local function currentscaleup(self,scale) self.inst.currentscaleup:set(scale) end
+--local function currentscaleup(self,scale) self.inst.currentscaleup:set(scale) end
 
 local function currenthungerachivcost(self,hungerachivcost) self.inst.currenthungerachivcost:set(hungerachivcost) end
 local function currentsanityachivcost(self,sanityachivcost) self.inst.currentsanityachivcost:set(sanityachivcost) end
@@ -26,7 +26,7 @@ local function currentdamageachivcost(self,damageachivcost) self.inst.currentdam
 local function currentcritachivcost(self,critachivcost) self.inst.currentcritachivcost:set(critachivcost) end
 local function currentlifestealcost(self,lifestealcost) self.inst.currentlifestealcost:set(lifestealcost) end
 local function currentfireflylightcost(self,fireflylightcost) self.inst.currentfireflylightcost:set(fireflylightcost) end
-local function currentscalecost(self,scalecost) self.inst.currentscalecost:set(scalecost) end
+--local function currentscalecost(self,scalecost) self.inst.currentscalecost:set(scalecost) end
 
 local function currentdoubledrop(self,doubledrop) local c = 0 if doubledrop then c=1 end self.inst.currentdoubledrop:set(c) end
 local function currentkrampusxmas(self,krampusxmas) local c = 0 if krampusxmas then c=1 end self.inst.currentkrampusxmas:set(c) end
@@ -80,7 +80,7 @@ local allachivcoin = Class(function(self, inst)
     self.crit = 0
 	self.lifestealupamount = 0
 	self.fireflylightup = 0
-	self.scaleupamount = 0
+	--self.scaleupamount = 0
 	
 	self.hungerachivcost = allachiv_coinuse["hungerup"]
     self.sanityachivcost = allachiv_coinuse["sanityup"]
@@ -94,7 +94,7 @@ local allachivcoin = Class(function(self, inst)
     self.critachivcost = allachiv_coinuse["crit"]
 	self.lifestealcost = allachiv_coinuse["lifesteal"]
 	self.fireflylightcost = allachiv_coinuse["fireflylightup"]
-	self.scalecost = allachiv_coinuse["scale"]
+	--self.scalecost = allachiv_coinuse["scale"]
 	
 	self.starsspent = 0
 
@@ -145,7 +145,7 @@ nil,
     crit = currentcrit,
 	lifestealupamount = currentlifestealup,
 	fireflylightup = currentfireflylightup,
-	scaleupamount = currentscaleup,
+	--scaleupamount = currentscaleup,
 	
 	hungerachivcost = currenthungerachivcost,
     sanityachivcost = currentsanityachivcost,
@@ -159,7 +159,7 @@ nil,
     critachivcost = currentcritachivcost,
 	lifestealcost = currentlifestealcost,
 	fireflylightcost = currentfireflylightcost,
-	scalecost = currentscalecost,
+	--scalecost = currentscalecost,
 	
     doubledrop = currentdoubledrop,
 	krampusxmas = currentkrampusxmas,
@@ -206,7 +206,7 @@ function allachivcoin:OnSave()
         crit = self.crit,
 		lifestealupamount = self.lifestealupamount,
 		fireflylightup = self.fireflylightup,
-		scaleupamount = self.scaleupamount,
+		--scaleupamount = self.scaleupamount,
 		starsspent = self.starsspent,
         doubledrop = self.doubledrop,
 		krampusxmas = self.krampusxmas,
@@ -254,7 +254,7 @@ function allachivcoin:OnLoad(data)
     self.crit = data.crit or 0
 	self.lifestealupamount = data.lifestealupamount or 0
 	self.fireflylightup = data.fireflylightup or 0
-	self.scaleupamount = data.scaleupamount or 0
+	--self.scaleupamount = data.scaleupamount or 0
 	self.hungerachivcost = allachiv_coinuse["hungerup"] + math.floor(self.hungerupamount/achievementcoststep["hungerup"])
     self.sanityachivcost = allachiv_coinuse["sanityup"] + math.floor(self.sanityupamount/achievementcoststep["sanityup"])
     self.healthachivcost = allachiv_coinuse["healthup"] + math.floor(self.healthupamount/achievementcoststep["healthup"])
@@ -267,7 +267,7 @@ function allachivcoin:OnLoad(data)
     self.critachivcost = allachiv_coinuse["crit"] + math.floor(self.crit/achievementcoststep["crit"])*2
 	self.lifestealcost = allachiv_coinuse["lifesteal"] + math.floor(self.lifestealupamount/achievementcoststep["lifesteal"])
 	self.fireflylightcost = allachiv_coinuse["fireflylightup"] + math.floor(self.fireflylightup/achievementcoststep["fireflylightup"])
-	self.scalecost = allachiv_coinuse["scale"] + math.floor(self.scaleupamount/achievementcoststep["scale"])*2
+	--self.scalecost = allachiv_coinuse["scale"] + math.floor(self.scaleupamount/achievementcoststep["scale"])*2
 	self.starsspent = data.starsspent or 0
     self.doubledrop = data.doubledrop or false
 	self.krampusxmas = data.krampusxmas or false
@@ -535,6 +535,7 @@ function allachivcoin:lifestealfn(inst)
     end)
 end
 
+--[[
 function allachivcoin:scaleupcoin(inst)
     if self.coinamount >= self.scalecost then
         self.scaleupamount = self.scaleupamount + 1
@@ -552,13 +553,14 @@ function allachivcoin:scalefn(inst)
 		inst:ApplyScale("achievementScale", 1+allachiv_coindata["scale"]*self.scaleupamount)
 	end
 end
+]]--
 
 function allachivcoin:fireflylightupcoin(inst)
-    if self.coinamount >= self.fireflylightcost then
+    if self.coinamount >= self.fireflylightcost and ((self.inst.checkeye_of_terror:value() == true or self.inst.checktwins_of_terror:value() == true) or self.inst.currentruncount:value() > 0) then
         self.fireflylightup = self.fireflylightup + 1
         self:coinDoDelta(-self.fireflylightcost)
 		self.starsspent = self.starsspent + self.fireflylightcost
-		self.fireflylightcost = allachiv_coinuse["fireflylightup"] + math.floor(self.fireflylightup/achievementcoststep["fireflylightup"])*5
+		self.fireflylightcost = allachiv_coinuse["fireflylightup"] + math.floor(self.fireflylightup/achievementcoststep["fireflylightup"])
         self:ongetcoin(inst)
 		self:fireflylightfn(inst)
     end
@@ -1319,10 +1321,10 @@ function allachivcoin:addcoins(inst)
 	self.coinamount = self.coinamount + 100
 end
 
---重置奖励
+--重置奖励 reset reward
 function allachivcoin:removecoin(inst)
 
-    self.coinamount = self.coinamount + math.ceil(self.starsspent*reset_refund_percentage)
+    self.coinamount = self.coinamount + self.starsspent
     self:resetbuff(inst)
 
     self.hungerupamount = 0
@@ -1356,7 +1358,7 @@ function allachivcoin:removecoin(inst)
     self.critachivcost = allachiv_coinuse["crit"]
 	self.fireflylightcost = allachiv_coinuse["fireflylightup"]
 	self.lifestealcost = allachiv_coinuse["lifesteal"]
-	self.scalecost = allachiv_coinuse["scale"]
+	--self.scalecost = allachiv_coinuse["scale"]
 	self.starsspent = 0
 
     self.doubledrop = false
@@ -1401,7 +1403,7 @@ function allachivcoin:resetbuff(inst)
 
     if inst._fireflylight then inst._fireflylight:Remove() end
 	
-	inst:ApplyScale("achievementScale", 1)
+	--inst:ApplyScale("achievementScale", 1)
 
     inst.components.temperature.mintemp = TUNING.MIN_ENTITY_TEMP
     inst.components.temperature.maxtemp = TUNING.MAX_ENTITY_TEMP
@@ -1481,7 +1483,7 @@ function allachivcoin:Init(inst)
 			self:krampusxmasfn(inst)
 			self:critfn(inst)
 			self:lifestealfn(inst)
-			self:scalefn(inst)
+			--self:scalefn(inst)
 			self:sanityregenfn(inst)
 			self:healthregenfn(inst)
 			self:hungerratefn(inst)

@@ -18,6 +18,8 @@ STRINGS.GUI={
 	["ant"] = "Antlion:",
 	["bear"] = "Bearger:",
 	["deer"] = "Deerclops:",
+    ["twin_of_terror1"] = "Retinazor:",
+    ["twin_of_terror2"] = "Spazmatism:",
 	["set"] = "Settings",
 	["zoomI"] = "Zoom in",
 	["zoomO"] = "Zoom out",
@@ -27,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"] = "Level Experience",
     ["close"] = "Close",
     ["reset"] = "Reset",
-    ["resetAchievments"] = "Resetting will remove all rewards and refund "..math.ceil(reset_refund_percentage*100).."% of achievement points. You also get a temporary health penalty.",
+    ["resetAchievments"] = "Resetting will remove all rewards and refund 100% of achievement points. You also get a temporary health penalty.",
     ["food"] = "Food",
     ["life"] = "Life",
     ["work"] = "Work",
@@ -39,12 +41,13 @@ STRINGS.GUI={
     ["boss"] = "Boss",
     ["misc"] = "Misc",
     ["mile"] = "Mile",
+    ["slayer"] = "Slayer",
     ["attributes"] = "Attributes",
     ["abilities"] = "Abilities",
     ["crafting"] = "Crafting",
     ["attributelabels"] = "Hunger:\nSanity:\nHealth:\nDamage:\nDefence:\nSpeed:\nHeat Insulation:\nCold Insulation:\n",
     ["attributeunits"] = "\n\n%\n%\n%\n\n\n",
-    ["resetlevel"] = "Resetting will remove all upgrades and refund "..math.ceil(reset_refund_percentage*100).."% points. You also get a temporary health penalty.",
+    ["resetlevel"] = "Resetting will remove all upgrades and refund 100% points. You also get a temporary health penalty.",
     ["iteminfo"] = "Upgrades are applied to the base values without items.\nValues shown here are final values after applying all effects.",
     ["availablePoints"] = "Available \n Points: \n ",
     ["overallxp"] = "Overall XP: ",
@@ -106,8 +109,8 @@ STRINGS.ACHIEVEMENTS={
     },
     ["eatmole"] = {
         ["name"] = "Tex-Mex",
-        ["description"] = "Eat "..allachiv_eventdata["eatmole"].." guacamole",
-        ["info"] = "ate "..allachiv_eventdata["eatmole"].." guacamole",
+        ["description"] = "Eat "..allachiv_eventdata["eatmole"].." guacamole or bunny stew",
+        ["info"] = "ate "..allachiv_eventdata["eatmole"].." guacamole or bunny stew",
     },
     ["noob"] = {
         ["name"] = "Noobish Newbie",
@@ -324,6 +327,7 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Adopt your favorite pet",
         ["info"] = "brought a purrfect friend to the journey",
     },
+    --[[
     ["shadowchester"] = {
         ["name"] = "Dark Side",
         ["description"] = "Transform chester to the dark side",
@@ -334,6 +338,7 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Transform chester into a freezer",
         ["info"] = "transformed chester into a freezer",
     },
+    ]]--
     ["musichutch"] = {
         ["name"] = "Party",
         ["description"] = "Transform hutch into a music player",
@@ -386,13 +391,13 @@ STRINGS.ACHIEVEMENTS={
     },
     ["evilflower"] = {
         ["name"] = "Evil Flowers",
-        ["description"] = "Gather "..allachiv_eventdata["evilflower"].." evil flowers",
-        ["info"] = "gathered "..allachiv_eventdata["evilflower"].." evil flowers",
+        ["description"] = "Gather "..allachiv_eventdata["evilflower"].." evil or withered flowers",
+        ["info"] = "gathered "..allachiv_eventdata["evilflower"].." evil or withered flowers",
     },
     ["roses"] = {
         ["name"] = "Queen of Flowers",
-        ["description"] = "Gather "..allachiv_eventdata["roses"].." roses",
-        ["info"] = "gathered "..allachiv_eventdata["roses"].." roses",
+        ["description"] = "Gather "..allachiv_eventdata["roses"].." roses or cactus flowers",
+        ["info"] = "gathered "..allachiv_eventdata["roses"].." roses or cactus flowers",
     },
     ["drown"] = {
         ["name"] = "Swimming?",
@@ -416,7 +421,7 @@ STRINGS.ACHIEVEMENTS={
     },
     ["bullkelp"] = {
         ["name"] = "Slap them",
-        ["description"] = "Deal "..(allachiv_eventdata["bullkelp"]/1000).."k damage with a bull kelp stalk",
+        ["description"] = "Deal "..(allachiv_eventdata["bullkelp"]/1000).."k damage with a whip",
         ["info"] = "slapped enemies for "..allachiv_eventdata["bullkelp"].." damage",
     },
     ["butcher"] = {
@@ -431,8 +436,8 @@ STRINGS.ACHIEVEMENTS={
     },
     ["slurtle"] = {
         ["name"] = "Slimy",
-        ["description"] = "Kill "..allachiv_eventdata["slurtle"].." slurtles",
-        ["info"] = "killed "..allachiv_eventdata["slurtle"].." slurtles",
+        ["description"] = "Kill "..allachiv_eventdata["slurtle"].." slurtles or snurtles",
+        ["info"] = "killed "..allachiv_eventdata["slurtle"].." slurtles or snurtle",
     },
     ["werepig"] = {
         ["name"] = "Lycanthropy",
@@ -456,8 +461,8 @@ STRINGS.ACHIEVEMENTS={
     },
     ["hutch"] = {
         ["name"] = "No Pain No Gain",
-        ["description"] = "Murder Fugo Hutch with <10 health",
-        ["info"] = "murdered Fugu Hutch with your health less than 10",
+        ["description"] = "Murder Fugo Hutch",
+        ["info"] = "murdered Fugu Hutch",
     },
     ["goatperd"] = {
         ["name"] = "Short Circuit",
@@ -498,6 +503,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"] = "Queenslayer",
         ["description"] = "Kill "..allachiv_eventdata["spiderqueen"].." spiderqueens",
         ["info"] = "killed "..allachiv_eventdata["spiderqueen"].." spiderqueens",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"] = {
         ["name"] = "Let the dogs out",
@@ -609,11 +654,13 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Teleport "..allachiv_eventdata["teleport"].." times",
         ["info"] = "practiced transferring matters to different planes",
     },
+    --[[
     ["luck"] = {
         ["name"] = "Jackpot",
         ["description"] = "Kill Krampus and get his sack",
         ["info"] = "got the Krampus Sack by killing Krampus",
     },
+    ]]--
     ["lightning"] = {
         ["name"] = "Crank",
         ["description"] = "Get hit by lightning",
@@ -718,10 +765,12 @@ STRINGS.PERKS={
         ["name"]="Lifesteal +",
         ["description"]="Increase lifesteal by "..(math.ceil(allachiv_coindata["lifesteal"]*1000)/10).."% of your damage",
     },
+    --[[
     ["scale"] = {
         ["name"]="Scale +",
         ["description"]="Increase the size of your character by "..(math.ceil(allachiv_coindata["scale"]*100)).."%",
     },
+    ]]--
     ["speedup"] = {
         ["name"]="Speed +",
         ["description"]="Increase movement speed by "..(math.ceil(allachiv_coindata["speedup"]*100)).."%",
@@ -736,7 +785,7 @@ STRINGS.PERKS={
     },
     ["fireflylightup"] = {
         ["name"]="Dim Light +",
-        ["description"]="Radiate a light around you with growing radius",
+        ["description"]="Radiate light (Requires Terrarium Fight)",
     },
     ["goodman"] = {
         ["name"]="Friend Zone",

@@ -1,7 +1,8 @@
 name =
-[[Achievements and Level System]]
+[[Anseri Achievements and Level System]]
 description =
-[[v3.7.5
+[[v0.0.1
+anseri's fork of levelup and achievements mod
 Adds a achievement and leveling system to the game.
 To gain level xp eat food or kill monster.
 Spend available attribute points to upgrade your stats
@@ -9,10 +10,10 @@ To gain achievement stars fullfil the quests.
 Spend achievement stars to upgrade stats or unlock permanent abilities.
 If you complete all achievements you can enable multiple playthroughs in the mod configuration.
 ]]
-author = "Lavax"
-version = "3.7.5"
+author = "anseri"
+version = "0.0.1"
 priority = -1000
-server_filter_tags = {"achievement", "level"}
+server_filter_tags = {"achievement", "level", "test"}
 
 forumthread = ""
 
@@ -53,8 +54,8 @@ translations = {
         ["Enabled"] = "Enabled",
         ["Disabled"] = "Disabled",
 
-        ["Refund Percentage on Reset"] = "Refund Percentage on Reset",
-        ["RefundInfo"] = "Choose how many points you get refunded when resetting",
+        --["Refund Percentage on Reset"] = "Refund Percentage on Reset",
+        --["RefundInfo"] = "Choose how many points you get refunded when resetting",
 
         ["Health Penalty on Reset"] = "Health Penalty on Reset",
         ["HealthInfo"] = "Removable health penalty on reset",
@@ -141,7 +142,7 @@ translations = {
 		["Damage"] = "Damage +",
 		["Critical Hit"] = "Critical Hit +",
 		["Lifesteal"] = "Lifesteal +",
-		["Scale"] = "Scale +",
+		--["Scale"] = "Scale +",
 		["Speed"] = "Speed +",
 		["Defense"] = "Defense +",
 		["Christmas"] = "Christmas",
@@ -228,18 +229,6 @@ configuration_options =
                     },
         default = "nothing",
 		hover = language["StartGearInfo"],
-    },
-	{
-        name = "REFUND",
-        label = language["Refund Percentage on Reset"],
-        options =   {
-                        {description = "75%", data = 0.75},
-                        {description = "85%", data = 0.85},
-						{description = "95%", data = 0.95},
-						{description = "100%", data = 1},
-                    },
-        default = 0.85,
-		hover = language["RefundInfo"],
     },
 	{
         name = "HEALTHPENALTY",
@@ -658,6 +647,7 @@ configuration_options =
                     },
         default = true,
     },
+    --[[
 	{
         name = "scale",
         label = language["Scale"],
@@ -665,8 +655,9 @@ configuration_options =
                         {description = language["Enabled"], data = true},
                         {description = language["Disabled"], data = false},
                     },
-        default = true,
+        default = false,
     },
+    ]]--
 	{
         name = "krampusxmas",
         label = language["Christmas"],

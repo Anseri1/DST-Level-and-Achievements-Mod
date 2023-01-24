@@ -1,5 +1,5 @@
 
-reset_refund_percentage = _G.REFUND_CONFIG
+--reset_refund_percentage = _G.REFUND_CONFIG
 
 levelxpcap = _G.LEVELXP
 attributepointsOnLevel = _G.LEVELPOINTS
@@ -30,18 +30,18 @@ allachiv_eventdata={
 ["reviveamulet"] = 3,
 ["feedplayer"] = 10,
 --Work
-["nature"] = 500,
-["fishmaster"] = 60,
-["pickappren"] = 750,
-["pickmaster"] = 1500,
-["chopappren"] = 350,
-["chopmaster"] = 700,
-["mineappren"] = 200,
-["minemaster"] = 400,
+["nature"] = 100,
+["fishmaster"] = 30,
+["pickappren"] = 300,
+["pickmaster"] = 600,
+["chopappren"] = 100,
+["chopmaster"] = 200,
+["mineappren"] = 100,
+["minemaster"] = 200,
 ["cookappren"] = 100,
 ["cookmaster"] = 200,
-["buildappren"] = 500,
-["buildmaster"] = 1000,
+["buildappren"] = 200,
+["buildmaster"] = 500,
 --Have
 ["emerald"] = 10,
 ["citrin"] = 10,
@@ -64,8 +64,8 @@ allachiv_eventdata={
 ["evil"] = 3,
 ["birdclop"] = nil,
 ["pet"] = nil,
-["shadowchester"] = nil,
-["snowchester"] = nil,
+--["shadowchester"] = nil,
+--["snowchester"] = nil,
 ["musichutch"] = nil,
 ["lavae"] = nil,
 --Pain
@@ -123,12 +123,21 @@ allachiv_eventdata={
 ["trader"] = 20,
 ["fuzzy"] = 5,
 ["knowledge"] = nil,
-["dance"] = 50,
+["dance"] = 1,
 ["teleport"] = 25,
-["luck"] = nil,
+--["luck"] = nil,
 ["lightning"] = nil,
 ["birchnut"] = 5,
 ["allgiantPlants"] = 14,
+--slayer
+["spider"] = 100,
+["spider_warrior"] = 50,
+["hound"] = 50,
+["bee"] = 50,
+["frog"] = 50,
+["clockwork"] = 15,
+["eye_of_terror"] = nil,
+["twins_of_terror"] = nil,
 --Mile
 ["all"] = nil,
 ["longage"] = 70,
@@ -203,8 +212,8 @@ allachiv_coinget={
 ["evil"] = 2,
 ["birdclop"] = 3,
 ["pet"] = 2,
-["shadowchester"] = 2,
-["snowchester"] = 2,
+--["shadowchester"] = 2,
+--["snowchester"] = 2,
 ["musichutch"] = 2,
 ["lavae"] = 3,
 --Pain
@@ -264,10 +273,19 @@ allachiv_coinget={
 ["knowledge"] = 3,
 ["dance"] = 1,
 ["teleport"] = 2,
-["luck"] = 10,
+--["luck"] = 10,
 ["lightning"] = 1,
 ["birchnut"] = 3,
 ["allgiantPlants"] = 10,
+--slayer
+["spider"] = 3,
+["spider_warrior"] = 4,
+["hound"] = 4,
+["bee"] = 3,
+["frog"] = 3,
+["clockwork"] = 4,
+["eye_of_terror"] = 5,
+["twins_of_terror"] = 7,
 --Mile
 ["all"] = 3,
 ["longage"] = 5,
@@ -295,7 +313,7 @@ allachiv_coindata={
 ["absorbup"] = .05,
 ["crit"] = .05,
 ["lifesteal"] = .005,
-["scale"] = .05,
+--["scale"] = .05,
 ["krampusxmas"] = .05,
 ["cheatdeath"] = 900,
 }
@@ -313,7 +331,7 @@ allachiv_coinuse={
 ["absorbup"] = math.ceil(5*_G.MULT_CONFIG),
 ["crit"] = math.ceil(7*_G.MULT_CONFIG),
 ["lifesteal"] = math.ceil(7*_G.MULT_CONFIG),
-["scale"] = math.ceil(5*_G.MULT_CONFIG),
+--["scale"] = math.ceil(5*_G.MULT_CONFIG),
 ["fireflylightup"] = math.ceil(15*_G.MULT_CONFIG),
 ["krampusxmas"] = math.ceil(15*_G.MULT_CONFIG),
 ["nomoist"] = math.ceil(35*_G.MULT_CONFIG),
@@ -365,7 +383,7 @@ achievementcoststep={
 ["damageup"] = 6,
 ["crit"] = 3,
 ["lifesteal"] = 1,
-["scale"] = 3,
+--["scale"] = 3,
 ["fireflylightup"] = 4,
 }
 
@@ -392,7 +410,7 @@ if not _G.COSTRAISE_CONFIG then
 	["damageup"] = 999,
 	["crit"] = 999,
 	["lifesteal"] = 999,
-	["scale"] = 999,
+	--["scale"] = 999,
 	["fireflylightup"] = 999,
 	}
 end

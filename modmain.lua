@@ -12,7 +12,7 @@ local CUSTOM_RECIPETABS = _G.CUSTOM_RECIPETABS
 
 _G.CAVES_CONFIG = GetModConfigData('CAVES')
 _G.MULT_CONFIG = GetModConfigData('MULT')
-_G.REFUND_CONFIG = GetModConfigData('REFUND')
+--_G.REFUND_CONFIG = GetModConfigData('REFUND')
 _G.SYSTEM_CONFIG = GetModConfigData('SYSTEM')
 _G.HIDEPERK_CONFIG = GetModConfigData('HIDEPERK')
 _G.STARTGEAR_CONFIG = GetModConfigData('GEAR')
@@ -39,7 +39,7 @@ _G.DAMAGEGAIN = GetModConfigData('DAMAGEGAIN')
 _G.INSULATIONGAIN = GetModConfigData('INSULATIONGAIN')
 
 require 'system/balance'
-require "system/rpc"
+require 'system/rpc'
 
 _G.LANGUAGE = GetModConfigData('LANGUAGE')
 if _G.LANGUAGE == "kr" then
@@ -538,7 +538,32 @@ AddPlayerPostInit(function(inst)
 			inst.components.levelsystem:giveXP(playerName, xpAmount)
 		end
 	end
+
+	--local function ()
+	--end
+
+	--[[
+	local achievement_list = require "components/achievement_list"
+	for k, j in pairs(achievement_list) do
+		for i, v in pairs(achievements_table) do
+			local check_achievement = "check"..v
+			inst[check_achievement] = GLOBAL.net_shortint(inst.GUID,check_achievement)
+		end
+
+		for i, v in pairs(cave_achievements_table) do
+			local check_achievement = "check"..v
+			inst[check_achievement] = GLOBAL.net_shortint(inst.GUID,check_achievement)
+		end
+
+		for i, v in pairs(amount_table) do
+			local current_name = "current"..v
+			inst[current_name] = GLOBAL.net_shortint(inst.GUID,current_name)
+		end
+	end
+	]]--
 	
+	
+
 	inst.checkemerald = GLOBAL.net_shortint(inst.GUID,"checkemerald")
 	inst.checkcitrin = GLOBAL.net_shortint(inst.GUID,"checkcitrin")
 	inst.checkamber = GLOBAL.net_shortint(inst.GUID,"checkamber")
@@ -581,7 +606,7 @@ AddPlayerPostInit(function(inst)
     inst.checkcookappren = GLOBAL.net_shortint(inst.GUID,"checkcookappren")
     inst.checkcookmaster = GLOBAL.net_shortint(inst.GUID,"checkcookmaster")
     inst.checklongage = GLOBAL.net_shortint(inst.GUID,"checklongage")
-    inst.checkluck = GLOBAL.net_shortint(inst.GUID,"checkluck")
+    --inst.checkluck = GLOBAL.net_shortint(inst.GUID,"checkluck")
     inst.checkblack = GLOBAL.net_shortint(inst.GUID,"checkblack")
     inst.checkbuildappren = GLOBAL.net_shortint(inst.GUID,"checkbuildappren")
     inst.checkbuildmaster = GLOBAL.net_shortint(inst.GUID,"checkbuildmaster")
@@ -632,6 +657,7 @@ AddPlayerPostInit(function(inst)
     inst.checkrocklob = GLOBAL.net_shortint(inst.GUID,"checkrocklob")
     inst.checksuperstar = GLOBAL.net_shortint(inst.GUID,"checksuperstar")
     inst.checkoldage = GLOBAL.net_shortint(inst.GUID,"checkoldage")
+
 	
 	inst.currenteatfish = GLOBAL.net_shortint(inst.GUID,"currenteatfish")
 	inst.currenteatturkey = GLOBAL.net_shortint(inst.GUID,"currenteatturkey")
@@ -653,6 +679,14 @@ AddPlayerPostInit(function(inst)
 	inst.currentfruitdragon = GLOBAL.net_shortint(inst.GUID,"currentfruitdragon")
 	inst.currenttreeguard = GLOBAL.net_shortint(inst.GUID,"currenttreeguard")
 	inst.currentspiderqueen = GLOBAL.net_shortint(inst.GUID,"currentspiderqueen")
+
+	inst.currentspider = GLOBAL.net_shortint(inst.GUID,"currentspider")
+	inst.currentspider_warrior = GLOBAL.net_shortint(inst.GUID,"currentspider_warrior")
+	inst.currenthound = GLOBAL.net_shortint(inst.GUID,"currenthound")
+	inst.currentbee = GLOBAL.net_shortint(inst.GUID,"currentbee")
+	inst.currentfrog = GLOBAL.net_shortint(inst.GUID,"currentfrog")
+	inst.currentclockwork = GLOBAL.net_shortint(inst.GUID,"currentclockwork")
+
 	inst.currentvarg = GLOBAL.net_shortint(inst.GUID,"currentvarg")
 	inst.currentkoaelefant = GLOBAL.net_shortint(inst.GUID,"currentkoaelefant")
 	inst.currentmonkey = GLOBAL.net_shortint(inst.GUID,"currentmonkey")
@@ -661,6 +695,7 @@ AddPlayerPostInit(function(inst)
 	inst.currentfullsanity = GLOBAL.net_shortint(inst.GUID,"currentfullsanity")
 	inst.currentfullhunger = GLOBAL.net_shortint(inst.GUID,"currentfullhunger")
 	inst.currentpacifist = GLOBAL.net_shortint(inst.GUID,"currentpacifist")
+
 
 	inst.checkeatfish = GLOBAL.net_shortint(inst.GUID,"checkeatfish")
 	inst.checkeatturkey = GLOBAL.net_shortint(inst.GUID,"checkeatturkey")
@@ -672,8 +707,8 @@ AddPlayerPostInit(function(inst)
 	inst.checkreviveamulet = GLOBAL.net_shortint(inst.GUID,"checkreviveamulet")
 	inst.checkfeedplayer = GLOBAL.net_shortint(inst.GUID,"checkfeedplayer")
 	inst.checkbathbomb = GLOBAL.net_shortint(inst.GUID,"checkbathbomb")
-	inst.checkshadowchester = GLOBAL.net_shortint(inst.GUID,"checkshadowchester")
-	inst.checksnowchester = GLOBAL.net_shortint(inst.GUID,"checksnowchester")
+	--inst.checkshadowchester = GLOBAL.net_shortint(inst.GUID,"checkshadowchester")
+	--inst.checksnowchester = GLOBAL.net_shortint(inst.GUID,"checksnowchester")
 	inst.checkmusichutch = GLOBAL.net_shortint(inst.GUID,"checkmusichutch")
 	inst.checklavae = GLOBAL.net_shortint(inst.GUID,"checklavae")
 	inst.checkevilflower = GLOBAL.net_shortint(inst.GUID,"checkevilflower")
@@ -687,6 +722,18 @@ AddPlayerPostInit(function(inst)
 	inst.checkfruitdragon = GLOBAL.net_shortint(inst.GUID,"checkfruitdragon")
 	inst.checktreeguard = GLOBAL.net_shortint(inst.GUID,"checktreeguard")
 	inst.checkspiderqueen = GLOBAL.net_shortint(inst.GUID,"checkspiderqueen")
+
+	inst.checkspider = GLOBAL.net_shortint(inst.GUID,"checkspider")
+	inst.checkspider_warrior = GLOBAL.net_shortint(inst.GUID,"checkspider_warrior")
+	inst.checkhound = GLOBAL.net_shortint(inst.GUID,"checkhound")
+	inst.checkbee = GLOBAL.net_shortint(inst.GUID,"checkbee")
+	inst.checkfrog = GLOBAL.net_shortint(inst.GUID,"checkfrog")
+	inst.checkclockwork = GLOBAL.net_shortint(inst.GUID,"checkclockwork")
+	inst.checkeye_of_terror = GLOBAL.net_shortint(inst.GUID,"checkeye_of_terror")
+	inst.checktwin_of_terror1 = GLOBAL.net_shortint(inst.GUID,"checktwin_of_terror1")
+	inst.checktwin_of_terror2 = GLOBAL.net_shortint(inst.GUID,"checktwin_of_terror2")
+	inst.checktwins_of_terror = GLOBAL.net_shortint(inst.GUID,"checktwins_of_terror")
+
 	inst.checkvarg = GLOBAL.net_shortint(inst.GUID,"checkvarg")
 	inst.checkkoaelefant = GLOBAL.net_shortint(inst.GUID,"checkkoaelefant")
 	inst.checkmonkey = GLOBAL.net_shortint(inst.GUID,"checkmonkey")
@@ -696,6 +743,7 @@ AddPlayerPostInit(function(inst)
 	inst.checkfullsanity = GLOBAL.net_shortint(inst.GUID,"checkfullsanity")
 	inst.checkfullhunger = GLOBAL.net_shortint(inst.GUID,"checkfullhunger")
 	inst.checkpacifist = GLOBAL.net_shortint(inst.GUID,"checkpacifist")
+
 
 	inst.currentruncount = GLOBAL.net_shortint(inst.GUID,"currentruncount")
 	inst.currenteatamount = GLOBAL.net_shortint(inst.GUID,"currenteatamount")
@@ -742,9 +790,7 @@ AddPlayerPostInit(function(inst)
     inst.currentweetuskamount = GLOBAL.net_shortint(inst.GUID,"currentweetuskamount")
     inst.currentnatureamount = GLOBAL.net_shortint(inst.GUID,"currentnatureamount")
     inst.currenteatall = GLOBAL.net_shortint(inst.GUID,"currenteatall")
-	inst.currenteatlist = GLOBAL.net_string(inst.GUID,"currenteatlist")
 	inst.currentgiantPlants = GLOBAL.net_shortint(inst.GUID,"currentgiantPlants")
-	inst.currentgiantPlantList = GLOBAL.net_string(inst.GUID,"currentgiantPlantList")
     inst.currentfriendspider = GLOBAL.net_shortint(inst.GUID,"currentfriendspider")
     inst.currenthentaiamount = GLOBAL.net_shortint(inst.GUID,"currenthentaiamount")
     inst.currenttradeamount = GLOBAL.net_shortint(inst.GUID,"currenttradeamount")
@@ -757,10 +803,17 @@ AddPlayerPostInit(function(inst)
     inst.currentstarspent = GLOBAL.net_shortint(inst.GUID,"currentstarspent")
     inst.currentteleportamount = GLOBAL.net_shortint(inst.GUID,"currentteleportamount")
 
+
+	
+	inst.currentgiantPlantList = GLOBAL.net_string(inst.GUID,"currentgiantPlantList")
+	inst.currenteatlist = GLOBAL.net_string(inst.GUID,"currenteatlist")
+
+
     inst.checkbosswinter = GLOBAL.net_shortint(inst.GUID,"checkbosswinter")
     inst.checkbossspring = GLOBAL.net_shortint(inst.GUID,"checkbossspring")
     inst.checkbossantlion = GLOBAL.net_shortint(inst.GUID,"checkbossantlion")
     inst.checkbossautumn = GLOBAL.net_shortint(inst.GUID,"checkbossautumn")
+
 
 	inst.currentcoinamount = GLOBAL.net_shortint(inst.GUID,"currentcoinamount")
 
@@ -776,7 +829,7 @@ AddPlayerPostInit(function(inst)
 	inst.currentcrit = GLOBAL.net_shortint(inst.GUID,"currentcrit")
 	inst.currentlifestealup = GLOBAL.net_shortint(inst.GUID,"currentlifestealup")
 	inst.currentfireflylightup = GLOBAL.net_shortint(inst.GUID,"currentfireflylightup")
-	inst.currentscaleup = GLOBAL.net_shortint(inst.GUID,"currentscaleup")
+	--inst.currentscaleup = GLOBAL.net_shortint(inst.GUID,"currentscaleup")
 	
 	inst.currenthungerachivcost = GLOBAL.net_shortint(inst.GUID,"currenthungerachivcost")
 	inst.currentsanityachivcost = GLOBAL.net_shortint(inst.GUID,"currentsanityachivcost")
@@ -790,7 +843,7 @@ AddPlayerPostInit(function(inst)
 	inst.currentcritachivcost = GLOBAL.net_shortint(inst.GUID,"currentcritachivcost")
 	inst.currentlifestealcost = GLOBAL.net_shortint(inst.GUID,"currentlifestealcost")
 	inst.currentfireflylightcost = GLOBAL.net_shortint(inst.GUID,"currentfireflylightcost")
-	inst.currentscalecost = GLOBAL.net_shortint(inst.GUID,"currentscalecost")
+	--inst.currentscalecost = GLOBAL.net_shortint(inst.GUID,"currentscalecost")
 
 	inst.currentdoubledrop = GLOBAL.net_shortint(inst.GUID,"currentdoubledrop")
 	inst.currentkrampusxmas = GLOBAL.net_shortint(inst.GUID,"currentcurrentkrampusxmas")
@@ -1018,6 +1071,7 @@ GLOBAL.package.loaded["stategraphs/SGwilson"] = nil
 -- example usage of saving and loading data from other mods when worldjumping/after worldjumping with teleportato
 -- ##################
 if GLOBAL.TUNING.TELEPORTATOMOD then
+	
 	print("##### achievement and level system with teleportato mod loaded #####")
 	local functionsavewithteleportato = GLOBAL.TUNING.TELEPORTATOMOD.functionsavewithteleportato
 	GLOBAL.TUNING.TELEPORTATOMOD.functionsavewithteleportato = function(player) -- called for server
@@ -1036,7 +1090,7 @@ if GLOBAL.TUNING.TELEPORTATOMOD then
 			if mods_data~=nil and mods_data["achievementsMod"]~=nil and mods_data["levelMod"]~=nil and mods_data["achievementEvents"]~=nil then -- you can add a modsetting if sth should be loaded or not
 				_G.CAVES_CONFIG = GetModConfigData('CAVES')
 				_G.MULT_CONFIG = GetModConfigData('MULT')
-				_G.REFUND_CONFIG = GetModConfigData('REFUND')
+				--_G.REFUND_CONFIG = GetModConfigData('REFUND')
 				_G.SYSTEM_CONFIG = GetModConfigData('SYSTEM')
 				_G.HIDEPERK_CONFIG = GetModConfigData('HIDEPERK')
 				_G.STARTGEAR_CONFIG = GetModConfigData('GEAR')

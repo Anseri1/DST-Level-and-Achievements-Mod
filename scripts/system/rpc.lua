@@ -47,9 +47,11 @@ AddModRPCHandler("DSTAchievement", "fireflylightup", function(player)
 	player.components.allachivcoin:fireflylightupcoin(player)
 end)
 
+--[[
 AddModRPCHandler("DSTAchievement", "scale", function(player)
 	player.components.allachivcoin:scaleupcoin(player)
 end)
+]]--
 
 AddModRPCHandler("DSTAchievement", "krampusxmas", function(player)
 	player.components.allachivcoin:krampusxmascoin(player)
