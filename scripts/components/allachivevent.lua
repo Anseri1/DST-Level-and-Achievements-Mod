@@ -648,33 +648,70 @@ function allachivevent:hungercheck(inst)
 end
 
 --Killing
-function allachivevent:onkilledother(inst)
-    inst:ListenForEvent("killed", function(inst, data)
-        local victim = data.victim
-        --Glommer
-        if victim and victim.prefab == "glommer" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.sick ~= true then
-						v.components.allachivevent.sick = true
-						v.components.allachivevent:seffc(v, "sick")
-					end
+local function bosskill_logic(victim, check_for_prefab, achievement)
+    if victim and victim.prefab == check_for_prefab then
+        local pos = Vector3(victim.Transform:GetWorldPosition())
+        local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
+        for k,v in pairs(ents) do
+            if v:HasTag("player") then
+                if v.components.allachivevent[achievement] ~= true then
+                    v.components.allachivevent[achievement] = true
+                    v.components.allachivevent:seffc(v, achievement)
                 end
             end
         end
-        --Chester
+    end
+end
+
+local function mobkill_logic(vicrim, achievement)
+    local amount = achievement.."amount"
+    local pos = Vector3(victim.Transform:GetWorldPosition())
+    local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
+    for k,v in pairs(ents) do
+        if v:HasTag("player") then
+            if not v.components.allachivevent[achievement] then
+                v.components.allachivevent[amount] = v.components.allachivevent[amount] + 1
+                if v.components.allachivevent[amount] >= allachiv_eventdata[achievement] then
+                    v.components.allachivevent[achievement] = true
+                    v.components.allachivevent:seffc(v, achievement)
+                end
+            end
+        end
+    end
+end
+
+local function check_for_seasonal_boss(victim, boss)
+    local pos = Vector3(victim.Transform:GetWorldPosition())
+    local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
+    for k,v in pairs(ents) do
+        if v:HasTag("player") then
+            if v.components.allachivevent[boss] ~= true then
+                v.components.allachivevent[boss] = true
+            end
+            if v.components.allachivevent.bossautumn and v.components.allachivevent.bossantlion and v.components.allachivevent.bossspring and v.components.allachivevent.bosswinter and v.components.allachivevent.king ~= true then
+                v.components.allachivevent.king = true
+                v.components.allachivevent:seffc(v, "king")
+            end
+        end
+    end
+end
+
+function allachivevent:onkilledother(inst)
+    inst:ListenForEvent("killed", function(inst, data)
+        local victim = data.victim
+
+        bosskill_logic(victim, "glommer", "sick")
+        
         if victim and victim.prefab == "chester" and self.coldblood ~= true then
             self.coldblood = true
             self:seffc(inst, "coldblood")
         end
-		--Fugu Hutch
+		
 		if victim and victim.prefab == "hutch" and victim.components.amorphous:GetCurrentForm() == "FUGU" and self.hutch ~= true then 
             self.hutch = true
             self:seffc(inst, "hutch")
         end
-        --Tentapillar
+        
         if victim and victim.prefab == "tentacle_pillar" and self.hentai ~= true then
             local single = true
             local pos = Vector3(victim.Transform:GetWorldPosition())
@@ -692,7 +729,7 @@ function allachivevent:onkilledother(inst)
 				end
             end
         end
-        --Tentacle
+        
         if victim and victim.prefab == "tentacle" and self.snake ~= true then
             self.snakeamount = self.snakeamount + 1
             if self.snakeamount >= allachiv_eventdata["snake"] then
@@ -700,167 +737,47 @@ function allachivevent:onkilledother(inst)
                 self:seffc(inst, "snake")
             end
         end
-        --WeeTusk
+        
         if victim and victim.prefab == "little_walrus" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.weetusk then
-						v.components.allachivevent.weetuskamount = v.components.allachivevent.weetuskamount + 1
-						if v.components.allachivevent.weetuskamount >= allachiv_eventdata["weetusk"] then
-							v.components.allachivevent.weetusk = true
-							v.components.allachivevent:seffc(v, "weetusk")
-						end
-					end
-                end
-            end
+            mobkill_logic(victim, "weetusk")
         end
-        --Mossling
+        
 		if victim and victim.prefab == "mossling" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.mossling then
-						v.components.allachivevent.mosslingamount = v.components.allachivevent.mosslingamount + 1
-						if v.components.allachivevent.mosslingamount >= allachiv_eventdata["mossling"] then
-							v.components.allachivevent.mossling = true
-							v.components.allachivevent:seffc(v, "mossling")
-						end
-					end
-                end
-            end
+            mobkill_logic(victim, "mossling")
         end
-        --Goat
+    
 		if victim and victim.prefab == "lightninggoat" and victim:HasTag("charged") == true then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.goatperd then
-						v.components.allachivevent.goatperdamount = v.components.allachivevent.goatperdamount + 1
-						if v.components.allachivevent.goatperdamount >= allachiv_eventdata["goatperd"] then
-							v.components.allachivevent.goatperd = true
-							v.components.allachivevent:seffc(v, "goatperd")
-						end
-					end
-                end
-            end
+            mobkill_logic(victim, "goatperd")
         end
-        --Beefalo
+
 		if victim and victim.prefab == "beefalo" and victim:HasTag("scarytoprey") == true then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.butcher then
-						v.components.allachivevent.butcheramount = v.components.allachivevent.butcheramount + 1
-						if v.components.allachivevent.butcheramount >= allachiv_eventdata["butcher"] then
-							v.components.allachivevent.butcher = true
-							v.components.allachivevent:seffc(v, "butcher")
-						end
-					end
-                end
-            end
+            mobkill_logic(victim, "butcher")
         end
-		--horror hound
+
 		if victim and victim.prefab == "mutatedhound" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.horrorhound then
-						v.components.allachivevent.horrorhoundamount = v.components.allachivevent.horrorhoundamount + 1
-						if v.components.allachivevent.horrorhoundamount >= allachiv_eventdata["horrorhound"] then
-							v.components.allachivevent.horrorhound = true
-							v.components.allachivevent:seffc(v, "horrorhound")
-						end
-					end
-                end
-            end
+            mobkill_logic(victim, "horrorhound")
         end
-		--slurtle
+
 		if victim and (victim.prefab == "slurtle" or victim.prefab == "snurtle") then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.slurtle then
-						v.components.allachivevent.slurtleamount = v.components.allachivevent.slurtleamount + 1
-						if v.components.allachivevent.slurtleamount >= allachiv_eventdata["slurtle"] then
-							v.components.allachivevent.slurtle = true
-							v.components.allachivevent:seffc(v, "slurtle")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "slurtle")
         end
-		--werepig
+
 		if victim and (victim.prefab == "moonpig" or (victim.prefab == "pigman" and victim.components.werebeast:IsInWereState())) then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.werepig then
-						v.components.allachivevent.werepigamount = v.components.allachivevent.werepigamount + 1
-						if v.components.allachivevent.werepigamount >= allachiv_eventdata["werepig"] then
-							v.components.allachivevent.werepig = true
-							v.components.allachivevent:seffc(v, "werepig")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "werepig")
         end
-		--fruitdragon
+
 		if victim and victim.prefab == "fruitdragon" and victim._is_ripe then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.fruitdragon then
-						v.components.allachivevent.fruitdragonamount = v.components.allachivevent.fruitdragonamount + 1
-						if v.components.allachivevent.fruitdragonamount >= allachiv_eventdata["fruitdragon"] then
-							v.components.allachivevent.fruitdragon = true
-							v.components.allachivevent:seffc(v, "fruitdragon")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "fruitdragon")
         end
-		--treeguards
+
 		if victim and victim.prefab == "leif" or victim.prefab == "leif_sparse" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.treeguard then
-						v.components.allachivevent.treeguardamount = v.components.allachivevent.treeguardamount + 1
-						if v.components.allachivevent.treeguardamount >= allachiv_eventdata["treeguard"] then
-							v.components.allachivevent.treeguard = true
-							v.components.allachivevent:seffc(v, "treeguard")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "treeguard")
         end
-		--spiderqueen
+
 		if victim and victim.prefab == "spiderqueen" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.spiderqueen then
-						v.components.allachivevent.spiderqueenamount = v.components.allachivevent.spiderqueenamount + 1
-						if v.components.allachivevent.spiderqueenamount >= allachiv_eventdata["spiderqueen"] then
-							v.components.allachivevent.spiderqueen = true
-							v.components.allachivevent:seffc(v, "spiderqueen")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "spiderqueen")
         end
-		--spider
+
 		if victim and (victim.prefab == "spider" 
 		or victim.prefab == "spider_warrior" 
 		or victim.prefab == "spider_hider" 
@@ -870,21 +787,9 @@ function allachivevent:onkilledother(inst)
 		or victim.prefab == "spider_moon" 
 		or victim.prefab == "spider_spitter" 
 		or victim.prefab == "webber") then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.spider then
-						v.components.allachivevent.spider_amount = v.components.allachivevent.spider_amount + 1
-						if v.components.allachivevent.spider_amount >= allachiv_eventdata["spider"] then
-							v.components.allachivevent.spider = true
-							v.components.allachivevent:seffc(v, "spider")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "spider")
         end
-		--spider_warrior
+
 		if victim and (victim.prefab == "spider_warrior" 
 		or victim.prefab == "spider_hider" 
 		or victim.prefab == "spider_dropper" 
@@ -892,98 +797,27 @@ function allachivevent:onkilledother(inst)
 		or victim.prefab == "spider_water" 
 		or victim.prefab == "spider_moon" 
 		or victim.prefab == "spider_spitter") then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.spider_warrior then
-						v.components.allachivevent.spider_warrior_amount = v.components.allachivevent.spider_warrior_amount + 1
-						if v.components.allachivevent.spider_warrior_amount >= allachiv_eventdata["spider_warrior"] then
-							v.components.allachivevent.spider_warrior = true
-							v.components.allachivevent:seffc(v, "spider_warrior")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "spider_warrior")
         end
-		--hound
+
 		if victim and (victim.prefab == "hound" or victim.prefab == "firehound" or victim.prefab == "icehound" or victim.prefab == "worm" or victim.prefab == "hedgehound") then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.hound then
-						v.components.allachivevent.hound_amount = v.components.allachivevent.hound_amount + 1
-						if v.components.allachivevent.hound_amount >= allachiv_eventdata["hound"] then
-							v.components.allachivevent.hound = true
-							v.components.allachivevent:seffc(v, "hound")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "hound")
         end
-		--bee
+
 		if victim and (victim.prefab == "killerbee" or victim.prefab == "beeguard") then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.bee then
-						v.components.allachivevent.bee_amount = v.components.allachivevent.bee_amount + 1
-						if v.components.allachivevent.bee_amount >= allachiv_eventdata["bee"] then
-							v.components.allachivevent.bee = true
-							v.components.allachivevent:seffc(v, "bee")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "bee")
         end
-		--frog
+
 		if victim and victim.prefab == "frog" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.frog then
-						v.components.allachivevent.frog_amount = v.components.allachivevent.frog_amount + 1
-						if v.components.allachivevent.frog_amount >= allachiv_eventdata["frog"] then
-							v.components.allachivevent.frog = true
-							v.components.allachivevent:seffc(v, "frog")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "frog")
         end
-		--clockwork
+
 		if victim and (victim.prefab == "knight" or victim.prefab == "bishop" or victim.prefab == "rook" or victim.prefab == "knight_nightmare" or victim.prefab == "bishop_nightmare" or victim.prefab == "rook_nightmare")then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.clockwork then
-						v.components.allachivevent.clockwork_amount = v.components.allachivevent.clockwork_amount + 1
-						if v.components.allachivevent.clockwork_amount >= allachiv_eventdata["clockwork"] then
-							v.components.allachivevent.clockwork = true
-							v.components.allachivevent:seffc(v, "clockwork")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "clockwork")
         end
-         --eye of terror
-         if victim and victim.prefab == "eyeofterror" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-			for k,v in pairs(ents) do
-				if v:HasTag("player") then
-					if v.components.allachivevent.eye_of_terror ~= true then
-						v.components.allachivevent.eye_of_terror = true
-                        v.components.allachivevent:seffc(v, "eye_of_terror")
-					end
-				end
-			end
-        end
-        --twins of terror
+
+         bosskill_logic(victim, "eyeofterror", "eye_of_terror")
+
         if victim and victim.prefab == "twinofterror1" then
 			local pos = Vector3(victim.Transform:GetWorldPosition())
 			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
@@ -1014,54 +848,19 @@ function allachivevent:onkilledother(inst)
 				end
 			end
         end
-		--varg
+
 		if victim and victim.prefab == "warg" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.varg then
-						v.components.allachivevent.vargamount = v.components.allachivevent.vargamount + 1
-						if v.components.allachivevent.vargamount >= allachiv_eventdata["varg"] then
-							v.components.allachivevent.varg = true
-							v.components.allachivevent:seffc(v, "varg")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "varg")
         end
-		--koaelefant
+
 		if victim and victim.prefab == "koalefant_summer" or victim.prefab == "koalefant_winter" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.koaelefant then
-						v.components.allachivevent.koaelefantamount = v.components.allachivevent.koaelefantamount + 1
-						if v.components.allachivevent.koaelefantamount >= allachiv_eventdata["koaelefant"] then
-							v.components.allachivevent.koaelefant = true
-							v.components.allachivevent:seffc(v, "koaelefant")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "koaelefant")
         end
-		--monkey
+
 		if victim and victim.prefab == "monkey" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if not v.components.allachivevent.monkey then
-						v.components.allachivevent.monkeyamount = v.components.allachivevent.monkeyamount + 1
-						if v.components.allachivevent.monkeyamount >= allachiv_eventdata["monkey"] then
-							v.components.allachivevent.monkey = true
-							v.components.allachivevent:seffc(v, "monkey")
-						end
-					end
-                end
-            end
+			mobkill_logic(victim, "monkey")
         end
+
         --Krampus
 		--[[
         if victim and victim.prefab == "krampus" then
@@ -1082,6 +881,7 @@ function allachivevent:onkilledother(inst)
             end)
         end
 		--]]
+
         --Klaus
         if victim and victim.prefab == "klaus" then
             local pos = Vector3(victim.Transform:GetWorldPosition())
@@ -1169,159 +969,32 @@ function allachivevent:onkilledother(inst)
                 self:seffc(inst, "black")
             end
         end
-        --Misery Toad
-        if victim and victim.prefab == "toadstool_dark" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.rigid ~= true then
-						v.components.allachivevent.rigid = true
-						v.components.allachivevent:seffc(v, "rigid")
-					end
-                end
-            end
-        end
-        --AF
-        if victim and victim.prefab == "stalker_atrium" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.ancient ~= true then
-						v.components.allachivevent.ancient = true
-						v.components.allachivevent:seffc(v, "ancient")
-					end
-                end
-            end
-        end
-        --Minotaur
-        if victim and victim.prefab == "minotaur" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.minotaur ~= true then
-						v.components.allachivevent.minotaur = true
-						v.components.allachivevent:seffc(v, "minotaur")
-					end
-                end
-            end
-        end
-        --Dragonfly
-        if victim and victim.prefab == "dragonfly" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.dragonfly ~= true then
-						v.components.allachivevent.dragonfly = true
-						v.components.allachivevent:seffc(v, "dragonfly")
-					end
-                end
-            end
-        end
-		--Malbatross
-        if victim and victim.prefab == "malbatross" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.malbatross ~= true then
-						v.components.allachivevent.malbatross = true
-						v.components.allachivevent:seffc(v, "malbatross")
-					end
-                end
-            end
-        end
-		--Crab King
-        if victim and victim.prefab == "crabking" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.crabking ~= true then
-						v.components.allachivevent.crabking = true
-						v.components.allachivevent:seffc(v, "crabking")
-					end
-                end
-            end
-        end
-        --Bee Queen
-        if victim and victim.prefab == "beequeen" then
-            local pos = Vector3(victim.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-            for k,v in pairs(ents) do
-                if v:HasTag("player") then
-					if v.components.allachivevent.queen ~= true then
-						v.components.allachivevent.queen = true
-						v.components.allachivevent:seffc(v, "queen")
-					end
-                end
-            end
-        end
+
+        bosskill_logic(victim, "toadstool_dark", "rigid")
+        bosskill_logic(victim, "stalker_atrium", "ancient")
+        bosskill_logic(victim, "minotaur", "minotaur")
+        bosskill_logic(victim, "dragonfly", "dragonfly")
+        bosskill_logic(victim, "malbatross", "malbatross")
+        bosskill_logic(victim, "crabking", "crabking")
+        bosskill_logic(victim, "beequeen", "queen")
+        
         --Season Bosses
         if victim and victim.prefab == "deerclops" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-			for k,v in pairs(ents) do
-				if v:HasTag("player") then
-					if v.components.allachivevent.bosswinter ~= true then
-						v.components.allachivevent.bosswinter = true
-					end
-					if v.components.allachivevent.bossautumn and v.components.allachivevent.bossantlion and v.components.allachivevent.bossspring and v.components.allachivevent.bosswinter and v.components.allachivevent.king ~= true then
-						v.components.allachivevent.king = true
-						v.components.allachivevent:seffc(v, "king")
-					end
-				end
-			end
+			check_for_seasonal_boss(victim, "bosswinter")
         end
+
         if victim and victim.prefab == "moose" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-			for k,v in pairs(ents) do
-				if v:HasTag("player") then
-					if v.components.allachivevent.bossspring ~= true then
-						v.components.allachivevent.bossspring = true
-					end
-					if v.components.allachivevent.bossautumn and v.components.allachivevent.bossantlion and v.components.allachivevent.bossspring and v.components.allachivevent.bosswinter and v.components.allachivevent.king ~= true then
-						v.components.allachivevent.king = true
-						v.components.allachivevent:seffc(v, "king")
-					end
-				end
-			end
+			check_for_seasonal_boss(victim, "bossspring")
         end
+
         if victim and victim.prefab == "antlion" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-			for k,v in pairs(ents) do
-				if v:HasTag("player") then
-					if v.components.allachivevent.bossantlion ~= true then
-						v.components.allachivevent.bossantlion = true
-					end
-					if v.components.allachivevent.bossautumn and v.components.allachivevent.bossantlion and v.components.allachivevent.bossspring and v.components.allachivevent.bosswinter and v.components.allachivevent.king ~= true then
-						v.components.allachivevent.king = true
-						v.components.allachivevent:seffc(v, "king")
-					end
-					
-				end
-			end
+            check_for_seasonal_boss(victim, "bossantlion")
         end
+
         if victim and victim.prefab == "bearger" then
-			local pos = Vector3(victim.Transform:GetWorldPosition())
-			local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
-			for k,v in pairs(ents) do
-				if v:HasTag("player") then
-					if v.components.allachivevent.bossautumn ~= true then
-						v.components.allachivevent.bossautumn = true
-					end
-					if v.components.allachivevent.bossautumn and v.components.allachivevent.bossantlion and v.components.allachivevent.bossspring and v.components.allachivevent.bosswinter and v.components.allachivevent.king ~= true then
-						v.components.allachivevent.king = true
-						v.components.allachivevent:seffc(v, "king")
-					end
-				end
-			end
+            check_for_seasonal_boss(victim, "bossautumn")
         end
+
     end)
 end
 
@@ -1801,38 +1474,31 @@ function allachivevent:onattacked(inst)
 end
 
 --Damage
+local function hitother_logic(self, inst, data, achievement)
+    local amount = achievement.."amount"
+    if data.damage and data.damage >= 0 then
+        self[amount] = math.ceil(self[amount] + data.damage)
+    end
+    if self[amount] >= allachiv_eventdata[achievement] then
+        self[amount] = allachiv_eventdata[achievement]
+        self[achievement] = true
+        self:seffc(inst, achievement)
+    end
+end
+
 function allachivevent:hitother(inst)
     inst:ListenForEvent("onhitother", function(inst, data)
 		if self.pacifist ~= true and data.damage and data.damage >= 0 then
 			self.pacifistamount = 0
 		end
-		if self.dmgnodmg ~= true and data.damage and data.damage >= 0 then
-			self.dmgnodmgamount = math.ceil(self.dmgnodmgamount + data.damage)
-			if self.dmgnodmgamount >= allachiv_eventdata["dmgnodmg"] then
-                self.dmgnodmgamount = allachiv_eventdata["dmgnodmg"]
-                self.dmgnodmg = true
-                self:seffc(inst, "dmgnodmg")
-            end
-		end
+		if self.dmgnodmg ~= true then
+            hitother_logic(inst, data, "dmgnodmg")
+        end
 		if self.bullkelp ~= true and data.weapon and (data.weapon.prefab == "bullkelp_root" or data.weapon.prefab == "whip") then
-			if data.damage and data.damage >= 0 then
-                self.bullkelpamount = math.ceil(self.bullkelpamount + data.damage)
-            end
-			if self.bullkelpamount >= allachiv_eventdata["bullkelp"] then
-                self.bullkelpamount = allachiv_eventdata["bullkelp"]
-                self.bullkelp = true
-                self:seffc(inst, "bullkelp")
-            end
+			hitother_logic(inst, data, "bullkelp")
 		end
         if self.angry ~= true then
-            if data.damage and data.damage >= 0 then
-                self.onhitdamage = math.ceil(self.onhitdamage + data.damage)
-            end
-            if self.onhitdamage >= allachiv_eventdata["angry"] then
-                self.onhitdamage = allachiv_eventdata["angry"]
-                self.angry = true
-                self:seffc(inst, "angry")
-            end
+            hitother_logic(inst, data, "angry")
         end
     end)
 end
@@ -1971,34 +1637,21 @@ function allachivevent:onequip(inst)
 end
 
 --Teleport
+
+local function teleport_logic(self, inst)
+    if self.teleport ~= true then
+            self.teleportamount = self.teleportamount + 1
+            if self.teleportamount >= allachiv_eventdata["teleport"] then
+                self.teleport = true
+                self:seffc(inst, "teleport")
+            end
+        end
+end
+
 function allachivevent:onteleport(inst)
-    inst:ListenForEvent("wormholetravel", function(inst)
-        if self.teleport ~= true then
-            self.teleportamount = self.teleportamount + 1
-            if self.teleportamount >= allachiv_eventdata["teleport"] then
-                self.teleport = true
-                self:seffc(inst, "teleport")
-            end
-        end
-    end)
-    inst:ListenForEvent("soulhop", function(inst)
-        if self.teleport ~= true then
-            self.teleportamount = self.teleportamount + 1
-            if self.teleportamount >= allachiv_eventdata["teleport"] then
-                self.teleport = true
-                self:seffc(inst, "teleport")
-            end
-        end
-    end)
-    inst:ListenForEvent("townportalteleport", function(inst)
-        if self.teleport ~= true then
-            self.teleportamount = self.teleportamount + 1
-            if self.teleportamount >= allachiv_eventdata["teleport"] then
-                self.teleport = true
-                self:seffc(inst, "teleport")
-            end
-        end
-    end)
+    inst:ListenForEvent("wormholetravel", teleport_logic(inst))
+    inst:ListenForEvent("soulhop", teleport_logic(inst))
+    inst:ListenForEvent("townportalteleport", teleport_logic(inst))
 end
 
 function allachivevent:onreroll(inst)

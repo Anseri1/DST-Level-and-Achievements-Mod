@@ -16,27 +16,31 @@ function currenteatlist(self,eatlist) self.inst.currenteatlist:set(arrayToString
 function currentgiantPlantList(self,giantPlantList) self.inst.currentgiantPlantList:set(arrayToString(giantPlantList)) end
 
 function meta_event_table()
-	local functions_table = {
+	local event_functions_table = {
 		eatlist = currenteatlist,
 		giantPlantList = currentgiantPlantList,
 	}
 	for _, name in pairs(achievements_table) do
 		local check_name = "check"..name
 		local current_name = "current"..name
-		functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
-		functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
+		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
+		event_functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
 	end
 
 	for _, name in pairs(cave_achievements_table) do
 		local check_name = "check"..name
 		local current_name = "current"..name
-		functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
-		functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
+		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
+		event_functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
 	end
 
 	for _, name in pairs(amount_table) do
 		local current_name = "current"..name
-		functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
+		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
 	end
-	return functions_table
+	for i, v in pairs(event_functions_table) do
+		print(i, v)
+	end
+	return event_functions_table
 end
+

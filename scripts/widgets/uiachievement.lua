@@ -1618,6 +1618,7 @@ function uiachievement:build_perkpage(j,i, adaptivecost)
 	
 end
 
+--Todo fix the bug where the uiachievement:loadlist can't access the check/current values cuz of the eventfunctions refactor
 function uiachievement:loadlist()
 
 	self.achivlist = {
@@ -1979,7 +1980,7 @@ function uiachievement:loadlist()
 		{
 			name = "angry",
 			check = self.owner.checkangry:value(),
-			current = self.owner.currentonhitdamage:value(),
+			current = self.owner.currentangryamount:value(),
 		},
 		{
 			name = "tank",
