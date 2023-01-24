@@ -663,7 +663,7 @@ local function bosskill_logic(victim, check_for_prefab, achievement)
     end
 end
 
-local function mobkill_logic(vicrim, achievement)
+local function mobkill_logic(victim, achievement)
     local amount = achievement.."amount"
     local pos = Vector3(victim.Transform:GetWorldPosition())
     local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
@@ -1474,15 +1474,16 @@ function allachivevent:onattacked(inst)
 end
 
 --Damage
-local function hitother_logic(self, inst, data, achievement)
+local function hitother_logic(inst, data, achievement)
+    local achiv = inst.components.allachivevent
     local amount = achievement.."amount"
     if data.damage and data.damage >= 0 then
-        self[amount] = math.ceil(self[amount] + data.damage)
+        achiv[amount] = math.ceil(achiv[amount] + data.damage)
     end
-    if self[amount] >= allachiv_eventdata[achievement] then
-        self[amount] = allachiv_eventdata[achievement]
-        self[achievement] = true
-        self:seffc(inst, achievement)
+    if achiv[amount] >= allachiv_eventdata[achievement] then
+        achiv[amount] = allachiv_eventdata[achievement]
+        achiv[achievement] = true
+        achiv:seffc(inst, achievement)
     end
 end
 
@@ -1637,13 +1638,13 @@ function allachivevent:onequip(inst)
 end
 
 --Teleport
-
-local function teleport_logic(self, inst)
-    if self.teleport ~= true then
-            self.teleportamount = self.teleportamount + 1
-            if self.teleportamount >= allachiv_eventdata["teleport"] then
-                self.teleport = true
-                self:seffc(inst, "teleport")
+local function teleport_logic(inst)
+    local achiv = inst.components.allachivevent
+    if achiv.teleport ~= true then
+            achiv.teleportamount = achiv.teleportamount + 1
+            if achiv.teleportamount >= allachiv_eventdata["teleport"] then
+                achiv.teleport = true
+                achiv:seffc(inst, "teleport")
             end
         end
 end

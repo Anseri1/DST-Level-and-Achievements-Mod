@@ -38,9 +38,11 @@ function meta_event_table()
 		local current_name = "current"..name
 		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
 	end
+	--[[
 	for i, v in pairs(event_functions_table) do
 		print(i, v)
 	end
+	]]--
 	return event_functions_table
 end
 
