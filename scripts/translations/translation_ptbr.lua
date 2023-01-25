@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Coma "..allachiv_eventdata["supereat"].." alimentos",
         ["info"] = "comeu "..allachiv_eventdata["supereat"].." alimentos",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Não afetado",
-        ["description"] = "Coma "..allachiv_eventdata["danding"].." lasanha monstro",
-        ["info"] = "comeu "..allachiv_eventdata["danding"].." Monstro Lasanha",
+        ["description"] = "Coma "..allachiv_eventdata["eatmonsterlasagna"].." lasanha monstro",
+        ["info"] = "comeu "..allachiv_eventdata["eatmonsterlasagna"].." Monstro Lasanha",
     },
     ["alldiet"] = {
         ["name"] = "Dieta Refinada",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Corte ou cave "..allachiv_eventdata["chopmaster"].." árvores",
         ["info"] = "cortado ou cavado pelo menos "..allachiv_eventdata["chopmaster"].." árvores",
     },
-    ["mineappren"] = {
+    ["mineaprren"] = {
         ["name"] = "Mineiro",
-        ["description"] = "Mine "..allachiv_eventdata["mineappren"].." vezes",
-        ["info"] = "extraído pelo menos "..allachiv_eventdata["mineappren"].." vezes",
+        ["description"] = "Mine "..allachiv_eventdata["mineaprren"].." vezes",
+        ["info"] = "extraído pelo menos "..allachiv_eventdata["mineaprren"].." vezes",
     },
     ["minemaster"] = {
         ["name"] = "Prospector",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Tenha "..allachiv_eventdata["bathbomb"].." bathbombs",
         ["info"] = "tem "..allachiv_eventdata["bathbomb"].." bombas de banho",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "Major da Cidade dos Porcos",
-        ["description"] = "Faça amizade com "..allachiv_eventdata["goodman"].." porcos",
-        ["info"] = "tornou-se amigo de porcos pelo menos "..allachiv_eventdata["goodman"].." vezes",
+        ["description"] = "Faça amizade com "..allachiv_eventdata["pigfriend"].." porcos",
+        ["info"] = "tornou-se amigo de porcos pelo menos "..allachiv_eventdata["pigfriend"].." vezes",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Coelho Líder",
-        ["description"] = "Faça amizade com "..allachiv_eventdata["brother"].." bunnymen",
-        ["info"] = "tornou-se amigo de Bunnymen pelo menos "..allachiv_eventdata["brother"].." vezes",
+        ["description"] = "Faça amizade com "..allachiv_eventdata["friendbunny"].." bunnymen",
+        ["info"] = "tornou-se amigo de Bunnymen pelo menos "..allachiv_eventdata["friendbunny"].." vezes",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Pessoa Gato",
-        ["description"] = "Faça amizade com "..allachiv_eventdata["catperson"].." catcoons",
-        ["info"] = "befriended catcoons at least "..allachiv_eventdata["catperson"].." times",
+        ["description"] = "Faça amizade com "..allachiv_eventdata["friendcat"].." catcoons",
+        ["info"] = "befriended catcoons at least "..allachiv_eventdata["friendcat"].." times",
     },
     ["rocklob"] = {
         ["name"] = "Sparring",
         ["description"] = "Faça amizade com "..allachiv_eventdata["rocklob"].." lagostas",
         ["info"] = "foi amigo do Rock Lobster pelo menos "..allachiv_eventdata["rocklob"].." vezes",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mamãe-Perna Longa",
-        ["description"] = "Faça amizade com "..allachiv_eventdata["spooder"].." aranhas",
-        ["info"] = "pelo menos fez amizade com "..allachiv_eventdata["spooder"].." spiders",
+        ["description"] = "Faça amizade com "..allachiv_eventdata["friendspider"].." aranhas",
+        ["info"] = "pelo menos fez amizade com "..allachiv_eventdata["friendspider"].." spiders",
     },
     ["evil"] = {
         ["name"] = "Elfo da Floresta",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Pouca luz +",
         ["description"]="Irradie uma luz ao seu redor com raio crescente",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Friend Zone",
         ["description"]="Torne-se automaticamente amigo de porcos e coelhinhos nas proximidades",
     },

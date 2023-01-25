@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = ""..allachiv_eventdata["supereat"].."번 음식을 먹으세요",
         ["info"] = "님이 음식을 "..allachiv_eventdata["supereat"].." 번 먹었습니다!",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "J.M.T",
-        ["description"] = ""..allachiv_eventdata["danding"].." 개의 몬스터 라자냐를 먹으세요",
-        ["info"] = "님이 몬스터 라자냐를 "..allachiv_eventdata["danding"].." 개 먹었습니다!",
+        ["description"] = ""..allachiv_eventdata["eatmonsterlasagna"].." 개의 몬스터 라자냐를 먹으세요",
+        ["info"] = "님이 몬스터 라자냐를 "..allachiv_eventdata["eatmonsterlasagna"].." 개 먹었습니다!",
     },
     ["alldiet"] = {
         ["name"] = "미식가",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "나무를 "..allachiv_eventdata["chopmaster"].." 그루 베거나 파내세요",
         ["info"] = "님이 나무를 "..allachiv_eventdata["chopmaster"].." 번 베거나 파냈습니다!",
     },
-    ["mineappren"] = {
+    ["mineaprren"] = {
         ["name"] = "광부",
-        ["description"] = ""..allachiv_eventdata["mineappren"].." 번 채광하세요",
-        ["info"] = "님이 채광을 "..allachiv_eventdata["mineappren"].." 번 하였습니다!",
+        ["description"] = ""..allachiv_eventdata["mineaprren"].." 번 채광하세요",
+        ["info"] = "님이 채광을 "..allachiv_eventdata["mineaprren"].." 번 하였습니다!",
     },
     ["minemaster"] = {
         ["name"] = "베테랑 광부",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "입욕제 "..allachiv_eventdata["bathbomb"].." 개를 가지세요",
         ["info"] = "님이 입욕제 "..allachiv_eventdata["bathbomb"].." 개를 소지했습니다!",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "돼지마을 이장",
-        ["description"] = "돼지 "..allachiv_eventdata["goodman"].." 마리와 친구가 되세요",
-        ["info"] = "님이 돼지 "..allachiv_eventdata["goodman"].." 마리와 친구가 되었습니다!",
+        ["description"] = "돼지 "..allachiv_eventdata["pigfriend"].." 마리와 친구가 되세요",
+        ["info"] = "님이 돼지 "..allachiv_eventdata["pigfriend"].." 마리와 친구가 되었습니다!",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "토끼인간의 리더",
-        ["description"] = "버니맨 "..allachiv_eventdata["brother"].." 마리와 친구가 되세요",
-        ["info"] = "님이 토끼인간 "..allachiv_eventdata["brother"].." 마리와 친구가 되었습니다!",
+        ["description"] = "버니맨 "..allachiv_eventdata["friendbunny"].." 마리와 친구가 되세요",
+        ["info"] = "님이 토끼인간 "..allachiv_eventdata["friendbunny"].." 마리와 친구가 되었습니다!",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "캣맘",
-        ["description"] = "캣쿤 "..allachiv_eventdata["catperson"].." 마리와 친구가 되세요",
-        ["info"] = "님이 캣쿤 "..allachiv_eventdata["catperson"].." 마리와 친구가 되었습니다!",
+        ["description"] = "캣쿤 "..allachiv_eventdata["friendcat"].." 마리와 친구가 되세요",
+        ["info"] = "님이 캣쿤 "..allachiv_eventdata["friendcat"].." 마리와 친구가 되었습니다!",
     },
     ["rocklob"] = {
         ["name"] = "스파링 파트너",
         ["description"] = "돌가재 "..allachiv_eventdata["rocklob"].." 마리와 친구가 되세요",
         ["info"] = "님이 돌가재 "..allachiv_eventdata["rocklob"].." 마리와 친구가 되었습니다!",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "사족보행 친구",
-        ["description"] = "거미 "..allachiv_eventdata["spooder"].." 마리와 친구가 되세요",
-        ["info"] = "님이 거미 "..allachiv_eventdata["spooder"].." 마리와 친구가 되었습니다!",
+        ["description"] = "거미 "..allachiv_eventdata["friendspider"].." 마리와 친구가 되세요",
+        ["info"] = "님이 거미 "..allachiv_eventdata["friendspider"].." 마리와 친구가 되었습니다!",
     },
     ["evil"] = {
         ["name"] = "루타바가 요정",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="발광레벨 +",
         ["description"]="몸주변에서 빛을 냅니다",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="친화력 갑",
         ["description"]="주변의 돼지와 토끼인간이 저절로 친구가 됩니다",
     },

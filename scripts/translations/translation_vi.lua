@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Ăn "..allachiv_eventdata["supereat"].." thức ăn",
         ["info"] = "đã ăn "..allachiv_eventdata["supereat"].." thức ăn",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Lasagna xấu xa",
-        ["description"] = "Ăn "..allachiv_eventdata["danding"].." monster lasagna",
-        ["info"] = "đã ăn "..allachiv_eventdata["danding"].." Monster Lasagna",
+        ["description"] = "Ăn "..allachiv_eventdata["eatmonsterlasagna"].." monster lasagna",
+        ["info"] = "đã ăn "..allachiv_eventdata["eatmonsterlasagna"].." Monster Lasagna",
     },
     ["alldiet"] = {
         ["name"] = "Người tinh tế",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Chặt hoặc đào "..allachiv_eventdata["chopmaster"].." cây",
         ["info"] = "đã chặt hoặc đào ít nhất "..allachiv_eventdata["chopmaster"].." cây",
     },
-    ["mineappren"] = {
+    ["mineaprren"] = {
         ["name"] = "Thợ mỏ",
-        ["description"] = "Đào mỏ "..allachiv_eventdata["mineappren"].." lần",
-        ["info"] = "đã khai thác "..allachiv_eventdata["mineappren"].." lần",
+        ["description"] = "Đào mỏ "..allachiv_eventdata["mineaprren"].." lần",
+        ["info"] = "đã khai thác "..allachiv_eventdata["mineaprren"].." lần",
     },
     ["minemaster"] = {
         ["name"] = "Chuyên gia khai thác",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Sở hữu "..allachiv_eventdata["bathbomb"].." bathbombs",
         ["info"] = "Đã có "..allachiv_eventdata["bathbomb"].." bathbombs",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "Thị trưởng heo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["goodman"].." heo",
-        ["info"] = "đã kết bạn với heo "..allachiv_eventdata["goodman"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["pigfriend"].." heo",
+        ["info"] = "đã kết bạn với heo "..allachiv_eventdata["pigfriend"].." lần",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Thố lãnh đạo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["brother"].." bunnymen",
-        ["info"] = "đã kết bạn với thỏ người "..allachiv_eventdata["brother"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendbunny"].." bunnymen",
+        ["info"] = "đã kết bạn với thỏ người "..allachiv_eventdata["friendbunny"].." lần",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Người mèo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["catperson"].." monleo",
-        ["info"] = "đã kết bạn với Monleo "..allachiv_eventdata["catperson"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendcat"].." monleo",
+        ["info"] = "đã kết bạn với Monleo "..allachiv_eventdata["friendcat"].." lần",
     },
     ["rocklob"] = {
         ["name"] = "Người bạn cứng rắn",
         ["description"] = "Kết bạn với "..allachiv_eventdata["rocklob"].." tôm đá",
         ["info"] = "đã kết bạn với tôm đá "..allachiv_eventdata["rocklob"].." lần",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mẹ chân dài",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["spooder"].." con nhện",
-        ["info"] = "đã kết bạn với "..allachiv_eventdata["spooder"].." con nhện",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendspider"].." con nhện",
+        ["info"] = "đã kết bạn với "..allachiv_eventdata["friendspider"].." con nhện",
     },
     ["evil"] = {
         ["name"] = "Elf of the Forest",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Phát sáng +",
         ["description"]="Bạn là ngôi sao giữa màn đêm",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Kết bạn",
         ["description"]="Tự động kết bạn với heo và thỏ ở gần",
     },

@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Eat "..allachiv_eventdata["supereat"].." food items",
         ["info"] = "ate "..allachiv_eventdata["supereat"].." food items",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Unaffected",
-        ["description"] = "Eat "..allachiv_eventdata["danding"].." monster lasagna",
-        ["info"] = "ate "..allachiv_eventdata["danding"].." Monster Lasagna",
+        ["description"] = "Eat "..allachiv_eventdata["eatmonsterlasagna"].." monster lasagna",
+        ["info"] = "ate "..allachiv_eventdata["eatmonsterlasagna"].." Monster Lasagna",
     },
     ["alldiet"] = {
         ["name"] = "Refined Diet",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Have "..allachiv_eventdata["bathbomb"].." bathbombs",
         ["info"] = "has "..allachiv_eventdata["bathbomb"].." bathbombs",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "Pigtown Major",
-        ["description"] = "Befriend "..allachiv_eventdata["goodman"].." pigs",
-        ["info"] = "befriended Pigs at least "..allachiv_eventdata["goodman"].." times",
+        ["description"] = "Befriend "..allachiv_eventdata["pigfriend"].." pigs",
+        ["info"] = "befriended Pigs at least "..allachiv_eventdata["pigfriend"].." times",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Bunny Leader",
-        ["description"] = "Befriend "..allachiv_eventdata["brother"].." bunnymen",
-        ["info"] = "befriended Bunnymen at least "..allachiv_eventdata["brother"].." times",
+        ["description"] = "Befriend "..allachiv_eventdata["friendbunny"].." bunnymen",
+        ["info"] = "befriended Bunnymen at least "..allachiv_eventdata["friendbunny"].." times",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Cat Person",
-        ["description"] = "Befriend "..allachiv_eventdata["catperson"].." catcoons",
-        ["info"] = "befriended catcoons at least "..allachiv_eventdata["catperson"].." times",
+        ["description"] = "Befriend "..allachiv_eventdata["friendcat"].." catcoons",
+        ["info"] = "befriended catcoons at least "..allachiv_eventdata["friendcat"].." times",
     },
     ["rocklob"] = {
         ["name"] = "Sparring Partner",
         ["description"] = "Befriend "..allachiv_eventdata["rocklob"].." rock lobsters",
         ["info"] = "befriended Rock Lobster at least "..allachiv_eventdata["rocklob"].." times",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mommy-Long-Leg",
-        ["description"] = "Befriend "..allachiv_eventdata["spooder"].." spiders",
-        ["info"] = "befriended at least "..allachiv_eventdata["spooder"].." spiders",
+        ["description"] = "Befriend "..allachiv_eventdata["friendspider"].." spiders",
+        ["info"] = "befriended at least "..allachiv_eventdata["friendspider"].." spiders",
     },
     ["evil"] = {
         ["name"] = "Elf of the Forest",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Dim Light +",
         ["description"]="Radiate a light around you with growing radius",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Friend Zone",
         ["description"]="Automatically befriend pigs and bunnymen nearby",
     },

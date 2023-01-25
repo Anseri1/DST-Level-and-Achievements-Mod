@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "吃下 "..allachiv_eventdata["supereat"].." 个食物",
         ["info"] = "吃下 "..allachiv_eventdata["supereat"].." 个食物",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "我的内心毫无波动",
-        ["description"] = "吃下 "..allachiv_eventdata["danding"].." 个怪物千层饼",
-        ["info"] = "吃下 "..allachiv_eventdata["danding"].." 个怪物千层饼",
+        ["description"] = "吃下 "..allachiv_eventdata["eatmonsterlasagna"].." 个怪物千层饼",
+        ["info"] = "吃下 "..allachiv_eventdata["eatmonsterlasagna"].." 个怪物千层饼",
     },
     ["alldiet"] = {
         ["name"] = "满汉全席",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "收集  "..allachiv_eventdata["bathbomb"].." 个浴球",
         ["info"] = "收集"..allachiv_eventdata["bathbomb"].."  个浴球",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "抱歉，你是个好人",
-        ["description"] = "与 "..allachiv_eventdata["goodman"].." 只猪猪交朋友",
-        ["info"] = "与 "..allachiv_eventdata["goodman"].." 只猪猪交朋友",
+        ["description"] = "与 "..allachiv_eventdata["pigfriend"].." 只猪猪交朋友",
+        ["info"] = "与 "..allachiv_eventdata["pigfriend"].." 只猪猪交朋友",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "你对我就像哥哥一样",
-        ["description"] = "与 "..allachiv_eventdata["brother"].." 个兔兔交朋友",
-        ["info"] = "与  "..allachiv_eventdata["brother"].." 个兔兔交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendbunny"].." 个兔兔交朋友",
+        ["info"] = "与  "..allachiv_eventdata["friendbunny"].." 个兔兔交朋友",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "噬元兽与猫奴",
-        ["description"] = "与 "..allachiv_eventdata["catperson"].." 只猫猫交朋友",
-        ["info"] = "与"..allachiv_eventdata["catperson"].." 只猫猫交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendcat"].." 只猫猫交朋友",
+        ["info"] = "与"..allachiv_eventdata["friendcat"].." 只猫猫交朋友",
     },
     ["rocklob"] = {
         ["name"] = "龙虾的朋友",
         ["description"] = "与"..allachiv_eventdata["rocklob"].."只石虾交朋友",
         ["info"] = "与 "..allachiv_eventdata["rocklob"].." 只石虾交朋友",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "蜘蛛的朋友",
-        ["description"] = "与 "..allachiv_eventdata["spooder"].."只蜘蛛交朋友",
-        ["info"] = "与"..allachiv_eventdata["spooder"].." 只蜘蛛交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendspider"].."只蜘蛛交朋友",
+        ["info"] = "与"..allachiv_eventdata["friendspider"].." 只蜘蛛交朋友",
     },
     ["evil"] = {
         ["name"] = "森林精灵",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="萤光",
         ["description"]="发散一个恒定的光圈",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="朋友光环",
         ["description"]="自动成为附近的猪和兔的朋友",
     },

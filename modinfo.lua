@@ -668,7 +668,7 @@ configuration_options =
         default = true,
     },
 	{
-        name = "goodman",
+        name = "pigfriend",
         label = language["Friend Zone"],
         options =   {
                         {description = language["Enabled"], data = true},

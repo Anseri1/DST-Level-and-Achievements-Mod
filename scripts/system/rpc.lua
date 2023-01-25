@@ -65,8 +65,8 @@ AddModRPCHandler("DSTAchievement", "doubledrop", function(player)
 	player.components.allachivcoin:doubledropcoin(player)
 end)
 
-AddModRPCHandler("DSTAchievement", "goodman", function(player)
-	player.components.allachivcoin:goodmancoin(player)
+AddModRPCHandler("DSTAchievement", "pigfriend", function(player)
+	player.components.allachivcoin:pigfriendcoin(player)
 end)
 
 AddModRPCHandler("DSTAchievement", "animallover", function(player)

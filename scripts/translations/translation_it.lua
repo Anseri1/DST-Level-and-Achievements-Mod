@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"]="Mangia "..allachiv_eventdata["supereat"].." cibo ",
         ["info"]="mangiato "..allachiv_eventdata["supereat"].." prodotti alimentari ",
     },
-    ["danding"]={
+    ["eatmonsterlasagna"]={
         ["name"]="Inalterato ",
-        ["description"]="Mangia "..allachiv_eventdata["danding"].." monster lasagna ",
-        ["info"]="mangiato "..allachiv_eventdata["danding"].." Monster Lasagna ",
+        ["description"]="Mangia "..allachiv_eventdata["eatmonsterlasagna"].." monster lasagna ",
+        ["info"]="mangiato "..allachiv_eventdata["eatmonsterlasagna"].." Monster Lasagna ",
     },
     ["alldiet"]={
         ["name"]="Dieta raffinata ",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"]="Taglia o scava "..allachiv_eventdata["chopmaster"].." alberi ",
         ["info"]="tritato o scavato almeno "..allachiv_eventdata["chopmaster"].." alberi ",
     },
-    ["mineappren"]={
+    ["mineaprren"]={
         ["name"]="Minatore",
-        ["description"]="Il mio "..allachiv_eventdata["mineappren"].." times ",
-        ["info"]="minato almeno "..allachiv_eventdata["mineappren"].." times ",
+        ["description"]="Il mio "..allachiv_eventdata["mineaprren"].." times ",
+        ["info"]="minato almeno "..allachiv_eventdata["mineaprren"].." times ",
     },
     ["minemaster"]={
         ["name"]="Prospector ",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"]="Avere "..allachiv_eventdata["bathbomb"].." bathbombs ",
         ["info"]="ha "..allachiv_eventdata["bathbomb"].." bathbombs ",
     },
-    ["goodman"]={
+    ["pigfriend"]={
         ["name"]="Pigtown Major ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["goodman"].." pigs ",
-        ["info"]="fatto amicizia con i maiali almeno "..allachiv_eventdata["goodman"].." times ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["pigfriend"].." pigs ",
+        ["info"]="fatto amicizia con i maiali almeno "..allachiv_eventdata["pigfriend"].." times ",
     },
-    ["brother"]={
+    ["friendbunny"]={
         ["name"]="Bunny Leader ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["brother"].." bunnymen ",
-        ["info"]="ha fatto amicizia con Bunnymen almeno "..allachiv_eventdata["brother"].." volte ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendbunny"].." bunnymen ",
+        ["info"]="ha fatto amicizia con Bunnymen almeno "..allachiv_eventdata["friendbunny"].." volte ",
     },
-    ["catperson"]={
+    ["friendcat"]={
         ["name"]="Persona gatto ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["catperson"].." catcoons ",
-        ["info"] = "befriended catcoons at least "..allachiv_eventdata["catperson"].." times",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendcat"].." catcoons ",
+        ["info"] = "befriended catcoons at least "..allachiv_eventdata["friendcat"].." times",
     },
     ["rocklob"]={
         ["name"]="Sparring partner",
         ["description"]="Fai amicizia con "..allachiv_eventdata["rocklob"].." aragoste ",
         ["info"]="ha stretto amicizia con Rock Lobster almeno "..allachiv_eventdata["rocklob"].." times ",
     },
-    ["spooder"]={
+    ["friendspider"]={
         ["name"]="Mamma-Gamba Lunga ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["spooder"].." ragni ",
-        ["info"]="fatto amicizia almeno con "..allachiv_eventdata["spooder"].." ragni ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendspider"].." ragni ",
+        ["info"]="fatto amicizia almeno con "..allachiv_eventdata["friendspider"].." ragni ",
     },
     ["evil"]={
         ["name"]="Elfo della Foresta ",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Luce fioca + ",
         ["description"]="Irradia una luce intorno a te con un raggio crescente ",
     },
-    ["goodman"]={
+    ["pigfriend"]={
         ["name"]="Friend zone",
         ["description"]="Fai automaticamente amicizia con maiali e coniglietti nelle vicinanze ",
     },

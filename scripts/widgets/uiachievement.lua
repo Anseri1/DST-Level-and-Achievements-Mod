@@ -1631,12 +1631,12 @@ function uiachievement:loadlist()
 		{
 			name = "supereat",
 			check = self.owner.checksupereat:value(),
-			current = self.owner.currenteatamount:value(),
+			current = self.owner.currentsupereatamount:value(),
 		},
 		{
 			name = "danding",
 			check = self.owner.checkdanding:value(),
-			current = self.owner.currenteatmonsterlasagna:value(),
+			current = self.owner.currenteatmonsterlasagnaamount:value(),
 		},
 		{
 			name = "alldiet",
@@ -1703,7 +1703,7 @@ function uiachievement:loadlist()
 		{
 			name = "deathalot",
 			check = self.owner.checkdeathalot:value(),
-			current = self.owner.currentdeathamouth:value(),
+			current = self.owner.currentdeathalotamount:value(),
 		},
 		{
 			name = "secondchance",
@@ -1744,7 +1744,7 @@ function uiachievement:loadlist()
 		{
 			name = "fishmaster",
 			check = self.owner.checkfishmaster:value(),
-			current = self.owner.currentfishamount:value(),
+			current = self.owner.currentfishmasteramount:value(),
 		},
 		{
 			name = "pickappren",
@@ -1767,8 +1767,8 @@ function uiachievement:loadlist()
 			current = self.owner.currentchopamount:value(),
 		},
 		{
-			name = "mineappren",
-			check = self.owner.checkmineappren:value(),
+			name = "mineaprren",
+			check = self.owner.checkmineaprren:value(),
 			current = self.owner.currentmineamount:value(),
 		},
 		{
@@ -1859,29 +1859,29 @@ function uiachievement:loadlist()
 		},
 		--Like
 		{
-			name = "goodman",
-			check = self.owner.checkgoodman:value(),
-			current = self.owner.currentfriendpig:value(),
+			name = "pigfriend",
+			check = self.owner.checkpigfriend:value(),
+			current = self.owner.currentpigfriendamount:value(),
 		},
 		{
-			name = "brother",
-			check = self.owner.checkbrother:value(),
-			current = self.owner.currentfriendbunny:value(),
+			name = "friendbunny",
+			check = self.owner.checkfriendbunny:value(),
+			current = self.owner.currentfriendbunnyamount:value(),
 		},
 		{
-			name = "catperson",
-			check = self.owner.checkcatperson:value(),
-			current = self.owner.currentfriendcat:value(),
+			name = "friendcat",
+			check = self.owner.checkfriendcat:value(),
+			current = self.owner.currentfriendcatamount:value(),
 		},
 		{
 			name = "rocklob",
 			check = self.owner.checkrocklob:value(),
-			current = self.owner.currentfriendrocky:value(),
+			current = self.owner.currentrocklobamount:value(),
 		},
 		{
-			name = "spooder",
-			check = self.owner.checkspooder:value(),
-			current = self.owner.currentfriendspider:value(),
+			name = "friendspider",
+			check = self.owner.checkfriendspider:value(),
+			current = self.owner.currentfriendspideramount:value(),
 		},
 		{
 			name = "evil",
@@ -1944,7 +1944,7 @@ function uiachievement:loadlist()
 		{
 			name = "nosanity",
 			check = self.owner.checknosanity:value(),
-			current = self.owner.currentnosanitytime:value(),
+			current = self.owner.currentnosanityamount:value(),
 		},
 		{
 			name = "icebody",
@@ -2272,12 +2272,12 @@ function uiachievement:loadlist()
 		{
 			name = "walkalot",
 			check = self.owner.checkwalkalot:value(),
-			current = self.owner.currentwalktime:value(),
+			current = self.owner.currentwalkalotamount:value(),
 		},
 		{
 			name = "stopalot",
 			check = self.owner.checkstopalot:value(),
-			current = self.owner.currentstoptime:value(),
+			current = self.owner.currentstopalotamount:value(),
 		},
 		{
 			name = "caveage",
@@ -2471,11 +2471,11 @@ function uiachievement:loadcoinlist()
 		perk_abilities = perk_abilities + 1
 	end
 	
-	if GetModConfigData('goodman',modnameActual) then
+	if GetModConfigData('pigfriend',modnameActual) then
 		table.insert(self.coinlist, 
 			{
-			name = "goodman",
-			current = self.owner.currentgoodman:value(),
+			name = "pigfriend",
+			current = self.owner.currentpigfriend:value(),
 		})
 		perk_abilities = perk_abilities + 1
 	end

@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Съешьте "..allachiv_eventdata["supereat"].." продуктов питания",
         ["info"] = "съел "..allachiv_eventdata["supereat"].." продуктов питания",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Нетронутый",
-        ["description"] = "Съешьте "..allachiv_eventdata["danding"].." монстро-лазаньи",
-        ["info"] = "съел "..allachiv_eventdata["danding"].." Монстро-лазаньи",
+        ["description"] = "Съешьте "..allachiv_eventdata["eatmonsterlasagna"].." монстро-лазаньи",
+        ["info"] = "съел "..allachiv_eventdata["eatmonsterlasagna"].." Монстро-лазаньи",
     },
     ["alldiet"] = {
         ["name"] = "Изысканная диета",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Срубите или выкопайте "..allachiv_eventdata["chopmaster"].." деревья",
         ["info"] = "вырубил или выкопал по крайней мере "..allachiv_eventdata["chopmaster"].." деревьев",
     },
-    ["mineappren"] = {
+    ["mineaprren"] = {
         ["name"] = "Шахтер",
-        ["description"] = "Добудьте "..allachiv_eventdata["mineappren"].." раз",
-        ["info"] = "добыл по крайней мере "..allachiv_eventdata["mineappren"].." раз",
+        ["description"] = "Добудьте "..allachiv_eventdata["mineaprren"].." раз",
+        ["info"] = "добыл по крайней мере "..allachiv_eventdata["mineaprren"].." раз",
     },
     ["minemaster"] = {
         ["name"] = "Изыскатель",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Получите "..allachiv_eventdata["bathbomb"].." ванных бомб",
         ["info"] = "имеет "..allachiv_eventdata["bathbomb"].." Ванных бомб",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "Майор города Свиней",
-        ["description"] = "Подружитесь с "..allachiv_eventdata["goodman"].." свиньями",
-        ["info"] = "подружился со свиньями по крайней мере "..allachiv_eventdata["goodman"].." раз",
+        ["description"] = "Подружитесь с "..allachiv_eventdata["pigfriend"].." свиньями",
+        ["info"] = "подружился со свиньями по крайней мере "..allachiv_eventdata["pigfriend"].." раз",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Лидер Зайцев",
-        ["description"] = "Подружитесь с "..allachiv_eventdata["brother"].." зайцами",
-        ["info"] = "подружился с зайцами по крайней мере "..allachiv_eventdata["brother"].." раз",
+        ["description"] = "Подружитесь с "..allachiv_eventdata["friendbunny"].." зайцами",
+        ["info"] = "подружился с зайцами по крайней мере "..allachiv_eventdata["friendbunny"].." раз",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Любитель кошек",
-        ["description"] = "Подружитесь с "..allachiv_eventdata["catperson"].." енотокотами",
-        ["info"] = "подружился с енотокотами по крайней мере "..allachiv_eventdata["catperson"].." раз",
+        ["description"] = "Подружитесь с "..allachiv_eventdata["friendcat"].." енотокотами",
+        ["info"] = "подружился с енотокотами по крайней мере "..allachiv_eventdata["friendcat"].." раз",
     },
     ["rocklob"] = {
         ["name"] = "Спарринг-партнер",
         ["description"] = "Подружитесь с "..allachiv_eventdata["rocklob"].." каменными лобстерами",
         ["info"] = "подружился с каменными лобстерами по крайней мере "..allachiv_eventdata["rocklob"].." times",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Мама длинноногая",
-        ["description"] = "Подружитесь с "..allachiv_eventdata["spooder"].." пауками",
-        ["info"] = "подружился по крайней мере с "..allachiv_eventdata["spooder"].." пауками",
+        ["description"] = "Подружитесь с "..allachiv_eventdata["friendspider"].." пауками",
+        ["info"] = "подружился по крайней мере с "..allachiv_eventdata["friendspider"].." пауками",
     },
     ["evil"] = {
         ["name"] = "Эльф леса",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Тусклый свет +",
         ["description"]="Излучать вокруг себя свет с увеличивающимся радиусом",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Френдзона",
         ["description"]="Автоматически подружиться со свиньями и кроликами поблизости",
     },

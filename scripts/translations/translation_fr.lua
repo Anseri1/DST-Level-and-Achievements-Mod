@@ -66,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Manger "..allachiv_eventdata["supereat"].." choses comestibles",
         ["info"] = "a mangé "..allachiv_eventdata["supereat"].." choses commestibles",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Inatteint",
-        ["description"] = "Manger "..allachiv_eventdata["danding"].." Lasagnes de Monstres",
-        ["info"] = "a mangé "..allachiv_eventdata["danding"].." Lasagnes de Monstres",
+        ["description"] = "Manger "..allachiv_eventdata["eatmonsterlasagna"].." Lasagnes de Monstres",
+        ["info"] = "a mangé "..allachiv_eventdata["eatmonsterlasagna"].." Lasagnes de Monstres",
     },
     ["alldiet"] = {
         ["name"] = "Régime raffiné",
@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Abattre ou désoucher "..allachiv_eventdata["chopmaster"].." arbres",
         ["info"] = "a abattu ou désouché "..allachiv_eventdata["chopmaster"].." arbres",
     },
-    ["mineappren"] = {
+    ["mineaprren"] = {
         ["name"] = "Mineur",
-        ["description"] = "Miner "..allachiv_eventdata["mineappren"].." fois",
-        ["info"] = "a miné au moins "..allachiv_eventdata["mineappren"].." fois",
+        ["description"] = "Miner "..allachiv_eventdata["mineaprren"].." fois",
+        ["info"] = "a miné au moins "..allachiv_eventdata["mineaprren"].." fois",
     },
     ["minemaster"] = {
         ["name"] = "Prospecteur",
@@ -286,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Avoir "..allachiv_eventdata["bathbomb"].." Bombes de Bain",
         ["info"] = "a "..allachiv_eventdata["bathbomb"].." Bombes de Bain",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "VIP de CochonVille",
-        ["description"] = "Être copain avec "..allachiv_eventdata["goodman"].." cochons",
-        ["info"] = "a fait ami-ami avec des cochons au moins "..allachiv_eventdata["goodman"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["pigfriend"].." cochons",
+        ["info"] = "a fait ami-ami avec des cochons au moins "..allachiv_eventdata["pigfriend"].." fois",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Lapin Leader",
-        ["description"] = "Être copain avec "..allachiv_eventdata["brother"].." Hommes-lapins",
-        ["info"] = "a fait ami-ami avec des Hommes-lapins au moins "..allachiv_eventdata["brother"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendbunny"].." Hommes-lapins",
+        ["info"] = "a fait ami-ami avec des Hommes-lapins au moins "..allachiv_eventdata["friendbunny"].." fois",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Ailurophile",
-        ["description"] = "Être copain avec "..allachiv_eventdata["catperson"].." Chatons-laveurs",
-        ["info"] = "a fait ami-ami avec des Chatons-laveurs au moins "..allachiv_eventdata["catperson"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendcat"].." Chatons-laveurs",
+        ["info"] = "a fait ami-ami avec des Chatons-laveurs au moins "..allachiv_eventdata["friendcat"].." fois",
     },
     ["rocklob"] = {
         ["name"] = "Sparring partenaire",
         ["description"] = "Être copain avec "..allachiv_eventdata["rocklob"].." Homards de Roche",
         ["info"] = "a fait ami-ami avec des Homards de Roche au moins "..allachiv_eventdata["rocklob"].." fois",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mommy-Long-Leg",
-        ["description"] = "Être copain avec "..allachiv_eventdata["spooder"].." Araignées",
-        ["info"] = "a fait ami-ami avec des Araignées au moins "..allachiv_eventdata["spooder"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendspider"].." Araignées",
+        ["info"] = "a fait ami-ami avec des Araignées au moins "..allachiv_eventdata["friendspider"].." fois",
     },
     ["evil"] = {
         ["name"] = "Elfe de la Forêt",
@@ -780,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Pénombre +",
         ["description"]="Iradie de la lumière autour de vous",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Friend Zone",
         ["description"]="Rend amis les Cochons et Hommes-Lapin près de vous",
     },

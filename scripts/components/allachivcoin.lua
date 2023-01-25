@@ -31,7 +31,7 @@ local function currentfireflylightcost(self,fireflylightcost) self.inst.currentf
 local function currentdoubledrop(self,doubledrop) local c = 0 if doubledrop then c=1 end self.inst.currentdoubledrop:set(c) end
 local function currentkrampusxmas(self,krampusxmas) local c = 0 if krampusxmas then c=1 end self.inst.currentkrampusxmas:set(c) end
 local function currentnomoist(self,nomoist) local c = 0 if nomoist then c=1 end self.inst.currentnomoist:set(c) end
-local function currentgoodman(self,goodman) local c = 0 if goodman then c=1 end self.inst.currentgoodman:set(c) end
+local function currentpigfriend(self,pigfriend) local c = 0 if pigfriend then c=1 end self.inst.currentpigfriend:set(c) end
 local function currentanimallover(self,animallover) local c = 0 if animallover then c=1 end self.inst.currentanimallover:set(c) end
 local function currentnanobots(self,nanobots) local c = 0 if nanobots then c=1 end self.inst.currentnanobots:set(c) end
 local function currentarchmage(self,archmage) local c = 0 if archmage then c=1 end self.inst.currentarchmage:set(c) end
@@ -101,7 +101,7 @@ local allachivcoin = Class(function(self, inst)
     self.doubledrop = false
 	self.krampusxmas = false
     self.nomoist = false
-    self.goodman = false
+    self.pigfriend = false
 	self.animallover = false
 	self.nanobots = false
 	self.archmage = false
@@ -164,7 +164,7 @@ nil,
     doubledrop = currentdoubledrop,
 	krampusxmas = currentkrampusxmas,
     nomoist = currentnomoist,
-    goodman = currentgoodman,
+    pigfriend = currentpigfriend,
 	animallover = currentanimallover,
 	nanobots = currentnanobots,
 	archmage = currentarchmage,
@@ -211,7 +211,7 @@ function allachivcoin:OnSave()
         doubledrop = self.doubledrop,
 		krampusxmas = self.krampusxmas,
         nomoist = self.nomoist,
-        goodman = self.goodman,
+        pigfriend = self.pigfriend,
 		animallover = self.animallover,
 		nanobots = self.nanobots,
 		archmage = self.archmage,
@@ -272,7 +272,7 @@ function allachivcoin:OnLoad(data)
     self.doubledrop = data.doubledrop or false
 	self.krampusxmas = data.krampusxmas or false
     self.nomoist = data.nomoist or false
-    self.goodman = data.goodman or false
+    self.pigfriend = data.pigfriend or false
 	self.animallover = data.animallover or false
 	self.nanobots = data.nanobots or false
 	self.archmage = data.archmage or false
@@ -658,18 +658,18 @@ function allachivcoin:doubledropfn(inst)
 end
 
 		
-function allachivcoin:goodmancoin(inst)
-    if self.goodman ~= true and self.coinamount >= allachiv_coinuse["goodman"] then
-        self.goodman = true
-		self.starsspent = self.starsspent + allachiv_coinuse["goodman"]
-        self:coinDoDelta(-allachiv_coinuse["goodman"])
+function allachivcoin:pigfriendcoin(inst)
+    if self.pigfriend ~= true and self.coinamount >= allachiv_coinuse["pigfriend"] then
+        self.pigfriend = true
+		self.starsspent = self.starsspent + allachiv_coinuse["pigfriend"]
+        self:coinDoDelta(-allachiv_coinuse["pigfriend"])
         self:ongetcoin(inst)
     end
 end
 
-function allachivcoin:goodmanfn(inst)
+function allachivcoin:pigfriendfn(inst)
     inst:DoPeriodicTask(1, function()
-        if self.goodman then
+        if self.pigfriend then
             local pos = Vector3(inst.Transform:GetWorldPosition())
             local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 6)
             for k,v in pairs(ents) do
@@ -1364,7 +1364,7 @@ function allachivcoin:removecoin(inst)
     self.doubledrop = false
 	self.krampusxmas = false
     self.nomoist = false
-    self.goodman = false
+    self.pigfriend = false
 	self.animallover = false
 	self.nanobots = false
 	self.archmage = false
@@ -1476,7 +1476,7 @@ function allachivcoin:Init(inst)
 			self:chopmasterfn(inst)
 			self:pickmasterfn(inst)
 			self:fishmasterfn(inst)
-			self:goodmanfn(inst)
+			self:pigfriendfn(inst)
 			self:animalloverfn(inst)
 			self:doubledropfn(inst)
 			self:fireflylightfn(inst)

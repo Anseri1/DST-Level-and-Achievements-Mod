@@ -3,6 +3,8 @@ require "components/helperfunctions"
 
 require "components/achievement_list"
 
+--Todo remove unneccessary comments
+
 --Basics
 local function findprefab(list,prefab)
     for index,value in pairs(list) do
@@ -65,7 +67,7 @@ function allachivevent:OnSave()
     for _, name in pairs(amount_table) do
         data[name] = self[name]
     end
-
+    
     return data
 end
 function allachivevent:OnLoad(data)
@@ -111,7 +113,7 @@ function allachivevent:intogamefn(inst)
                 for name, _ in pairs(amount_table) do
                     self[name] = achievements[name]
                 end
-
+                
                 self.eatlist = achievements["eatlist"]
                 self.giantPlantList = achievements["giantPlantList"]
                 
@@ -120,7 +122,7 @@ function allachivevent:intogamefn(inst)
                 AchievementData[inst:GetDisplayName()] = nil
             else
                 self:seffc(inst, "intogame")
-
+                
                 if self.all ~= true then
                     inst:DoTaskInTime(2, function()
 						if _G.STARTGEAR_CONFIG == "fight" then 
@@ -148,14 +150,14 @@ function allachivevent:intogamefn(inst)
             end
         end
 		if(_G.CAVES_CONFIG == false) then
-
+            
             for name, _ in pairs(cave_achievements_table) do
                 self[name] = true
             end
 
 			table.remove(self.eatlist,findindex(self.eatlist,"unagi"))
 		end
-
+        
         inst:DoTaskInTime(1, function()
 			if inst.prefab == "wickerbottom" then
 				self.sleeptent = true
@@ -184,11 +186,23 @@ function allachivevent:intogamefn(inst)
 				self.eatbacon = true
 				self.eatmoleamount = allachiv_eventdata["eatmole"]
 				self.eatmole = true
-				self.eatfishamount = allachiv_eventdata["eatfish"]
+				self.eatfishmasteramount = allachiv_eventdata["eatfish"]
 				self.eatfish = true
 			end
 		end)
     end)
+end
+
+--Todo replace the achievement logic with state machine
+
+local function counting_logic(inst, achievement)
+    local achiv = inst.components.allachivevent
+    local amount = achievement.."amount"
+    achiv[amount] = achiv[amount] + 1
+    if achiv[amount] >= allachiv_eventdata[achievement] then
+        achiv[achievement] = true
+        achiv:seffc(inst, achievement)
+    end
 end
 
 --Eat Achievement
@@ -209,96 +223,57 @@ function allachivevent:eatfn(inst)
 				self:seffc(inst, "feedplayer")
 			end
 		end
+
 		local food = data.food
-		--First Eat
+
 		if self.firsteat ~= true then
 			self.firsteat = true
 			self:seffc(inst, "firsteat")
 		end
+
 		--Eat 100
 		if self.supereat ~= true then
-			self.eatamount = self.eatamount + 1
-			if self.eatamount >= allachiv_eventdata["supereat"] then
-				self.supereat = true
-				self:seffc(inst, "supereat")
-			end
-		end
-		--Eat Lasagna
-		if self.danding ~= true and food.prefab == "monsterlasagna" then
-			self.eatmonsterlasagna = self.eatmonsterlasagna + 1
-			if self.eatmonsterlasagna >= allachiv_eventdata["danding"] then
-				self.danding = true
-				self:seffc(inst, "danding")
-			end
-		end
-		--Warm Up
-		if inst.components.temperature.current <= 0 and inst.components.health.currenthealth > 0
-			and findprefab(heatfood, food.prefab) and self.eathot ~= true and self.eattemp ~= true then
-			self.eathotamount = self.eathotamount + 1
-			self.eattemp = true
-			if self.eathotamount >= allachiv_eventdata["eathot"] then
-				self.eathot = true
-				self:seffc(inst,"eathot")
-			end
-			inst:DoTaskInTime(5, function()
-				self.eattemp = false
-			end)
+            counting_logic(inst, "supereat")
 		end
 
-		--Cool Down
-		if inst.components.temperature.current >= 70 and inst.components.health.currenthealth > 0
-			and findprefab(coldfood, food.prefab) and self.eatcold ~= true and self.eattemp ~= true then
-			self.eatcoldamount = self.eatcoldamount + 1
-			self.eattemp = true
-			if self.eatcoldamount >= allachiv_eventdata["eatcold"] then
-				self.eatcold = true
-				self:seffc(inst,"eatcold")
-			end
-			inst:DoTaskInTime(5, function()
-				self.eattemp = false
-			end)
+		if self.danding ~= true and food.prefab == "monsterlasagna" then
+            counting_logic(inst, "eatmonsterlasagna")
+		end
+
+		if inst.components.temperature.current <= 0 and inst.components.health.currenthealth > 0 
+        and findprefab(heatfood, food.prefab) and self.eathot ~= true and self.eattemp ~= true then
+            self.eattemp = true
+            counting_logic(inst, "eathot")
+			inst:DoTaskInTime(5, function() self.eattemp = false end)
+		end
+
+		if inst.components.temperature.current >= 70 and inst.components.health.currenthealth > 0 
+        and findprefab(coldfood, food.prefab) and self.eatcold ~= true and self.eattemp ~= true then
+            self.eattemp = true
+            counting_logic(inst, "eatcold")
+			inst:DoTaskInTime(5, function() self.eattemp = false end)
 		end
 		
-		--Eat Fish
 		if self.eatfish ~= true and food.prefab == "fishsticks" then
-			self.eatfishamount = self.eatfishamount + 1
-			if self.eatfishamount >= allachiv_eventdata["eatfish"] then
-				self.eatfish = true
-				self:seffc(inst, "eatfish")
-			end
+            counting_logic(inst, "eatfish")
 		end
-		--Eat Turkey
+
 		if self.eatturkey ~= true and food.prefab == "turkeydinner" then
-			self.eatturkeyamount = self.eatturkeyamount + 1
-			if self.eatturkeyamount >= allachiv_eventdata["eatturkey"] then
-				self.eatturkey = true
-				self:seffc(inst, "eatturkey")
-			end
+            counting_logic(inst, "eatturkey")
 		end
-		--Eat Pepper
+		
 		if self.eatpepper ~= true and food.prefab == "pepperpopper" then
-			self.eatpepperamount = self.eatpepperamount + 1
-			if self.eatpepperamount >= allachiv_eventdata["eatpepper"] then
-				self.eatpepper = true
-				self:seffc(inst, "eatpepper")
-			end
+            counting_logic(inst, "eatpepper")
 		end
-		--Eat Bacon
+		
 		if self.eatbacon ~= true and food.prefab == "baconeggs" then
-			self.eatbaconamount = self.eatbaconamount + 1
-			if self.eatbaconamount >= allachiv_eventdata["eatbacon"] then
-				self.eatbacon = true
-				self:seffc(inst, "eatbacon")
-			end
+            counting_logic(inst, "eatbacon")
 		end
-		--Eat Guacamole
+		
 		if self.eatmole ~= true and (food.prefab == "guacamole" or food.prefab == "bunnystew") then
-			self.eatmoleamount = self.eatmoleamount + 1
-			if self.eatmoleamount >= allachiv_eventdata["eatmole"] then
-				self.eatmole = true
-				self:seffc(inst, "eatmole")
-			end
+            counting_logic(inst, "eatmole")
 		end
+
 		--All Crockpot Food
 		if self.alldiet ~= true then
 			if findprefab(self.eatlist,food.prefab) then
@@ -311,7 +286,7 @@ function allachivevent:eatfn(inst)
 					self:seffc(inst, "alldiet")
 				end
 			end
-		end
+		end 
 	end)
 end
 
@@ -515,40 +490,24 @@ function allachivevent:onwalkfn(inst)
     inst:DoPeriodicTask(1, function()
         if inst:HasTag("playerghost") then return end
 		if self.pacifist ~= true then
-			self.pacifistamount = self.pacifistamount + 1
-					if self.pacifistamount >= allachiv_eventdata["pacifist"] then
-						self.pacifist = true
-						self:seffc(inst, "pacifist")
-					end
+            counting_logic(inst, "pacifist")
 		end
         if inst.components.locomotor.wantstomoveforward then
             --Walk or Ride
 			if inst.components.rider ~= nil and inst.components.rider:IsRiding() and inst.components.rider.mount ~= nil and inst.components.rider.mount.prefab == "beefalo" then
 				if self.rider ~= true then
-					self.rideramount = self.rideramount + 1
-					if self.rideramount >= allachiv_eventdata["rider"] then
-						self.rider = true
-						self:seffc(inst, "rider")
-					end
+                    counting_logic(inst, "rider")
 				end
 			else
 				if self.walkalot ~= true then
-					self.walktime = self.walktime + 1
-					if self.walktime >= allachiv_eventdata["walkalot"] then
-						self.walkalot = true
-						self:seffc(inst, "walkalot")
-					end
+                    counting_logic(inst, "walkalot")
 				end
 			end
             
         else
             --Stop
             if self.stopalot ~= true then
-                self.stoptime = self.stoptime + 1
-                if self.stoptime >= allachiv_eventdata["stopalot"] then
-                    self.stopalot = true
-                    self:seffc(inst, "stopalot")
-                end
+                counting_logic(inst, "stopalot")
             end
         end
     end)
@@ -574,13 +533,7 @@ function allachivevent:onkilled(inst)
         end
         --Die 10 times
         if self.deathalot ~= true then
-            self.deathamouth = self.deathamouth + 1
-            if self.deathamouth >= allachiv_eventdata["deathalot"] then
-                inst:DoTaskInTime(2, function()
-                    self.deathalot = true
-                    self:seffc(inst, "deathalot")
-                end)
-            end
+            counting_logic(inst, "deathalot")
         end
         --Charlie
         if data and data.cause and data.cause == "NIL" and self.noob ~= true then
@@ -614,40 +567,30 @@ function allachivevent:onkilled(inst)
     end)
 end
 
---Zero Sanity
+
 function allachivevent:sanitycheck(inst)
     inst:DoPeriodicTask(1, function()
         if inst.components.sanity.current < 1 and self.nosanity ~= true and inst.components.health.currenthealth > 0 then
-            self.nosanitytime = self.nosanitytime + 1
-            if self.nosanitytime >= allachiv_eventdata["nosanity"] then
-                self.nosanity = true
-                self:seffc(inst, "nosanity")
-            end
+            counting_logic(inst, "nosanity")
         end
 		if inst.components.sanity.current >= inst.components.sanity.max*0.95 and self.fullsanity ~= true and inst.components.health.currenthealth > 0 then
-            self.fullsanityamount = self.fullsanityamount + 1
-            if self.fullsanityamount >= allachiv_eventdata["fullsanity"] then
-                self.fullsanity = true
-                self:seffc(inst, "fullsanity")
-            end
+            counting_logic(inst, "fullsanity")
         end
     end)
 end
 
---high hunger
 function allachivevent:hungercheck(inst)
     inst:DoPeriodicTask(1, function()
 		if inst.components.hunger.current >= inst.components.hunger.max*0.95 and self.fullhunger ~= true and inst.components.health.currenthealth > 0 then
-            self.fullhungeramount = self.fullhungeramount + 1
-            if self.fullhungeramount >= allachiv_eventdata["fullhunger"] then
-                self.fullhunger = true
-                self:seffc(inst, "fullhunger")
-            end
+            counting_logic(inst, "fullhunger")
         end
     end)
 end
 
 --Killing
+
+--Todo clean up the functions that require passing in the victim
+
 local function bosskill_logic(victim, check_for_prefab, achievement)
     if victim and victim.prefab == check_for_prefab then
         local pos = Vector3(victim.Transform:GetWorldPosition())
@@ -670,11 +613,7 @@ local function mobkill_logic(victim, achievement)
     for k,v in pairs(ents) do
         if v:HasTag("player") then
             if not v.components.allachivevent[achievement] then
-                v.components.allachivevent[amount] = v.components.allachivevent[amount] + 1
-                if v.components.allachivevent[amount] >= allachiv_eventdata[achievement] then
-                    v.components.allachivevent[achievement] = true
-                    v.components.allachivevent:seffc(v, achievement)
-                end
+                counting_logic(v, achievement)
             end
         end
     end
@@ -722,20 +661,12 @@ function allachivevent:onkilledother(inst)
                 end
             end
             if single == true then
-				self.hentaiamount = self.hentaiamount + 1
-				if self.hentaiamount >= allachiv_eventdata["hentai"] then
-					self.hentai = true
-					self:seffc(inst, "hentai")
-				end
+                counting_logic(inst, "hentai")
             end
         end
         
         if victim and victim.prefab == "tentacle" and self.snake ~= true then
-            self.snakeamount = self.snakeamount + 1
-            if self.snakeamount >= allachiv_eventdata["snake"] then
-                self.snake = true
-                self:seffc(inst, "snake")
-            end
+            counting_logic(inst, "snake")
         end
         
         if victim and victim.prefab == "little_walrus" then
@@ -1008,8 +939,6 @@ function allachivevent:lightningListener(inst)
     end)
 end
 
-
---Drown Listener
 function allachivevent:drownListener(inst)
     inst:ListenForEvent("on_washed_ashore", function(inst, data)
         if self.drown ~= true then
@@ -1019,28 +948,18 @@ function allachivevent:drownListener(inst)
     end)
 end
 
---Wake up listener
 function allachivevent:wakeupListener(inst)
     inst:ListenForEvent("wakeup", function(inst, data)
         if self.sleeptent ~= true and data == "tent" then
-			self.sleeptentamount = self.sleeptentamount + 1
-			if self.sleeptentamount >= allachiv_eventdata["sleeptent"] then
-				self.sleeptent = true
-				self:seffc(inst, "sleeptent")
-			end
+            counting_logic(inst, "sleeptent")
 		end
 		
 		if self.sleepsiesta ~= true and data == "siestahut" then
-			self.sleepsiestaamount = self.sleepsiestaamount + 1
-			if self.sleepsiestaamount >= allachiv_eventdata["sleepsiesta"] then
-				self.sleepsiesta = true
-				self:seffc(inst, "sleepsiesta")
-			end
+            counting_logic(inst, "sleepsiesta")
 		end
     end)
 end
 
---Burn Freeze Sleep
 function allachivevent:burnorfreezeorsleep(inst)
     inst:ListenForEvent("onignite", function(inst)
         if self.burn ~= true then
@@ -1067,49 +986,29 @@ function allachivevent:makefriend(inst)
     function inst.components.leader:AddFollower(follower)
         if self.followers[follower] == nil and follower.components.follower ~= nil then
             local achiv = inst.components.allachivevent
-            --Pigman
-            if follower.prefab == "pigman" and achiv.goodman ~= true then
-                achiv.friendpig = achiv.friendpig + 1
-                if achiv.friendpig >= allachiv_eventdata["goodman"] then
-                    achiv.goodman = true
-                    achiv:seffc(inst, "goodman")
-                end
+
+            if follower.prefab == "pigman" and achiv.pigfriend ~= true then
+                counting_logic(inst, "pigfriend")
             end
-            --Bunnyman
-            if follower.prefab == "bunnyman" and achiv.brother ~= true then
-                achiv.friendbunny = achiv.friendbunny + 1
-                if achiv.friendbunny >= allachiv_eventdata["brother"] then
-                    achiv.brother = true
-                    achiv:seffc(inst, "brother")
-                end
+            
+            if follower.prefab == "bunnyman" and achiv.friendbunny ~= true then
+                counting_logic(inst, "friendbunny")
             end
-            --Catcoon
-            if follower.prefab == "catcoon" and achiv.catperson ~= true then
-                achiv.friendcat = achiv.friendcat + 1
-                if achiv.friendcat >= allachiv_eventdata["catperson"] then
-                    achiv.catperson = true
-                    achiv:seffc(inst, "catperson")
-                end
+            
+            if follower.prefab == "catcoon" and achiv.friendcat ~= true then
+                counting_logic(inst, "friendcat")
             end
-            --Spooders
+
             if (follower.prefab == "spider" or 
 				follower.prefab == "spider_dropper" or 
 				follower.prefab == "spider_warrior" or 
 				follower.prefab == "spider_hider" or 
-				follower.prefab == "spider_spitter") and achiv.spooder ~= true then
-                achiv.friendspider = achiv.friendspider + 1
-                if achiv.friendspider >= allachiv_eventdata["spooder"] then
-                    achiv.spooder = true
-                    achiv:seffc(inst, "spooder")
-                end
+				follower.prefab == "spider_spitter") and achiv.friendspider ~= true then
+                counting_logic(inst, "friendspider")
             end
-            --Mandrake
+            
             if follower.prefab == "mandrake_active" and achiv.evil ~= true and not TheWorld.components.worldstate.data.isday then
-                achiv.evilamount = achiv.evilamount + 1
-                if achiv.evilamount >= allachiv_eventdata["evil"] then
-                    achiv.evil = true
-                    achiv:seffc(inst, "evil")
-                end
+                counting_logic(inst, "evil")
             end
             --TallBirb
             if follower.prefab == "smallbird" and achiv.birdclop ~= true then
@@ -1118,11 +1017,7 @@ function allachivevent:makefriend(inst)
             end
             --RockLobster
             if follower.prefab == "rocky" and achiv.rocklob ~= true then
-                achiv.friendrocky = achiv.friendrocky + 1
-                if achiv.friendrocky >= allachiv_eventdata["rocklob"] then
-                    achiv.rocklob = true
-                    achiv:seffc(inst, "rocklob")
-                end
+                counting_logic(inst, "rocklob")
             end
 
             self.followers[follower] = true
@@ -1143,15 +1038,10 @@ function allachivevent:makefriend(inst)
     end
 end
 
---Fish
 function allachivevent:onhook(inst)
     inst:ListenForEvent("fishingstrain", function()
         if self.fishmaster ~= true then
-            self.fishamount = self.fishamount + 1
-            if self.fishamount >= allachiv_eventdata["fishmaster"] then
-                self.fishmaster = true
-                self:seffc(inst, "fishmaster")
-            end
+            counting_logic(inst, "fishmaster")
         end
     end)
 end
@@ -1161,11 +1051,7 @@ function allachivevent:onpick(inst)
     inst:ListenForEvent("picksomething", function(inst, data)
         if data.object and data.object.components.pickable and not data.object.components.trader then
 			if (data.object.prefab == "flower_evil" or data.object.prefab == "flower_withered") and self.evilflower ~= true then
-				self.evilfloweramount = self.evilfloweramount + 1
-				if self.evilfloweramount >= allachiv_eventdata["evilflower"] then
-					self.evilflower = true
-					self:seffc(inst, "evilflower")
-				end
+                counting_logic(inst, "evilflower")
 			end
             if self.pickmaster ~= true or self.pickappren ~= true then
                 self.pickamount = self.pickamount + 1
