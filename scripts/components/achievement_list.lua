@@ -1,7 +1,7 @@
 amount_table = {
     "supereatamount",
     "eatmonsterlasagnaamount",
-    "respawnamount",
+    "messiahamount",
     "walkalotamount",
     "stopalotamount",
     "emeralds",

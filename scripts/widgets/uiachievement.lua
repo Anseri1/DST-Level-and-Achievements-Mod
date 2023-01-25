@@ -1713,7 +1713,7 @@ function uiachievement:loadlist()
 		{
 			name = "messiah",
 			check = self.owner.checkmessiah:value(),
-			current = self.owner.currentrespawnamount:value(),
+			current = self.owner.currentmessiahamount:value(),
 		},
 		{
 			name = "sleeptent",

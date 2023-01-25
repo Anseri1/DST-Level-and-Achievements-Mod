@@ -1122,22 +1122,12 @@ function allachivevent:respawn(inst)
     inst:ListenForEvent("respawnfromghost", function(inst, data)
 		--singleplayer addition to messiah
 		if data and data.source and data.source.prefab == "amulet" and table.getn(_G.AllPlayers) == 1 and self.messiah ~= true then
-			self.respawnamount = self.respawnamount + 1
-			if self.respawnamount >= allachiv_eventdata["messiah"] then
-				inst:DoTaskInTime(5, function()
-					self.messiah = true
-					self:seffc(inst, "messiah")
-				end)
-			end
+            inst:DoTaskInTime(5, counting_logic(inst, "messiah"))
         end
         if data and data.user and data.user.components.allachivevent then
             local allachivevent = data.user.components.allachivevent
             if allachivevent.messiah ~= true then
-                allachivevent.respawnamount = allachivevent.respawnamount + 1
-                if allachivevent.respawnamount >= allachiv_eventdata["messiah"] then
-                    allachivevent.messiah = true
-                    allachivevent:seffc(data.user, "messiah")
-                end
+                counting_logic(inst, "messiah")
             end
         end
         if data and data.source and data.source.prefab == "resurrectionstatue" and self.secondchance ~= true then
@@ -1147,13 +1137,7 @@ function allachivevent:respawn(inst)
             end)
         end
 		if data and data.source and data.source.prefab == "amulet" and self.reviveamulet ~= true then
-			self.reviveamuletamount = self.reviveamuletamount + 1
-			if self.reviveamuletamount >= allachiv_eventdata["reviveamulet"] then
-				inst:DoTaskInTime(2, function()
-					self.reviveamulet = true
-					self:seffc(inst, "reviveamulet")
-				end)
-			end
+            inst:DoTaskInTime(2, counting_logic(inst, "reviveamulet"))
         end
     end)
 end
@@ -1340,11 +1324,7 @@ function allachivevent:onattacked(inst)
 			self.dmgnodmgamount = 0
 		end
 		if self.roses ~= true and data.attacker and (data.attacker.prefab == "flower" or (TheWorld.state.issummer and data.attacker.prefab == "cactus") or (TheWorld.state.issummer and data.attacker.prefab == "oasis_cactus")) then
-			self.rosesamount = self.rosesamount + 1
-			if self.rosesamount >= allachiv_eventdata["roses"] then
-				self.roses = true
-				self:seffc(inst, "roses")
-			end
+            counting_logic(inst, "roses")
 		end
         if self.tank ~= true then
             if data.damage and data.damage >= 0 then
@@ -1498,11 +1478,7 @@ function allachivevent:doemote(inst)
                 end
             end
             if single == false then
-                self.danceamount = self.danceamount + 1
-                if self.danceamount >= allachiv_eventdata["dance"] then
-                    self.dance = true
-                    self:seffc(inst, "dance")
-                end
+                counting_logic(inst, "dance")
             end
         end
     end)
@@ -1525,14 +1501,9 @@ end
 
 --Teleport
 local function teleport_logic(inst)
-    local achiv = inst.components.allachivevent
-    if achiv.teleport ~= true then
-            achiv.teleportamount = achiv.teleportamount + 1
-            if achiv.teleportamount >= allachiv_eventdata["teleport"] then
-                achiv.teleport = true
-                achiv:seffc(inst, "teleport")
-            end
-        end
+    if inst.components.allachivevent.teleport ~= true then
+        counting_logic(inst, "teleport")
+    end
 end
 
 function allachivevent:onteleport(inst)
