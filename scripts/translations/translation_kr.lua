@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "나무를 "..allachiv_eventdata["chopmaster"].." 그루 베거나 파내세요",
         ["info"] = "님이 나무를 "..allachiv_eventdata["chopmaster"].." 번 베거나 파냈습니다!",
     },
-    ["mineaprren"] = {
+    ["mineappren"] = {
         ["name"] = "광부",
-        ["description"] = ""..allachiv_eventdata["mineaprren"].." 번 채광하세요",
-        ["info"] = "님이 채광을 "..allachiv_eventdata["mineaprren"].." 번 하였습니다!",
+        ["description"] = ""..allachiv_eventdata["mineappren"].." 번 채광하세요",
+        ["info"] = "님이 채광을 "..allachiv_eventdata["mineappren"].." 번 하였습니다!",
     },
     ["minemaster"] = {
         ["name"] = "베테랑 광부",

@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Chặt hoặc đào "..allachiv_eventdata["chopmaster"].." cây",
         ["info"] = "đã chặt hoặc đào ít nhất "..allachiv_eventdata["chopmaster"].." cây",
     },
-    ["mineaprren"] = {
+    ["mineappren"] = {
         ["name"] = "Thợ mỏ",
-        ["description"] = "Đào mỏ "..allachiv_eventdata["mineaprren"].." lần",
-        ["info"] = "đã khai thác "..allachiv_eventdata["mineaprren"].." lần",
+        ["description"] = "Đào mỏ "..allachiv_eventdata["mineappren"].." lần",
+        ["info"] = "đã khai thác "..allachiv_eventdata["mineappren"].." lần",
     },
     ["minemaster"] = {
         ["name"] = "Chuyên gia khai thác",

@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Срубите или выкопайте "..allachiv_eventdata["chopmaster"].." деревья",
         ["info"] = "вырубил или выкопал по крайней мере "..allachiv_eventdata["chopmaster"].." деревьев",
     },
-    ["mineaprren"] = {
+    ["mineappren"] = {
         ["name"] = "Шахтер",
-        ["description"] = "Добудьте "..allachiv_eventdata["mineaprren"].." раз",
-        ["info"] = "добыл по крайней мере "..allachiv_eventdata["mineaprren"].." раз",
+        ["description"] = "Добудьте "..allachiv_eventdata["mineappren"].." раз",
+        ["info"] = "добыл по крайней мере "..allachiv_eventdata["mineappren"].." раз",
     },
     ["minemaster"] = {
         ["name"] = "Изыскатель",

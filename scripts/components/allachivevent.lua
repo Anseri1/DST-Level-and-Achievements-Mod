@@ -176,8 +176,8 @@ function allachivevent:intogamefn(inst)
 			-- Veggie case -> remove all meat dishes
 			if inst.prefab == "wurt" then
 				self:updateVeggieFoodList()
-				self.eatmonsterlasagna = allachiv_eventdata["danding"]
-				self.danding = true
+				self.eatmonsterlasagna = allachiv_eventdata["eatmonsterlasagna"]
+				self.eatmonsterlasagna = true
 				self.eatturkeyamount = allachiv_eventdata["eatturkey"]
 				self.eatturkey = true
 				self.eatpepperamount = allachiv_eventdata["eatpepper"]
@@ -195,9 +195,9 @@ end
 
 --Todo replace the achievement logic with state machine
 
-local function counting_logic(inst, achievement)
+local function counting_logic(inst, achievement, amount)
     local achiv = inst.components.allachivevent
-    local amount = achievement.."amount"
+    local amount = amount or achievement.."amount"
     achiv[amount] = achiv[amount] + 1
     if achiv[amount] >= allachiv_eventdata[achievement] then
         achiv[achievement] = true
@@ -236,7 +236,7 @@ function allachivevent:eatfn(inst)
             counting_logic(inst, "supereat")
 		end
 
-		if self.danding ~= true and food.prefab == "monsterlasagna" then
+		if self.eatmonsterlasagna ~= true and food.prefab == "monsterlasagna" then
             counting_logic(inst, "eatmonsterlasagna")
 		end
 
@@ -310,48 +310,38 @@ function allachivevent:updateVeggieFoodList()
 	currenteatlist(self,self.eatlist)
 end
 
+local function check_in_inventory(inst, prefab)
+    local items = inst.components.inventory:FindItems(function(item) return item.prefab==prefab end)
+    local count = 0
+    for i, item in ipairs(items) do
+        count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
+    end
+    return count
+end
+
+local function count_in_inventory(inst, prefab, achievement, count_var)
+    local achiv = inst.components.allachivevent
+    local count_var = count_var or achievement.."s"
+    if achiv[achievement] ~= true then
+        achiv[count_var] = check_in_inventory(inst, prefab)
+        if(achiv[count_var] >= allachiv_eventdata[achievement]) then
+            achiv[achievement] = true
+            achiv:seffc(inst, achievement)
+        end
+    end
+end
+
 --Have in inventory
 function allachivevent:onhavefn(inst)
 	inst:DoPeriodicTask(5, function()
-		-- Green Gem
-		if self.emerald ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="greengem" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.emeralds = count
-			if(count >= allachiv_eventdata["emerald"]) then
-				self.emerald = true
-				self:seffc(inst, "emerald")
-			end
-		end
-		-- Yellow Gem - yellowgem
-		if self.citrin ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="yellowgem" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.citrins = count
-			if(count >= allachiv_eventdata["citrin"]) then
-				self.citrin = true
-				self:seffc(inst, "citrin")
-			end
-		end
-		-- Orange Gem - orangegem
-		if self.amber ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="orangegem" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.ambers = count
-			if(count >= allachiv_eventdata["amber"]) then
-				self.amber = true
-				self:seffc(inst, "amber")
-			end
-		end
+        count_in_inventory(inst, "greengem", "emerald")
+        count_in_inventory(inst, "yellowgem", "citrin")
+        count_in_inventory(inst, "orangegem", "amber")
+        count_in_inventory(inst, "cave_banana_cooked", "banana")
+        count_in_inventory(inst, "moonrocknugget", "moonrock")
+        count_in_inventory(inst, "mosquito", "mosquito")
+        count_in_inventory(inst, "bathbomb", "bathbomb", "bathbombamount")
+
 		-- Glossamer Saddle - saddle_race
 		if self.saddle ~= true then
 			local item = inst.components.inventory:FindItem(function(item) return item.prefab=="saddle_race" end)
@@ -361,37 +351,11 @@ function allachivevent:onhavefn(inst)
 				self:seffc(inst, "saddle")
 			end
 		end
-		-- Cooked Cave Banana - cave_banana_cooked
-		if self.banana ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="cave_banana_cooked" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.bananas = count
-			if(count >= allachiv_eventdata["banana"]) then
-				self.banana = true
-				self:seffc(inst, "banana")
-			end
-		end
-		-- Green Blue Red Spores - spore_small, spore_tall, spore_medium
+
 		if self.spore ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="spore_small" end)
-			local countgreen = 0
-			for i, item in ipairs(items) do
-				countgreen = countgreen + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			items = inst.components.inventory:FindItems(function(item) return item.prefab=="spore_medium" end)
-			local countred = 0
-			for i, item in ipairs(items) do
-				countred = countred + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			items = inst.components.inventory:FindItems(function(item) return item.prefab=="spore_tall" end)
-			local countblue = 0
-			for i, item in ipairs(items) do
-				countblue = countblue + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			
+			local countgreen = check_in_inventory(inst, "spore_small")
+			local countred = check_in_inventory(inst, "spore_medium")
+			local countblue = check_in_inventory(inst, "spore_tall")
 			self.spores = math.min(countgreen, countred, countblue)
 			if(countgreen >= allachiv_eventdata["spore"] and countred >= allachiv_eventdata["spore"] and countblue >= allachiv_eventdata["spore"]) then
 				self.spore = true
@@ -430,19 +394,7 @@ function allachivevent:onhavefn(inst)
 				self:seffc(inst, "boat")
 			end
 		end
-		-- Moonrock - moonrocknugget
-		if self.moonrock ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="moonrocknugget" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.moonrocks = count
-			if(count >= allachiv_eventdata["moonrock"]) then
-				self.moonrock = true
-				self:seffc(inst, "moonrock")
-			end
-		end
+
 		-- Gnomes - trinket_4 and trinket_13
 		if self.gnome ~= true then
 			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="trinket_4" or item.prefab=="trinket_13" end)
@@ -456,32 +408,8 @@ function allachivevent:onhavefn(inst)
 				self:seffc(inst, "gnome")
 			end
 		end
-		-- Mosquitos - mosquito
-		if self.mosquito ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="mosquito" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.mosquitos = count
-			if(count >= allachiv_eventdata["mosquito"]) then
-				self.mosquito = true
-				self:seffc(inst, "mosquito")
-			end
-		end
-		-- Bathbomb - bathbomb
-		if self.bathbomb ~= true then
-			local items = inst.components.inventory:FindItems(function(item) return item.prefab=="bathbomb" end)
-			local count = 0
-			for i, item in ipairs(items) do
-				count = count + (item.components.stackable ~= nil and item.components.stackable:StackSize() or 1)
-			end
-			self.bathbombamount = count
-			if(count >= allachiv_eventdata["bathbomb"]) then
-				self.bathbomb = true
-				self:seffc(inst, "bathbomb")
-			end
-		end
+		
+        
 	end)
 end
 
@@ -607,7 +535,6 @@ local function bosskill_logic(victim, check_for_prefab, achievement)
 end
 
 local function mobkill_logic(victim, achievement)
-    local amount = achievement.."amount"
     local pos = Vector3(victim.Transform:GetWorldPosition())
     local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
     for k,v in pairs(ents) do
@@ -1054,14 +981,10 @@ function allachivevent:onpick(inst)
                 counting_logic(inst, "evilflower")
 			end
             if self.pickmaster ~= true or self.pickappren ~= true then
-                self.pickamount = self.pickamount + 1
-				if self.pickamount >= allachiv_eventdata["pickappren"] and self.pickappren ~= true then
-					self.pickappren = true
-					self:seffc(inst, "pickappren")
-				end
-                if self.pickamount >= allachiv_eventdata["pickmaster"] and self.pickmaster ~= true then
-                    self.pickmaster = true
-                    self:seffc(inst, "pickmaster")
+                if self.pickappren ~= true then
+                    counting_logic(inst, "pickappren", "pickamount")
+                else
+                    counting_logic(inst, "pickmaster", "pickamount")
                 end
             end
         end
@@ -1072,22 +995,14 @@ end
 function allachivevent:chopper(inst)
     inst:ListenForEvent("finishedwork", function(inst, data)
 		if self.birchnut ~= true and data.target and data.target.prefab == "deciduoustree" and data.target.monster then
-			self.birchnutamount = self.birchnutamount + 1
-				if self.birchnutamount >= allachiv_eventdata["birchnut"] then
-					self.birchnut = true
-					self:seffc(inst, "birchnut")
-				end
+            counting_logic(inst, "birchnut")
 		end
         if data.target and data.target:HasTag("tree") then
             if self.chopmaster ~= true or self.chopappren ~= true then
-                self.chopamount = self.chopamount + 1
-				if self.chopamount >= allachiv_eventdata["chopappren"] and self.chopappren ~= true then
-					self.chopappren = true
-					self:seffc(inst, "chopappren")
-				end
-                if self.chopamount >= allachiv_eventdata["chopmaster"] and self.chopmaster ~= true then
-                    self.chopmaster = true
-                    self:seffc(inst, "chopmaster")
+                if self.chopappren ~= true then
+                    counting_logic(inst, "chopappren", "chopamount")
+                else
+                    counting_logic(inst, "chopmaster", "chopamount")
                 end
             end
         end
@@ -1103,14 +1018,10 @@ function allachivevent:miner(inst)
 							data.target:HasTag("statue") or 
 							findprefab(rocklist, data.target.prefab)) then
             if self.minemaster ~= true or self.mineappren ~= true then
-                self.mineamount = self.mineamount + 1
-				if self.mineamount >= allachiv_eventdata["mineappren"] and self.mineappren ~= true then
-					self.mineappren = true
-					self:seffc(inst, "mineappren")
-				end
-                if self.mineamount >= allachiv_eventdata["minemaster"] and self.minemaster ~= true then
-                    self.minemaster = true
-                    self:seffc(inst, "minemaster")
+                if self.mineappren ~= true then
+                    counting_logic(inst, "mineappren", "mineamount")
+                else
+                    counting_logic(inst, "minemaster", "mineamount")
                 end
             end
         end
@@ -1279,14 +1190,10 @@ end
 function allachivevent:onbuild(inst)
     inst:ListenForEvent("consumeingredients", function(inst)
         if self.buildmaster ~= true or self.buildappren ~= true then
-            self.buildamount = self.buildamount + 1
-			if self.buildamount >= allachiv_eventdata["buildappren"] and self.buildappren ~= true then
-				self.buildappren = true
-				self:seffc(inst, "buildappren")
-			end
-            if self.buildamount >= allachiv_eventdata["buildmaster"] and self.buildmaster ~= true then
-                self.buildmaster = true
-                self:seffc(inst, "buildmaster")
+            if self.buildappren ~= true then
+                counting_logic(inst, "buildappren", "buildamount")
+            else
+                counting_logic(inst, "buildmaster", "buildamount")
             end
         end
     end)
@@ -1308,13 +1215,22 @@ function allachivevent:onplant(inst)
 		data.prefab == "dug_sapling_moon" or 			
 		data.prefab == "acorn") and 
 		self.nature ~= true then
-            self.natureamount = self.natureamount + 1
-            if self.natureamount >= allachiv_eventdata["nature"] then
-                self.nature = true
-                self:seffc(inst, "nature")
-            end
+            counting_logic(inst, "nature")
         end
     end)
+end
+
+local function hitother_logic(inst, data, achievement, amount)
+    local achiv = inst.components.allachivevent
+    local amount = amount or achievement.."amount"
+    if data.damage and data.damage >= 0 then
+        achiv[amount] = math.ceil(achiv[amount] + data.damage)
+    end
+    if achiv[amount] >= allachiv_eventdata[achievement] then
+        achiv[amount] = allachiv_eventdata[achievement]
+        achiv[achievement] = true
+        achiv:seffc(inst, achievement)
+    end
 end
 
 --Tank
@@ -1327,32 +1243,12 @@ function allachivevent:onattacked(inst)
             counting_logic(inst, "roses")
 		end
         if self.tank ~= true then
-            if data.damage and data.damage >= 0 then
-                self.attackeddamage = math.ceil(self.attackeddamage + data.damage)
-	            if self.attackeddamage >= allachiv_eventdata["tank"] then
-                    self.attackeddamage = allachiv_eventdata["tank"]
-	                self.tank = true
-	                self:seffc(inst, "tank")
-	            end
-	        end
+            hitother_logic(inst, data, "tank", "attackeddamage")
         end
     end)
 end
 
 --Damage
-local function hitother_logic(inst, data, achievement)
-    local achiv = inst.components.allachivevent
-    local amount = achievement.."amount"
-    if data.damage and data.damage >= 0 then
-        achiv[amount] = math.ceil(achiv[amount] + data.damage)
-    end
-    if achiv[amount] >= allachiv_eventdata[achievement] then
-        achiv[amount] = allachiv_eventdata[achievement]
-        achiv[achievement] = true
-        achiv:seffc(inst, achievement)
-    end
-end
-
 function allachivevent:hitother(inst)
     inst:ListenForEvent("onhitother", function(inst, data)
 		if self.pacifist ~= true and data.damage and data.damage >= 0 then
@@ -1376,22 +1272,14 @@ function allachivevent:ontemperature(inst)
         if inst.components.temperature.current <= 0
         and self.icebody ~= true
         and inst.components.health.currenthealth > 0 then
-            self.icetime = self.icetime + 1
-            if self.icetime >= allachiv_eventdata["icebody"] then
-                self.icebody = true
-                self:seffc(inst, "icebody")
-            end
+            counting_logic(inst, "icebody", "icetime")
         end
     end)
     inst:DoPeriodicTask(1, function()
         if inst.components.temperature.current >= 70
         and self.firebody ~= true
         and inst.components.health.currenthealth > 0 then
-            self.firetime = self.firetime + 1
-            if self.firetime >= allachiv_eventdata["firebody"] then
-                self.firebody = true
-                self:seffc(inst, "firebody")
-            end
+            counting_logic(inst, "firebody", "firetime")
         end
     end)
 end
@@ -1401,11 +1289,7 @@ function allachivevent:incave(inst)
     inst:DoPeriodicTask(1, function()
         if TheWorld:HasTag("cave") and inst:HasTag("playerghost") ~= true
         and self.caveage ~= true then
-            self.cavetime = self.cavetime + 1
-            if self.cavetime >= allachiv_eventdata["caveage"] then
-                self.caveage = true
-                self:seffc(inst, "caveage")
-            end
+            counting_logic(inst, "caveage", "cavetime")
         end
     end)
 end
@@ -1416,11 +1300,7 @@ function allachivevent:onhunger(inst)
         if inst.components.hunger.current <= 0
         and self.starve ~= true
         and inst.components.health.currenthealth > 0 then
-            self.starvetime = self.starvetime + 1
-            if self.starvetime >= allachiv_eventdata["starve"] then
-                self.starve = true
-                self:seffc(inst, "starve")
-            end
+            counting_logic(inst, "starve", "starvetime")
         end
     end)
 end
@@ -1429,11 +1309,7 @@ end
 function allachivevent:moist(inst)
 	inst:DoPeriodicTask(1, function()
 		if self.moistbody ~= true and inst.components.moisture.moisture == 100 then
-			self.moisttime = self.moisttime + 1
-			if self.moisttime >= allachiv_eventdata["moistbody"] then
-				self.moistbody = true
-				self:seffc(inst, "moistbody")
-			end
+            counting_logic(inst, "moistbody", "moisttime")
 		end
 	end)
 end

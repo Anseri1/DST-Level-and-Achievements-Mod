@@ -196,10 +196,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Abattre ou désoucher "..allachiv_eventdata["chopmaster"].." arbres",
         ["info"] = "a abattu ou désouché "..allachiv_eventdata["chopmaster"].." arbres",
     },
-    ["mineaprren"] = {
+    ["mineappren"] = {
         ["name"] = "Mineur",
-        ["description"] = "Miner "..allachiv_eventdata["mineaprren"].." fois",
-        ["info"] = "a miné au moins "..allachiv_eventdata["mineaprren"].." fois",
+        ["description"] = "Miner "..allachiv_eventdata["mineappren"].." fois",
+        ["info"] = "a miné au moins "..allachiv_eventdata["mineappren"].." fois",
     },
     ["minemaster"] = {
         ["name"] = "Prospecteur",

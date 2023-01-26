@@ -1621,6 +1621,7 @@ end
 --Todo fix the bug where the uiachievement:loadlist can't access the check/current values cuz of the eventfunctions refactor
 function uiachievement:loadlist()
 
+	
 	self.achivlist = {
 		--Food
 		{
@@ -1634,8 +1635,8 @@ function uiachievement:loadlist()
 			current = self.owner.currentsupereatamount:value(),
 		},
 		{
-			name = "danding",
-			check = self.owner.checkdanding:value(),
+			name = "eatmonsterlasagna",
+			check = self.owner.checkeatmonsterlasagna:value(),
 			current = self.owner.currenteatmonsterlasagnaamount:value(),
 		},
 		{
@@ -1767,8 +1768,8 @@ function uiachievement:loadlist()
 			current = self.owner.currentchopamount:value(),
 		},
 		{
-			name = "mineaprren",
-			check = self.owner.checkmineaprren:value(),
+			name = "mineappren",
+			check = self.owner.checkmineappren:value(),
 			current = self.owner.currentmineamount:value(),
 		},
 		{
@@ -1909,7 +1910,9 @@ function uiachievement:loadlist()
 			check = self.owner.checksnowchester:value(),
 			current = nil,
 		},
-		--]]
+
+		]]--
+
 		{
 			name = "musichutch",
 			check = self.owner.checkmusichutch:value(),
@@ -2313,8 +2316,7 @@ function uiachievement:loadlist()
 	
 	}
 
-
-local achivvalue = 0
+	local achivvalue = 0
 	for i=1, #self.achivlist do
 		if self.achivlist[i].name ~= "all" then
 			achivvalue = achivvalue + self.achivlist[i].check

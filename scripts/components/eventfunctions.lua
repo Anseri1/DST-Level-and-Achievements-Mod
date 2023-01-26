@@ -22,15 +22,11 @@ function meta_event_table()
 	}
 	for _, name in pairs(achievements_table) do
 		local check_name = "check"..name
-		local current_name = "current"..name
-		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
 		event_functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
 	end
 
 	for _, name in pairs(cave_achievements_table) do
 		local check_name = "check"..name
-		local current_name = "current"..name
-		event_functions_table[current_name] = function (self, name) self.inst[current_name]:set(name) end
 		event_functions_table[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
 	end
 
