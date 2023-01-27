@@ -65,7 +65,7 @@ function currentevilamount(self,evilamount) self.inst.currentevilamount:set(evil
 function currentdeathamouth(self,deathamouth) self.inst.currentdeathamouth:set(deathamouth) end
 function currentnosanitytime(self,nosanitytime) self.inst.currentnosanitytime:set(nosanitytime) end
 function currentsnakeamount(self,snakeamount) self.inst.currentsnakeamount:set(snakeamount) end
-function currentfriendpig(self,friendpig) self.inst.currentfriendpig:set(friendpig) end
+function currentpigfriendamount(self,pigfriendamount) self.inst.currentpigfriendamount:set(pigfriendamount) end
 function currentfriendbunnyamount(self,friendbunnyamount) self.inst.currentfriendbunnyamount:set(friendbunnyamount) end
 function currentfishamount(self,fishamount) self.inst.currentfishamount:set(fishamount) end
 function currentpickamount(self,pickamount) self.inst.currentpickamount:set(pickamount) end
@@ -142,7 +142,7 @@ function checkchopmaster(self,chopmaster) local c = 0 if chopmaster then c=1 end
 function checknoob(self,noob) local c = 0 if noob then c=1 end self.inst.checknoob:set(c) end
 function checkcookmaster(self,cookmaster) local c = 0 if cookmaster then c=1 end self.inst.checkcookmaster:set(c) end
 function checklongage(self,longage) local c = 0 if longage then c=1 end self.inst.checklongage:set(c) end
-function checkluck(self,luck) local c = 0 if luck then c=1 end self.inst.checkluck:set(c) end
+--function checkluck(self,luck) local c = 0 if luck then c=1 end self.inst.checkluck:set(c) end
 function checkblack(self,black) local c = 0 if black then c=1 end self.inst.checkblack:set(c) end
 function checkbuildmaster(self,buildmaster) local c = 0 if buildmaster then c=1 end self.inst.checkbuildmaster:set(c) end
 function checktank(self,tank) local c = 0 if tank then c=1 end self.inst.checktank:set(c) end
@@ -211,8 +211,8 @@ function checksleepsiesta(self,sleepsiesta) local c = 0 if sleepsiesta then c=1 
 function checkreviveamulet(self,reviveamulet) local c = 0 if reviveamulet then c=1 end self.inst.checkreviveamulet:set(c) end
 function checkfeedplayer(self,feedplayer) local c = 0 if feedplayer then c=1 end self.inst.checkfeedplayer:set(c) end
 function checkbathbomb(self,bathbomb) local c = 0 if bathbomb then c=1 end self.inst.checkbathbomb:set(c) end
-function checkshadowchester(self,shadowchester) local c = 0 if shadowchester then c=1 end self.inst.checkshadowchester:set(c) end
-function checksnowchester(self,snowchester) local c = 0 if snowchester then c=1 end self.inst.checksnowchester:set(c) end
+--function checkshadowchester(self,shadowchester) local c = 0 if shadowchester then c=1 end self.inst.checkshadowchester:set(c) end
+--function checksnowchester(self,snowchester) local c = 0 if snowchester then c=1 end self.inst.checksnowchester:set(c) end
 function checkmusichutch(self,musichutch) local c = 0 if musichutch then c=1 end self.inst.checkmusichutch:set(c) end
 function checklavae(self,lavae) local c = 0 if lavae then c=1 end self.inst.checklavae:set(c) end
 function checkevilflower(self,evilflower) local c = 0 if evilflower then c=1 end self.inst.checkevilflower:set(c) end
@@ -299,7 +299,7 @@ function meta_event_table()
 		cookmaster = checkcookmaster,
 		cookappren = checkcookappren,
 		longage = checklongage,
-		luck = checkluck,
+		--luck = checkluck,
 		black = checkblack,
 		buildmaster = checkbuildmaster,
 		buildappren = checkbuildappren,
@@ -372,7 +372,7 @@ function meta_event_table()
 		deathamouth = currentdeathamouth,
 		nosanitytime = currentnosanitytime,
 		snakeamount = currentsnakeamount,
-		friendpig = currentfriendpig,
+		pigfriendamount = currentpigfriendamount,
 		friendbunnyamount = currentfriendbunnyamount,
 		fishamount = currentfishamount,
 		pickamount = currentpickamount,
@@ -442,8 +442,8 @@ function meta_event_table()
 		feedplayeramount = currentfeedplayer,
 		bathbomb = checkbathbomb,
 		bathbombamount = currentbathbomb,
-		shadowchester = checkshadowchester,
-		snowchester = checksnowchester,
+		--shadowchester = checkshadowchester,
+		--snowchester = checksnowchester,
 		musichutch = checkmusichutch,
 		lavae = checklavae,
 		evilflower = checkevilflower,
