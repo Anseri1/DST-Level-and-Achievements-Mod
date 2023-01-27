@@ -1,3 +1,51 @@
+ToDo:
+-refactor the rest of the mod
+-make a better mod icon
+-change the name of the mod to something more fitting
+-add a dungeon system based on the caves and ruins code and maybe the basements mod
+-add an rpg class system where u can spend perk points to level up classes and unlock new skills
+
+0.0.1 of anseri's fork changes:
+
+forked Lavax's level up and achievement mod
+
+disabled the shadow and frost chester achievements due to them being bugged and not vary server friendly
+
+disabled the luck achievement due to it also being bugged and too annoying to get
+
+fixed the function that unlocks achievements if it is no longer possible to get them to also unlock the die to rocks achievement if you have 25 points of health regeneration or more
+
+added an alternative way to unlock the guacamole achievement due to it being too easy to accidentally level damage up to a point where you always oneshot moleworms
+
+changed the evil flower achievement to also accept withered flowers due to evil flowers being practically nonrenewable
+
+changed the die to roses achievement to also count Briar Wolves and cactus flowers
+
+changed pick roses achievement to also count cactus flowers due to roses being practically nonrenewable
+
+changed the kill fugu hutch achievement to no longer require having less than 10 hp remaining
+
+lowered the amount of stuff needed to trigger the pick/mine/cop achievements due to most worlds not even having that much stuff at any given time in the first place
+
+lowed the amount of catcoons and rock lobsters required for the catpersion and rock lobster achievements
+
+changed the slap them achievement to also count damage from Tail o' Three Cats, cuz it makes more sense to have an achievement that's about slapping things with a whip to actually count whips instead of only bullkelp
+
+potential fix to a bug in the ancient knowledge achievement where it would require all 6 blueprints being unlocked instead of 1 (untested)
+
+added a new achievement tab called "slayer" for now, might rename it later idk
+
+added 8 new slayer achievements
+
+fixed a bug with dim light not applying the *5 to the cost on reload
+
+removed the *5 on the end of dim light's cost function and changed it to require beating the eye/twins or terror instead
+cuz I like the idea of being able to earn the right to use over powered skills through overcoming challenges better than just being more expensive and nothing else
+
+refactored most of the code dealing with achievements so that it only takes a few seconds to add a new achievement or make a change instead of taking all day due to the original mods copypasta programming and terrible design practices 
+
+
+
 ToDo: 
 -Wigfrid eat achivement check
 -insulation more options
