@@ -1179,6 +1179,10 @@ function allachivevent:ontimepass(inst)
             self.rose = true
             self:seffc(inst,"rose")
         end
+        if inst.components.allachivcoin.healthregenamount >= 25 and self.tooyoung ~= true then
+            self.tooyoung = true
+            self:seffc(inst,"tooyoung")
+        end
         if self.knowledgeamount >= 1 and self.knowledge ~= true then
             self.knowledge = true
             self:seffc(inst,"knowledge")
