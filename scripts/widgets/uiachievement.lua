@@ -1274,6 +1274,13 @@ function uiachievement:buildpage(j,i)
 
 	local active = ""
 	if self.achivlist[i].check == 1 then active = "_active" end
+	
+	--Debug--
+	--[[
+	print(self.achivlist[i].check)
+	print(self.achivlist[i].current)
+	print(self.owner.checkfirsteat, self.owner.checkfirsteat:value())
+	]]--
 
 	self.achivlisttile[i] = self.mainui.allachiv:AddChild(Image("images/button/achievement"..active..".xml", "achievement"..active..".tex"))
 	self.achivlisttile[i]:SetPosition(x-8, y, 0)
@@ -1618,10 +1625,7 @@ function uiachievement:build_perkpage(j,i, adaptivecost)
 	
 end
 
---Todo fix the bug where the uiachievement:loadlist can't access the check/current values cuz of the eventfunctions refactor
 function uiachievement:loadlist()
-
-	
 	self.achivlist = {
 		--Food
 		{
@@ -2213,7 +2217,7 @@ function uiachievement:loadlist()
 			check = self.owner.checkbirchnut:value(),
 			current = self.owner.currentbirchnut:value(),
 		},
-				{
+		{
 			name = "allgiantPlants",
 			check = self.owner.checkallgiantPlants:value(),
 			current = self.owner.currentgiantPlants:value(),

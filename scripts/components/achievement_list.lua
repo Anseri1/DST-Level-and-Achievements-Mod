@@ -55,7 +55,7 @@ amount_table = {
     "starreset",
     "knowledgeamount",
     "runcount",
-    "eatfishmasteramount",
+    "eatfishamount",
     "eatturkeyamount",
     "eatpepperamount",
     "eatbaconamount",

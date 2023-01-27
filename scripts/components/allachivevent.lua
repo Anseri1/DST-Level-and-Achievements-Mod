@@ -32,22 +32,22 @@ end
 
 local allachivevent = Class(function(self, inst)
     self.inst = inst
-
-    for _, name in pairs(achievements_table) do
+    
+    for i, name in pairs(achievements_table) do
         self[name] = false
     end
 
-    for _, name in pairs(cave_achievements_table) do
+    for i, name in pairs(cave_achievements_table) do
         self[name] = false
     end
 
-    for _, name in pairs(amount_table) do
+    for i, name in pairs(amount_table) do
         self[name] = 0
     end
 
     self.eatlist = copylist(foodmenu)
 	self.giantPlantList = copylist(giantPlantList)
-
+    
 end,
 nil,
 meta_event_table()
@@ -186,7 +186,7 @@ function allachivevent:intogamefn(inst)
 				self.eatbacon = true
 				self.eatmoleamount = allachiv_eventdata["eatmole"]
 				self.eatmole = true
-				self.eatfishmasteramount = allachiv_eventdata["eatfish"]
+				self.eatfishamount = allachiv_eventdata["eatfish"]
 				self.eatfish = true
 			end
 		end)
