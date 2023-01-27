@@ -18,6 +18,8 @@ STRINGS.GUI={
 	["ant"]="Antlion:",
 	["bear"]="Bearger:",
 	["deer"]="Deerclops:",
+    ["twin_of_terror1"] = "Retinazor:",
+    ["twin_of_terror2"] = "Spazmatism:",
 	["set"]="Impostazioni",
 	["zoomI"]="Zoom avanti",
 	["zoomO"]="Zoom indietro",
@@ -27,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"]="Livello di esperienza",
     ["close"]="Chiudi",
     ["reset"]="Ripristina",
-    ["resetAchievments"]="Il ripristino rimuoverà tutte le ricompense e rimborserà"..math.ceil(reset_refund_percentage*100).."% di punti obiettivo. Riceverai anche una penalità di salute temporanea.",
+    ["resetAchievments"]="Il ripristino rimuoverà tutte le ricompense e rimborserà100% di punti obiettivo. Riceverai anche una penalità di salute temporanea.",
     ["food"]="Cibo",
     ["life"]="Vita",
     ["work"]="Lavori",
@@ -44,7 +46,7 @@ STRINGS.GUI={
     ["crafting"]="Crafting",
     ["attributelabels"]="Fame: \nSanità: \nSalute: \nDanni: \nDifesa: \nVelocità: \nIsolamento termico: \nIsolamento freddo:\n",
     ["attributeunits"]="\n\n%\n%\n%\n\n\n",
-    ["resetlevel"]="Il ripristino rimuoverà tutti gli aggiornamenti e il rimborso"..math.ceil(reset_refund_percentage*100).."% punti. Riceverai anche una penalità di salute temporanea.",
+    ["resetlevel"]="Il ripristino rimuoverà tutti gli aggiornamenti e il rimborso100% punti. Riceverai anche una penalità di salute temporanea.",
     ["iteminfo"]="Gli aggiornamenti vengono applicati ai valori di base senza elementi. \nI valori mostrati qui sono i valori finali dopo l'applicazione di tutti gli effetti.",
     ["availablePoints"]="Punti \n disponibili: \n",
     ["overallxp"]="XP complessiva:",
@@ -64,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"]="Mangia "..allachiv_eventdata["supereat"].." cibo ",
         ["info"]="mangiato "..allachiv_eventdata["supereat"].." prodotti alimentari ",
     },
-    ["danding"]={
+    ["eatmonsterlasagna"]={
         ["name"]="Inalterato ",
-        ["description"]="Mangia "..allachiv_eventdata["danding"].." monster lasagna ",
-        ["info"]="mangiato "..allachiv_eventdata["danding"].." Monster Lasagna ",
+        ["description"]="Mangia "..allachiv_eventdata["eatmonsterlasagna"].." monster lasagna ",
+        ["info"]="mangiato "..allachiv_eventdata["eatmonsterlasagna"].." Monster Lasagna ",
     },
     ["alldiet"]={
         ["name"]="Dieta raffinata ",
@@ -284,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"]="Avere "..allachiv_eventdata["bathbomb"].." bathbombs ",
         ["info"]="ha "..allachiv_eventdata["bathbomb"].." bathbombs ",
     },
-    ["goodman"]={
+    ["pigfriend"]={
         ["name"]="Pigtown Major ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["goodman"].." pigs ",
-        ["info"]="fatto amicizia con i maiali almeno "..allachiv_eventdata["goodman"].." times ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["pigfriend"].." pigs ",
+        ["info"]="fatto amicizia con i maiali almeno "..allachiv_eventdata["pigfriend"].." times ",
     },
-    ["brother"]={
+    ["friendbunny"]={
         ["name"]="Bunny Leader ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["brother"].." bunnymen ",
-        ["info"]="ha fatto amicizia con Bunnymen almeno "..allachiv_eventdata["brother"].." volte ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendbunny"].." bunnymen ",
+        ["info"]="ha fatto amicizia con Bunnymen almeno "..allachiv_eventdata["friendbunny"].." volte ",
     },
-    ["catperson"]={
+    ["friendcat"]={
         ["name"]="Persona gatto ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["catperson"].." catcoons ",
-        ["info"] = "befriended catcoons at least "..allachiv_eventdata["catperson"].." times",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendcat"].." catcoons ",
+        ["info"] = "befriended catcoons at least "..allachiv_eventdata["friendcat"].." times",
     },
     ["rocklob"]={
         ["name"]="Sparring partner",
         ["description"]="Fai amicizia con "..allachiv_eventdata["rocklob"].." aragoste ",
         ["info"]="ha stretto amicizia con Rock Lobster almeno "..allachiv_eventdata["rocklob"].." times ",
     },
-    ["spooder"]={
+    ["friendspider"]={
         ["name"]="Mamma-Gamba Lunga ",
-        ["description"]="Fai amicizia con "..allachiv_eventdata["spooder"].." ragni ",
-        ["info"]="fatto amicizia almeno con "..allachiv_eventdata["spooder"].." ragni ",
+        ["description"]="Fai amicizia con "..allachiv_eventdata["friendspider"].." ragni ",
+        ["info"]="fatto amicizia almeno con "..allachiv_eventdata["friendspider"].." ragni ",
     },
     ["evil"]={
         ["name"]="Elfo della Foresta ",
@@ -498,6 +500,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"]="Queenslayer ",
         ["description"]="Uccidi "..allachiv_eventdata["spiderqueen"].." spiderqueens ",
         ["info"]="ucciso "..allachiv_eventdata["spiderqueen"].." spiderqueens ",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"]={
         ["name"]="Fai uscire i cani ",
@@ -738,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Luce fioca + ",
         ["description"]="Irradia una luce intorno a te con un raggio crescente ",
     },
-    ["goodman"]={
+    ["pigfriend"]={
         ["name"]="Friend zone",
         ["description"]="Fai automaticamente amicizia con maiali e coniglietti nelle vicinanze ",
     },

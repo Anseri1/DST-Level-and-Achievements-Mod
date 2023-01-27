@@ -346,7 +346,7 @@ end
 function levelsystem:removeattributepoints(inst)
 
 	local spentpoints = (self.level-1)*attributepointsOnLevel - self.attributepoints
-    self.attributepoints = self.attributepoints + math.ceil(spentpoints*reset_refund_percentage)
+    self.attributepoints = self.attributepoints + spentpoints
 	self.attributepointsspent = 0
     self:resetbuff(inst)
 

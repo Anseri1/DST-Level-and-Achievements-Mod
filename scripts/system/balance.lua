@@ -1,5 +1,5 @@
 
-reset_refund_percentage = _G.REFUND_CONFIG
+--reset_refund_percentage = _G.REFUND_CONFIG
 
 levelxpcap = _G.LEVELXP
 attributepointsOnLevel = _G.LEVELPOINTS
@@ -16,15 +16,15 @@ allachiv_eventdata={
 --Food
 ["firsteat"] = nil,
 ["supereat"] = 100,
-["danding"] = 10,
+["eatmonsterlasagna"] = 10,
 ["alldiet"] = 40,
-["eathot"] = 10,
-["eatcold"] = 10,
-["eatfish"] = 10,
-["eatturkey"] = 10,
-["eatpepper"] = 10,
-["eatbacon"] = 10,
-["eatmole"] = 10,
+["eathot"] = 5,
+["eatcold"] = 5,
+["eatfish"] = 5,
+["eatturkey"] = 5,
+["eatpepper"] = 5,
+["eatbacon"] = 5,
+["eatmole"] = 5,
 --Life
 ["noob"] = nil,
 ["tooyoung"] = nil,
@@ -38,18 +38,18 @@ allachiv_eventdata={
 ["reviveamulet"] = 3,
 ["feedplayer"] = 10,
 --Work
-["nature"] = 500,
-["fishmaster"] = 60,
-["pickappren"] = 750,
-["pickmaster"] = 1500,
-["chopappren"] = 350,
-["chopmaster"] = 700,
-["mineappren"] = 200,
-["minemaster"] = 400,
+["nature"] = 100,
+["fishmaster"] = 30,
+["pickappren"] = 300,
+["pickmaster"] = 600,
+["chopappren"] = 100,
+["chopmaster"] = 200,
+["mineappren"] = 100,
+["minemaster"] = 200,
 ["cookappren"] = 100,
 ["cookmaster"] = 200,
-["buildappren"] = 500,
-["buildmaster"] = 1000,
+["buildappren"] = 200,
+["buildmaster"] = 500,
 --Have
 ["emerald"] = 10,
 ["citrin"] = 10,
@@ -64,16 +64,16 @@ allachiv_eventdata={
 ["mosquito"] = 10,
 ["bathbomb"] = 5,
 --Like
-["goodman"] = 30,
-["brother"] = 30,
-["catperson"] = 20,
+["pigfriend"] = 30,
+["friendbunny"] = 30,
+["friendcat"] = 10,
 ["rocklob"] = 10,
-["spooder"] = 100,
+["friendspider"] = 100,
 ["evil"] = 3,
 ["birdclop"] = nil,
 ["pet"] = nil,
-["shadowchester"] = nil,
-["snowchester"] = nil,
+--["shadowchester"] = nil,
+--["snowchester"] = nil,
 ["musichutch"] = nil,
 ["lavae"] = nil,
 --Pain
@@ -95,7 +95,7 @@ allachiv_eventdata={
 ["bullkelp"] = 9000,
 ["butcher"] = 15,
 ["horrorhound"] = 10,
-["slurtle"] = 10,
+["slurtle"] = 5,
 ["werepig"] = 15,
 ["fruitdragon"] = 5,
 ["sick"] = nil,
@@ -131,12 +131,21 @@ allachiv_eventdata={
 ["trader"] = 20,
 ["fuzzy"] = 5,
 ["knowledge"] = nil,
-["dance"] = 50,
+["dance"] = 1,
 ["teleport"] = 25,
-["luck"] = nil,
+--["luck"] = nil,
 ["lightning"] = nil,
 ["birchnut"] = 5,
 ["allgiantPlants"] = 14,
+--slayer
+["spider"] = 100,
+["spider_warrior"] = 50,
+["hound"] = 50,
+["bee"] = 50,
+["frog"] = 50,
+["clockwork"] = 15,
+["eye_of_terror"] = nil,
+["twins_of_terror"] = nil,
 --Mile
 ["all"] = nil,
 ["longage"] = 70,
@@ -155,7 +164,7 @@ allachiv_coinget={
 --Food
 ["firsteat"] = 1,
 ["supereat"] = 2,
-["danding"] = 2,
+["eatmonsterlasagna"] = 2,
 ["alldiet"] = 10,
 ["eathot"] = 2,
 ["eatcold"] = 2,
@@ -203,16 +212,16 @@ allachiv_coinget={
 ["mosquito"] = 1,
 ["bathbomb"] = 2,
 --Like
-["goodman"] = 3,
-["brother"] = 3,
-["catperson"] = 3,
+["pigfriend"] = 3,
+["friendbunny"] = 3,
+["friendcat"] = 3,
 ["rocklob"] = 2,
-["spooder"] = 3,
+["friendspider"] = 3,
 ["evil"] = 2,
 ["birdclop"] = 3,
 ["pet"] = 2,
-["shadowchester"] = 2,
-["snowchester"] = 2,
+--["shadowchester"] = 2,
+--["snowchester"] = 2,
 ["musichutch"] = 2,
 ["lavae"] = 3,
 --Pain
@@ -272,10 +281,19 @@ allachiv_coinget={
 ["knowledge"] = 3,
 ["dance"] = 1,
 ["teleport"] = 2,
-["luck"] = 10,
+--["luck"] = 10,
 ["lightning"] = 1,
 ["birchnut"] = 3,
 ["allgiantPlants"] = 10,
+--slayer
+["spider"] = 3,
+["spider_warrior"] = 4,
+["hound"] = 4,
+["bee"] = 3,
+["frog"] = 3,
+["clockwork"] = 4,
+["eye_of_terror"] = 5,
+["twins_of_terror"] = 7,
 --Mile
 ["all"] = 3,
 ["longage"] = 5,
@@ -290,7 +308,7 @@ allachiv_coinget={
 ["pacifist"] = 3,
 }
 
---奖励获得数值
+--奖励获得数值 Rewards get value
 allachiv_coindata={
 ["hungerup"] = 2,
 ["sanityup"] = 2,
@@ -303,12 +321,12 @@ allachiv_coindata={
 ["absorbup"] = .05,
 ["crit"] = .05,
 ["lifesteal"] = .005,
-["scale"] = .05,
+--["scale"] = .05,
 ["krampusxmas"] = .05,
 ["cheatdeath"] = 900,
 }
 
---奖励消耗点数
+--奖励消耗点数 Bonus Consumption Points
 allachiv_coinuse={
 ["hungerup"] = math.ceil(1*_G.MULT_CONFIG),
 ["sanityup"] = math.ceil(1*_G.MULT_CONFIG),
@@ -321,12 +339,12 @@ allachiv_coinuse={
 ["absorbup"] = math.ceil(5*_G.MULT_CONFIG),
 ["crit"] = math.ceil(7*_G.MULT_CONFIG),
 ["lifesteal"] = math.ceil(7*_G.MULT_CONFIG),
-["scale"] = math.ceil(5*_G.MULT_CONFIG),
+--["scale"] = math.ceil(5*_G.MULT_CONFIG),
 ["fireflylightup"] = math.ceil(15*_G.MULT_CONFIG),
 ["krampusxmas"] = math.ceil(15*_G.MULT_CONFIG),
 ["nomoist"] = math.ceil(35*_G.MULT_CONFIG),
 ["doubledrop"] = math.ceil(40*_G.MULT_CONFIG),
-["goodman"] = math.ceil(15*_G.MULT_CONFIG),
+["pigfriend"] = math.ceil(15*_G.MULT_CONFIG),
 ["fishmaster"] = math.ceil(10*_G.MULT_CONFIG),
 ["pickmaster"] = math.ceil(20*_G.MULT_CONFIG),
 ["chopmaster"] = math.ceil(20*_G.MULT_CONFIG),
@@ -373,7 +391,7 @@ achievementcoststep={
 ["damageup"] = 6,
 ["crit"] = 3,
 ["lifesteal"] = 1,
-["scale"] = 3,
+--["scale"] = 3,
 ["fireflylightup"] = 4,
 }
 
@@ -400,7 +418,7 @@ if not _G.COSTRAISE_CONFIG then
 	["damageup"] = 999,
 	["crit"] = 999,
 	["lifesteal"] = 999,
-	["scale"] = 999,
+	--["scale"] = 999,
 	["fireflylightup"] = 999,
 	}
 end

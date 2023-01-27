@@ -18,6 +18,8 @@ STRINGS.GUI={
 	["ant"] = "蚁狮:",
 	["bear"] = "熊:",
 	["deer"] = "巨鹿:",
+    ["twin_of_terror1"] = "Retinazor:",
+    ["twin_of_terror2"] = "Spazmatism:",
 	["set"] = "设置",
 	["zoomI"] = "放大",
 	["zoomO"] = "缩小",
@@ -27,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"] = "等级经验",
     ["close"] = "关闭",
     ["reset"] = "重置",
-    ["resetAchievments"] = "重置后清空所有奖励并只返还 "..math.ceil(reset_refund_percentage*100).."% 的成就点数. 你还会受到暂时的血量上限惩罚",
+    ["resetAchievments"] = "重置后清空所有奖励并只返还 100% 的成就点数. 你还会受到暂时的血量上限惩罚",
     ["food"] = "食物",
     ["life"] = "生存",
     ["work"] = "日常",
@@ -44,7 +46,7 @@ STRINGS.GUI={
     ["crafting"] = "制作",
     ["attributelabels"] = "饥饿:\n精神:\n生命:\n攻击:\n防御:\n速度:\n高温抗性:\n低温抗性:\n",
     ["attributeunits"] = "\n\n%\n%\n%\n\n\n",
-    ["resetlevel"] = "重置后等级将初始化并只返还 "..math.ceil(reset_refund_percentage*100).." % 的经验点数. 你还会受到暂时的血量上限惩罚",
+    ["resetlevel"] = "重置后等级将初始化并只返还 100% 的经验点数. 你还会受到暂时的血量上限惩罚",
     ["iteminfo"] = "升级不会影响到物品的基础属性值.\n此处显示的数值为计算所有加成后数值.",
     ["availablePoints"] = "可用 \n 点数: \n ",
     ["overallxp"] = "已获取经验值: ",
@@ -64,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "吃下 "..allachiv_eventdata["supereat"].." 个食物",
         ["info"] = "吃下 "..allachiv_eventdata["supereat"].." 个食物",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "我的内心毫无波动",
-        ["description"] = "吃下 "..allachiv_eventdata["danding"].." 个怪物千层饼",
-        ["info"] = "吃下 "..allachiv_eventdata["danding"].." 个怪物千层饼",
+        ["description"] = "吃下 "..allachiv_eventdata["eatmonsterlasagna"].." 个怪物千层饼",
+        ["info"] = "吃下 "..allachiv_eventdata["eatmonsterlasagna"].." 个怪物千层饼",
     },
     ["alldiet"] = {
         ["name"] = "满汉全席",
@@ -284,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "收集  "..allachiv_eventdata["bathbomb"].." 个浴球",
         ["info"] = "收集"..allachiv_eventdata["bathbomb"].."  个浴球",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "抱歉，你是个好人",
-        ["description"] = "与 "..allachiv_eventdata["goodman"].." 只猪猪交朋友",
-        ["info"] = "与 "..allachiv_eventdata["goodman"].." 只猪猪交朋友",
+        ["description"] = "与 "..allachiv_eventdata["pigfriend"].." 只猪猪交朋友",
+        ["info"] = "与 "..allachiv_eventdata["pigfriend"].." 只猪猪交朋友",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "你对我就像哥哥一样",
-        ["description"] = "与 "..allachiv_eventdata["brother"].." 个兔兔交朋友",
-        ["info"] = "与  "..allachiv_eventdata["brother"].." 个兔兔交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendbunny"].." 个兔兔交朋友",
+        ["info"] = "与  "..allachiv_eventdata["friendbunny"].." 个兔兔交朋友",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "噬元兽与猫奴",
-        ["description"] = "与 "..allachiv_eventdata["catperson"].." 只猫猫交朋友",
-        ["info"] = "与"..allachiv_eventdata["catperson"].." 只猫猫交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendcat"].." 只猫猫交朋友",
+        ["info"] = "与"..allachiv_eventdata["friendcat"].." 只猫猫交朋友",
     },
     ["rocklob"] = {
         ["name"] = "龙虾的朋友",
         ["description"] = "与"..allachiv_eventdata["rocklob"].."只石虾交朋友",
         ["info"] = "与 "..allachiv_eventdata["rocklob"].." 只石虾交朋友",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "蜘蛛的朋友",
-        ["description"] = "与 "..allachiv_eventdata["spooder"].."只蜘蛛交朋友",
-        ["info"] = "与"..allachiv_eventdata["spooder"].." 只蜘蛛交朋友",
+        ["description"] = "与 "..allachiv_eventdata["friendspider"].."只蜘蛛交朋友",
+        ["info"] = "与"..allachiv_eventdata["friendspider"].." 只蜘蛛交朋友",
     },
     ["evil"] = {
         ["name"] = "森林精灵",
@@ -498,6 +500,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"] = "你也叫女王",
         ["description"] = "击杀  "..allachiv_eventdata["spiderqueen"].."只蜘蛛女王",
         ["info"] = "击杀 "..allachiv_eventdata["spiderqueen"].." 只蜘蛛女王",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"] = {
         ["name"] = "有本事单挑啊",
@@ -738,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="萤光",
         ["description"]="发散一个恒定的光圈",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="朋友光环",
         ["description"]="自动成为附近的猪和兔的朋友",
     },

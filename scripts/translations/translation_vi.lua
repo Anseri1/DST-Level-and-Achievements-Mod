@@ -18,6 +18,8 @@ STRINGS.GUI={
 	["ant"] = "Antlion:",
 	["bear"] = "Bearger:",
 	["deer"] = "Deerclops:",
+    ["twin_of_terror1"] = "Retinazor:",
+    ["twin_of_terror2"] = "Spazmatism:",
 	["set"] = "Cài đặt",
 	["zoomI"] = "Phóng to",
 	["zoomO"] = "Thu nhỏ",
@@ -27,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"] = "Cấp độ",
     ["close"] = "Đóng",
     ["reset"] = "Đặt lại",
-    ["resetAchievments"] = "Đặt lại sẽ xóa tất cả phần thưởng và hoàn lại "..math.ceil(reset_refund_percentage*100).."% tổng điểm. Bạn cũng sẽ nhận 1 phần máu đen.",
+    ["resetAchievments"] = "Đặt lại sẽ xóa tất cả phần thưởng và hoàn lại 100% tổng điểm. Bạn cũng sẽ nhận 1 phần máu đen.",
     ["food"] = "Ăn",
     ["life"] = "Sống",
     ["work"] = "Làm",
@@ -44,7 +46,7 @@ STRINGS.GUI={
     ["crafting"] = "Chế tạo",
     ["attributelabels"] = "Hunger:\nSanity:\nHealth:\nDamage:\nDefence:\nSpeed:\nHeat Insulation:\nCold Insulation:\n",
     ["attributeunits"] = "\n\n%\n%\n%\n\n\n",
-    ["resetlevel"] = "Đặt lại sẽ xóa tất cả nâng cấp và hoàn lại "..math.ceil(reset_refund_percentage*100).."% điểm. Bạn cũng sẽ nhận 1 phần máu đen.",
+    ["resetlevel"] = "Đặt lại sẽ xóa tất cả nâng cấp và hoàn lại 100% điểm. Bạn cũng sẽ nhận 1 phần máu đen.",
     ["iteminfo"] = "Nâng cấp được áp dụng cho các giá trị cơ bản không tính trang bị.\nGiá trị hiển thị ở đây là cuối cùng sau áp dụng mọi hiệu ứng.",
     ["availablePoints"] = "Hiện có \n Điểm: \n ",
     ["overallxp"] = "Tổng kinh nghiệm: ",
@@ -64,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Ăn "..allachiv_eventdata["supereat"].." thức ăn",
         ["info"] = "đã ăn "..allachiv_eventdata["supereat"].." thức ăn",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Lasagna xấu xa",
-        ["description"] = "Ăn "..allachiv_eventdata["danding"].." monster lasagna",
-        ["info"] = "đã ăn "..allachiv_eventdata["danding"].." Monster Lasagna",
+        ["description"] = "Ăn "..allachiv_eventdata["eatmonsterlasagna"].." monster lasagna",
+        ["info"] = "đã ăn "..allachiv_eventdata["eatmonsterlasagna"].." Monster Lasagna",
     },
     ["alldiet"] = {
         ["name"] = "Người tinh tế",
@@ -284,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Sở hữu "..allachiv_eventdata["bathbomb"].." bathbombs",
         ["info"] = "Đã có "..allachiv_eventdata["bathbomb"].." bathbombs",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "Thị trưởng heo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["goodman"].." heo",
-        ["info"] = "đã kết bạn với heo "..allachiv_eventdata["goodman"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["pigfriend"].." heo",
+        ["info"] = "đã kết bạn với heo "..allachiv_eventdata["pigfriend"].." lần",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Thố lãnh đạo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["brother"].." bunnymen",
-        ["info"] = "đã kết bạn với thỏ người "..allachiv_eventdata["brother"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendbunny"].." bunnymen",
+        ["info"] = "đã kết bạn với thỏ người "..allachiv_eventdata["friendbunny"].." lần",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Người mèo",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["catperson"].." monleo",
-        ["info"] = "đã kết bạn với Monleo "..allachiv_eventdata["catperson"].." lần",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendcat"].." monleo",
+        ["info"] = "đã kết bạn với Monleo "..allachiv_eventdata["friendcat"].." lần",
     },
     ["rocklob"] = {
         ["name"] = "Người bạn cứng rắn",
         ["description"] = "Kết bạn với "..allachiv_eventdata["rocklob"].." tôm đá",
         ["info"] = "đã kết bạn với tôm đá "..allachiv_eventdata["rocklob"].." lần",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mẹ chân dài",
-        ["description"] = "Kết bạn với "..allachiv_eventdata["spooder"].." con nhện",
-        ["info"] = "đã kết bạn với "..allachiv_eventdata["spooder"].." con nhện",
+        ["description"] = "Kết bạn với "..allachiv_eventdata["friendspider"].." con nhện",
+        ["info"] = "đã kết bạn với "..allachiv_eventdata["friendspider"].." con nhện",
     },
     ["evil"] = {
         ["name"] = "Elf of the Forest",
@@ -498,6 +500,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"] = "Kẻ giết nữ hoàng",
         ["description"] = "Giết "..allachiv_eventdata["spiderqueen"].." nhện chúa",
         ["info"] = "đã giết "..allachiv_eventdata["spiderqueen"].." nhện chúa",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"] = {
         ["name"] = "Thợ săn sói",
@@ -738,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Phát sáng +",
         ["description"]="Bạn là ngôi sao giữa màn đêm",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Kết bạn",
         ["description"]="Tự động kết bạn với heo và thỏ ở gần",
     },

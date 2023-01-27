@@ -12,6 +12,8 @@ local function arrayToString(arr)
 	return s
 end
 
+--ToDo fix the error and uncopypasta this at some point
+
 function currenteatfish(self,eatfish) self.inst.currenteatfish:set(eatfish) end
 function currenteatturkey(self,eatturkey) self.inst.currenteatturkey:set(eatturkey) end
 function currenteatpepper(self,eatpepper) self.inst.currenteatpepper:set(eatpepper) end
@@ -41,9 +43,9 @@ function currentfullsanity(self,fullsanity) self.inst.currentfullsanity:set(full
 function currentfullhunger(self,fullhunger) self.inst.currentfullhunger:set(fullhunger) end
 function currentpacifist(self,pacifist) self.inst.currentpacifist:set(pacifist) end
 
-function currenteatamount(self,eatamount) self.inst.currenteatamount:set(eatamount) end
-function currenteatmonsterlasagna(self,eatmonsterlasagna) self.inst.currenteatmonsterlasagna:set(eatmonsterlasagna) end
-function currentrespawnamount(self,respawnamount) self.inst.currentrespawnamount:set(respawnamount) end
+function currentsupereatamount(self,supereatamount) self.inst.currentsupereatamount:set(supereatamount) end
+function currenteatmonsterlasagnaamount(self,eatmonsterlasagnaamount) self.inst.currenteatmonsterlasagnaamount:set(eatmonsterlasagnaamount) end
+function currentmessiahamount(self,messiahamount) self.inst.currentmessiahamount:set(messiahamount) end
 function currentwalktime(self,walktime) self.inst.currentwalktime:set(walktime) end
 function currentemeralds(self,emeralds) self.inst.currentemeralds:set(emeralds) end
 
@@ -64,7 +66,7 @@ function currentdeathamouth(self,deathamouth) self.inst.currentdeathamouth:set(d
 function currentnosanitytime(self,nosanitytime) self.inst.currentnosanitytime:set(nosanitytime) end
 function currentsnakeamount(self,snakeamount) self.inst.currentsnakeamount:set(snakeamount) end
 function currentfriendpig(self,friendpig) self.inst.currentfriendpig:set(friendpig) end
-function currentfriendbunny(self,friendbunny) self.inst.currentfriendbunny:set(friendbunny) end
+function currentfriendbunnyamount(self,friendbunnyamount) self.inst.currentfriendbunnyamount:set(friendbunnyamount) end
 function currentfishamount(self,fishamount) self.inst.currentfishamount:set(fishamount) end
 function currentpickamount(self,pickamount) self.inst.currentpickamount:set(pickamount) end
 function currentchopamount(self,chopamount) self.inst.currentchopamount:set(chopamount) end
@@ -79,7 +81,7 @@ function currentfiretime(self,firetime) self.inst.currentfiretime:set(firetime) 
 function currentmoisttime(self,moisttime) self.inst.currentmoisttime:set(moisttime) end
 function currentage(self,age) self.inst.currentage:set(age) end
 
-function currentfriendcat(self,friendcat) self.inst.currentfriendcat:set(friendcat) end
+function currentfriendcatamount(self,friendcatamount) self.inst.currentfriendcatamount:set(friendcatamount) end
 function currentbutcheramount(self,butcheramount) self.inst.currentbutcheramount:set(butcheramount) end
 function currentgoatperdamount(self,goatperdamount) self.inst.currentgoatperdamount:set(goatperdamount) end
 function currentmosslingamount(self,mosslingamount) self.inst.currentmosslingamount:set(mosslingamount) end
@@ -88,12 +90,10 @@ function currentnatureamount(self,natureamount) self.inst.currentnatureamount:se
 function currenthentaiamount(self,hentaiamount) self.inst.currenthentaiamount:set(hentaiamount) end
 
 function currenteatall(self,eatall) self.inst.currenteatall:set(eatall) end
-function currenteatlist(self,eatlist) self.inst.currenteatlist:set(arrayToString(eatlist)) end
 
 function currentgiantPlants(self,giantPlants) self.inst.currentgiantPlants:set(giantPlants) end
-function currentgiantPlantList(self,giantPlantList) self.inst.currentgiantPlantList:set(arrayToString(giantPlantList)) end
 
-function currentfriendspider(self,friendspider) self.inst.currentfriendspider:set(friendspider) end
+function currentfriendspideramount(self,friendspideramount) self.inst.currentfriendspideramount:set(friendspideramount) end
 function currenttradeamount(self,tradeamount) self.inst.currenttradeamount:set(tradeamount) end
 function currentfuzzyamount(self,fuzzyamount) self.inst.currentfuzzyamount:set(fuzzyamount) end
 function currentcavetime(self,cavetime) self.inst.currentcavetime:set(cavetime) end
@@ -134,8 +134,8 @@ function checksick(self,sick) local c = 0 if sick then c=1 end self.inst.checksi
 function checkcoldblood(self,coldblood) local c = 0 if coldblood then c=1 end self.inst.checkcoldblood:set(c) end
 function checkburn(self,burn) local c = 0 if burn then c=1 end self.inst.checkburn:set(c) end
 function checkfreeze(self,freeze) local c = 0 if freeze then c=1 end self.inst.checkfreeze:set(c) end
-function checkgoodman(self,goodman) local c = 0 if goodman then c=1 end self.inst.checkgoodman:set(c) end
-function checkbrother(self,brother) local c = 0 if brother then c=1 end self.inst.checkbrother:set(c) end
+function checkpigfriend(self,pigfriend) local c = 0 if pigfriend then c=1 end self.inst.checkpigfriend:set(c) end
+function checkfriendbunny(self,friendbunny) local c = 0 if friendbunny then c=1 end self.inst.checkfriendbunny:set(c) end
 function checkfishmaster(self,fishmaster) local c = 0 if fishmaster then c=1 end self.inst.checkfishmaster:set(c) end
 function checkpickmaster(self,pickmaster) local c = 0 if pickmaster then c=1 end self.inst.checkpickmaster:set(c) end
 function checkchopmaster(self,chopmaster) local c = 0 if chopmaster then c=1 end self.inst.checkchopmaster:set(c) end
@@ -171,7 +171,7 @@ function checkknight(self,knight) local c = 0 if knight then c=1 end self.inst.c
 function checkbishop(self,bishop) local c = 0 if bishop then c=1 end self.inst.checkbishop:set(c) end
 function checkrook(self,rook) local c = 0 if rook then c=1 end self.inst.checkrook:set(c) end
 function checkstarve(self,starve) local c = 0 if starve then c=1 end self.inst.checkstarve:set(c) end
-function checkcatperson(self,catperson) local c = 0 if catperson then c=1 end self.inst.checkcatperson:set(c) end
+function checkfriendcat(self,friendcat) local c = 0 if friendcat then c=1 end self.inst.checkfriendcat:set(c) end
 function checkrose(self,rose) local c = 0 if rose then c=1 end self.inst.checkrose:set(c) end
 function checkbutcher(self,butcher) local c = 0 if butcher then c=1 end self.inst.checkbutcher:set(c) end
 function checkgoatperd(self,goatperd) local c = 0 if goatperd then c=1 end self.inst.checkgoatperd:set(c) end
@@ -183,7 +183,7 @@ function checkhutch(self,hutch) local c = 0 if hutch then c=1 end self.inst.chec
 function checkhentai(self,hentai) local c = 0 if hentai then c=1 end self.inst.checkhentai:set(c) end
 function checkalldiet(self,alldiet) local c = 0 if alldiet then c=1 end self.inst.checkalldiet:set(c) end
 function checkallgiantPlants(self,allgiantPlants) local c = 0 if allgiantPlants then c=1 end self.inst.checkallgiantPlants:set(c) end
-function checkspooder(self,spooder) local c = 0 if spooder then c=1 end self.inst.checkspooder:set(c) end
+function checkfriendspider(self,friendspider) local c = 0 if friendspider then c=1 end self.inst.checkfriendspider:set(c) end
 function checksleep(self,sleep) local c = 0 if sleep then c=1 end self.inst.checksleep:set(c) end
 function checktrader(self,trader) local c = 0 if trader then c=1 end self.inst.checktrader:set(c) end
 function checkfuzzy(self,fuzzy) local c = 0 if fuzzy then c=1 end self.inst.checkfuzzy:set(c) end
@@ -240,3 +240,303 @@ function checkbosswinter(self,bosswinter) local c = 0 if bosswinter then c=1 end
 function checkbossspring(self,bossspring) local c = 0 if bossspring then c=1 end self.inst.checkbossspring:set(c) end
 function checkbossantlion(self,bossantlion) local c = 0 if bossantlion then c=1 end self.inst.checkbossantlion:set(c) end
 function checkbossautumn(self,bossautumn) local c = 0 if bossautumn then c=1 end self.inst.checkbossautumn:set(c) end
+
+--my additions
+function checkspider(self,spider) local c = 0 if spider then c=1 end self.inst.checkspider:set(c) end
+function checkspider_warrior(self,spider_warrior) local c = 0 if spider_warrior then c=1 end self.inst.checkspider_warrior:set(c) end
+function checkhound(self,hound) local c = 0 if hound then c=1 end self.inst.checkhound:set(c) end
+function checkbee(self,bee) local c = 0 if bee then c=1 end self.inst.checkbee:set(c) end
+function checkfrog(self,frog) local c = 0 if frog then c=1 end self.inst.checkfrog:set(c) end
+function checkclockwork(self,clockwork) local c = 0 if clockwork then c=1 end self.inst.checkclockwork:set(c) end
+function checkeye_of_terror(self,eye_of_terror) local c = 0 if eye_of_terror then c=1 end self.inst.checkeye_of_terror:set(c) end
+function checktwin_of_terror1(self,twin_of_terror1) local c = 0 if twin_of_terror1 then c=1 end self.inst.checktwin_of_terror1:set(c) end
+function checktwin_of_terror2(self,twin_of_terror2) local c = 0 if twin_of_terror2 then c=1 end self.inst.checktwin_of_terror2:set(c) end
+function checktwins_of_terror(self,twins_of_terror) local c = 0 if twins_of_terror then c=1 end self.inst.checktwins_of_terror:set(c) end
+
+function currentspider(self,spideramount) self.inst.currentspider:set(spideramount) end
+function currentspider_warrior(self,spider_warrioramount) self.inst.currentspider_warrior:set(spider_warrioramount) end
+function currenthound(self,houndamount) self.inst.currenthound:set(houndamount) end
+function currentbee(self,beeamount) self.inst.currentbee:set(beeamount) end
+function currentfrog(self,frogamount) self.inst.currentfrog:set(frogamount) end
+function currentclockwork(self,clockworkamount) self.inst.currentclockwork:set(clockworkamount) end
+
+
+function currenteatlist(self,eatlist) self.inst.currenteatlist:set(arrayToString(eatlist)) end
+function currentgiantPlantList(self,giantPlantList) self.inst.currentgiantPlantList:set(arrayToString(giantPlantList)) end
+
+
+function meta_event_table()
+	local event_functions_table = {
+		eatlist = currenteatlist,
+		giantPlantList = currentgiantPlantList,
+
+
+		intogame = checkintogame,
+		firsteat = checkfirsteat,
+		supereat = checksupereat,
+		danding = checkdanding,
+		messiah = checkmessiah,
+		emerald = checkemerald,
+		walkalot = checkwalkalot,
+		stopalot = checkstopalot,
+		tooyoung = checktooyoung,
+		evil = checkevil,
+		snake = checksnake,
+		deathalot = checkdeathalot,
+		nosanity = checknosanity,
+		sick = checksick,
+		coldblood = checkcoldblood,
+		burn = checkburn,
+		freeze = checkfreeze,
+		pigfriend = checkpigfriend,
+		friendbunny = checkfriendbunny,
+		fishmaster = checkfishmaster,
+		pickmaster = checkpickmaster,
+		pickappren = checkpickappren,
+		chopmaster = checkchopmaster,
+		chopappren = checkchopappren,
+		noob = checknoob,
+		cookmaster = checkcookmaster,
+		cookappren = checkcookappren,
+		longage = checklongage,
+		luck = checkluck,
+		black = checkblack,
+		buildmaster = checkbuildmaster,
+		buildappren = checkbuildappren,
+		mineappren = checkmineappren,
+		minemaster = checkminemaster,
+		tank = checktank,
+		angry = checkangry,
+		icebody = checkicebody,
+		firebody = checkfirebody,
+		rigid = checkrigid,
+		ancient = checkancient,
+		queen = checkqueen,
+		king = checkking,
+		moistbody = checkmoistbody,
+		all = checkall,
+		minotaur = checkminotaur,
+		knight = checkknight,
+		bishop = checkbishop,
+		rook = checkrook,
+		santa = checksanta,
+		starve = checkstarve,
+		friendcat = checkfriendcat,
+		rose = checkrose,
+		mossling = checkmossling,
+		weetusk = checkweetusk,
+		butcher = checkbutcher,
+		goatperd = checkgoatperd,
+		secondchance = checksecondchance,
+		nature = checknature,
+		alldiet = checkalldiet,
+		allgiantPlants = checkallgiantPlants,
+		hutch = checkhutch,
+		friendspider = checkfriendspider,
+		hentai = checkhentai,
+		dragonfly = checkdragonfly,
+		malbatross = checkmalbatross,
+		crabking = checkcrabking,
+		sleep = checksleep,
+		trader = checktrader,
+		fuzzy = checkfuzzy,
+		pet = checkpet,
+		birdclop = checkbirdclop,
+		caveage = checkcaveage,
+		eathot = checkeathot,
+		eatcold = checkeatcold,
+		rot = checkrot,
+		knowledge = checkknowledge,
+		dance = checkdance,
+		oldage = checkoldage,
+		superstar = checksuperstar,
+		rocklob = checkrocklob,
+		teleport = checkteleport,
+		citrin = checkcitrin,
+		amber = checkamber,
+		saddle = checksaddle,
+		banana = checkbanana,
+		spore = checkspore,
+		blueprint = checkblueprint,
+		boat = checkboat,
+		moonrock = checkmoonrock,
+		gnome = checkgnome,
+		mosquito = checkmosquito,
+		supereatamount = currentsupereatamount,
+		eatmonsterlasagnaamount = currenteatmonsterlasagnaamount,
+		messiahamount = currentmessiahamount,
+		walktime = currentwalktime,
+		emeralds = currentemeralds,
+		stoptime = currentstoptime,
+		evilamount = currentevilamount,
+		deathamouth = currentdeathamouth,
+		nosanitytime = currentnosanitytime,
+		snakeamount = currentsnakeamount,
+		friendpig = currentfriendpig,
+		friendbunnyamount = currentfriendbunnyamount,
+		fishamount = currentfishamount,
+		pickamount = currentpickamount,
+		chopamount = currentchopamount,
+		cookamount = currentcookamount,
+		buildamount = currentbuildamount,
+		mineamount = currentmineamount,
+		attackeddamage = currentattackeddamage,
+		onhitdamage = currentonhitdamage,
+		icetime = currenticetime,
+		firetime = currentfiretime,
+		moisttime = currentmoisttime,
+		starvetime = currentstarvetime,
+		age = currentage,
+		friendcatamount = currentfriendcatamount,
+		butcheramount = currentbutcheramount,
+		weetuskamount = currentweetuskamount,
+		mosslingamount = currentmosslingamount,
+		goatperdamount = currentgoatperdamount,
+		natureamount = currentnatureamount,
+		eatall = currenteatall,
+		giantPlants = currentgiantPlants,
+		hentaiamount = currenthentaiamount,
+		friendspideramount = currentfriendspideramount,
+		tradeamount = currenttradeamount,
+		fuzzyamount = currentfuzzyamount,
+		cavetime = currentcavetime,
+		eathotamount = currenteathotamount,
+		eatcoldamount = currenteatcoldamount,
+		danceamount = currentdanceamount,
+		friendrocky = currentfriendrocky,
+		teleportamount = currentteleportamount,
+		starspent = currentstarspent,
+		bosswinter = checkbosswinter,
+		bossspring = checkbossspring,
+		bossantlion = checkbossantlion,
+		bossautumn = checkbossautumn,
+		citrins = currentcitrins,
+		ambers = currentambers,
+		saddles = currentsaddles,
+		bananas = currentbananas,
+		spores = currentspores,
+		blueprints = currentblueprints,
+		boats = currentboats,
+		moonrocks = currentmoonrocks,
+		gnomes = currentgnomes,
+		mosquitos = currentmosquitos,
+		runcount = currentruncount,
+		
+		eatfish = checkeatfish,
+		eatfishamount = currenteatfish,
+		eatturkey = checkeatturkey,
+		eatturkeyamount = currenteatturkey,
+		eatpepper = checkeatpepper,
+		eatpepperamount = currenteatpepper,
+		eatbacon = checkeatbacon,
+		eatbaconamount = currenteatbacon,
+		eatmole = checkeatmole,
+		eatmoleamount = currenteatmole,
+		sleeptent = checksleeptent,
+		sleeptentamount = currentsleeptent,
+		sleepsiesta = checksleepsiesta,
+		sleepsiestaamount = currentsleepsiesta,
+		reviveamulet = checkreviveamulet,
+		reviveamuletamount = currentreviveamulet,
+		feedplayer = checkfeedplayer,
+		feedplayeramount = currentfeedplayer,
+		bathbomb = checkbathbomb,
+		bathbombamount = currentbathbomb,
+		shadowchester = checkshadowchester,
+		snowchester = checksnowchester,
+		musichutch = checkmusichutch,
+		lavae = checklavae,
+		evilflower = checkevilflower,
+		evilfloweramount = currentevilflower,
+		roses = checkroses,
+		rosesamount = currentroses,
+		drown = checkdrown,
+		dmgnodmg = checkdmgnodmg,
+		dmgnodmgamount = currentdmgnodmg,
+		bullkelp = checkbullkelp,
+		bullkelpamount = currentbullkelp,
+		horrorhound = checkhorrorhound,
+		horrorhoundamount = currenthorrorhound,
+		slurtle = checkslurtle,
+		slurtleamount = currentslurtle,
+		werepig = checkwerepig,
+		werepigamount = currentwerepig,
+		fruitdragon = checkfruitdragon,
+		fruitdragonamount = currentfruitdragon,
+		treeguard = checktreeguard,
+		treeguardamount = currenttreeguard,
+		spiderqueen = checkspiderqueen,
+		spiderqueenamount = currentspiderqueen,
+		varg = checkvarg,
+		vargamount = currentvarg,
+		koaelefant = checkkoaelefant,
+		koaelefantamount = currentkoaelefant,
+		monkey = checkmonkey,
+		monkeyamount = currentmonkey,
+		lightning = checklightning,
+		birchnut = checkbirchnut,
+		birchnutamount = currentbirchnut,
+		rider = checkrider,
+		rideramount = currentrider,
+		fullsanity = checkfullsanity,
+		fullsanityamount = currentfullsanity,
+		fullhunger = checkfullhunger,
+		fullhungeramount = currentfullhunger,
+		pacifist = checkpacifist,
+		pacifistamount = currentpacifist,
+
+		--my additions
+		spideramount = currentspider,
+		spider_warrioramount = currentspider_warrior,
+		houndamount = currenthound,
+		beeamount = currentbee,
+		frogamount = currentfrog,
+		clockworkamount = currentclockwork,
+		
+		spider = checkspider,
+		spider_warrior = checkspider_warrior,
+		hound = checkhound,
+		bee = checkbee,
+		frog = checkfrog,
+		clockwork = checkclockwork,
+		eye_of_terror = checkeye_of_terror,
+		twin_of_terror1 = checktwin_of_terror1,
+		twin_of_terror2 = checktwin_of_terror2,
+		twins_of_terror = checktwins_of_terror,
+
+	}
+
+	--ToDo fix this and replace the above copypasta with it
+	--[[
+	local tmp = {}
+	for _, name in pairs(achievements_table) do
+		local check_name = "check"..name
+		tmp[check_name] = function (self, name) 
+			local c = 0 
+			if name then 
+				c=1 
+			end 
+			self.inst[check_name]:set(c) --errors here
+		end
+		event_functions_table[name] = tmp[check_name]
+	end
+
+	for _, name in pairs(cave_achievements_table) do
+		local check_name = "check"..name
+		tmp[check_name] = function (self, name) local c = 0 if name then c=1 end self.inst[check_name]:set(c) end
+		event_functions_table[name] = tmp[check_name]
+	end
+
+	for _, name in pairs(amount_table) do
+		local current_name = "current"..name
+		tmp[current_name] = function (self, name) self.inst[current_name]:set(name) end
+		event_functions_table[name] = tmp[current_name]
+	end
+	]]--
+	--[[
+	for i, v in pairs(event_functions_table) do
+		print(i, v)
+	end
+	]]--
+	return event_functions_table
+end

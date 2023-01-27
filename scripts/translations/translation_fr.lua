@@ -18,6 +18,8 @@ STRINGS.GUI={
 	["ant"] = "Fourmilion:",
 	["bear"] = "Blairours:",
 	["deer"] = "Cerfclope:",
+    ["twin_of_terror1"] = "Retinazor:",
+    ["twin_of_terror2"] = "Spazmatism:",
 	["set"] = "Paramètres",
 	["zoomI"] = "Zoom avant",
 	["zoomO"] = "Zoom arriere",
@@ -27,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"] = "Niveau d'Expérience",
     ["close"] = "Fermer",
     ["reset"] = "Reset",
-    ["resetAchievments"] = "Faire un reset retirera toutes les récompenses et redonnera "..math.ceil(reset_refund_percentage*100).."% des points de succès. Vous aurez également une pénalité temporaire de vie.",
+    ["resetAchievments"] = "Faire un reset retirera toutes les récompenses et redonnera 100% des points de succès. Vous aurez également une pénalité temporaire de vie.",
     ["food"] = "Manger",
     ["life"] = "Vie",
     ["work"] = "Travail",
@@ -44,7 +46,7 @@ STRINGS.GUI={
     ["crafting"] = "Crafting",
     ["attributelabels"] = "Faim:\nSanté Mentale:\nSanté:\nDégâts:\nDéfense:\nVitesse:\nIsolation Chaud:\nIsolation froid:\n",
     ["attributeunits"] = "\n\n%\n%\n%\n\n\n",
-    ["resetlevel"] = "Faire un reset retirera toutes les améliorations and redonnera "..math.ceil(reset_refund_percentage*100).."% points. Vous aurez également une pénalité temporaire de vie.",
+    ["resetlevel"] = "Faire un reset retirera toutes les améliorations and redonnera 100% points. Vous aurez également une pénalité temporaire de vie.",
     ["iteminfo"] = "Améliorations appliquées sur les valeurs de base sans objets.\nValeurs montrées ici sont les valeurs finales après applications de tout les effets.",
     ["availablePoints"] = "Points \n disponibles: \n ",
     ["overallxp"] = "XP totale: ",
@@ -64,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Manger "..allachiv_eventdata["supereat"].." choses comestibles",
         ["info"] = "a mangé "..allachiv_eventdata["supereat"].." choses commestibles",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "Inatteint",
-        ["description"] = "Manger "..allachiv_eventdata["danding"].." Lasagnes de Monstres",
-        ["info"] = "a mangé "..allachiv_eventdata["danding"].." Lasagnes de Monstres",
+        ["description"] = "Manger "..allachiv_eventdata["eatmonsterlasagna"].." Lasagnes de Monstres",
+        ["info"] = "a mangé "..allachiv_eventdata["eatmonsterlasagna"].." Lasagnes de Monstres",
     },
     ["alldiet"] = {
         ["name"] = "Régime raffiné",
@@ -284,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Avoir "..allachiv_eventdata["bathbomb"].." Bombes de Bain",
         ["info"] = "a "..allachiv_eventdata["bathbomb"].." Bombes de Bain",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "VIP de CochonVille",
-        ["description"] = "Être copain avec "..allachiv_eventdata["goodman"].." cochons",
-        ["info"] = "a fait ami-ami avec des cochons au moins "..allachiv_eventdata["goodman"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["pigfriend"].." cochons",
+        ["info"] = "a fait ami-ami avec des cochons au moins "..allachiv_eventdata["pigfriend"].." fois",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "Lapin Leader",
-        ["description"] = "Être copain avec "..allachiv_eventdata["brother"].." Hommes-lapins",
-        ["info"] = "a fait ami-ami avec des Hommes-lapins au moins "..allachiv_eventdata["brother"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendbunny"].." Hommes-lapins",
+        ["info"] = "a fait ami-ami avec des Hommes-lapins au moins "..allachiv_eventdata["friendbunny"].." fois",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "Ailurophile",
-        ["description"] = "Être copain avec "..allachiv_eventdata["catperson"].." Chatons-laveurs",
-        ["info"] = "a fait ami-ami avec des Chatons-laveurs au moins "..allachiv_eventdata["catperson"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendcat"].." Chatons-laveurs",
+        ["info"] = "a fait ami-ami avec des Chatons-laveurs au moins "..allachiv_eventdata["friendcat"].." fois",
     },
     ["rocklob"] = {
         ["name"] = "Sparring partenaire",
         ["description"] = "Être copain avec "..allachiv_eventdata["rocklob"].." Homards de Roche",
         ["info"] = "a fait ami-ami avec des Homards de Roche au moins "..allachiv_eventdata["rocklob"].." fois",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "Mommy-Long-Leg",
-        ["description"] = "Être copain avec "..allachiv_eventdata["spooder"].." Araignées",
-        ["info"] = "a fait ami-ami avec des Araignées au moins "..allachiv_eventdata["spooder"].." fois",
+        ["description"] = "Être copain avec "..allachiv_eventdata["friendspider"].." Araignées",
+        ["info"] = "a fait ami-ami avec des Araignées au moins "..allachiv_eventdata["friendspider"].." fois",
     },
     ["evil"] = {
         ["name"] = "Elfe de la Forêt",
@@ -498,6 +500,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"] = "Régidice",
         ["description"] = "Tuer "..allachiv_eventdata["spiderqueen"].." Reines des Araignées",
         ["info"] = "a tué "..allachiv_eventdata["spiderqueen"].." Reines des Araignées",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"] = {
         ["name"] = "Who let the dogs out",
@@ -738,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="Pénombre +",
         ["description"]="Iradie de la lumière autour de vous",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="Friend Zone",
         ["description"]="Rend amis les Cochons et Hommes-Lapin près de vous",
     },

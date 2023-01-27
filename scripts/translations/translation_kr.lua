@@ -18,6 +18,8 @@ STRINGS.GUI={
 ["ant"] = "개미사자:",
 ["bear"] = "곰소리:",
 ["deer"] = "외눈사슴:",
+["twin_of_terror1"] = "Retinazor:",
+["twin_of_terror2"] = "Spazmatism:",
 ["set"] = "설정",
 ["zoomI"] = "확대",
 ["zoomO"] = "축소",
@@ -27,7 +29,7 @@ STRINGS.GUI={
 ["levelTitle"] = "레벨 경험치",
 ["close"] = "닫기",
 ["reset"] = "초기화",
-["resetAchievments"] = "리셋 할 경우 모든 업그레이드가 지워지며, 그중 "..math.ceil(reset_refund_percentage*100).."%의 레벨 포인트를 돌려 받습니다.",
+["resetAchievments"] = "리셋 할 경우 모든 업그레이드가 지워지며, 그중 100%의 레벨 포인트를 돌려 받습니다.",
 ["food"] = "음식",
 ["life"] = "인생",
 ["work"] = "행동",
@@ -44,7 +46,7 @@ STRINGS.GUI={
 ["crafting"] = "장인스탯",
 ["attributelabels"] = "최대 허기:\n최대 정신력:\n최대 생명력:\n대미지:\n방어력:\n속도:\n시원함:\n따듯함:\n",
 ["attributeunits"] = "\n\n%\n%\n%\n\n\n",
-["resetlevel"] = "리셋 할 경우, 모든 업그레이드가 지워지며,  그중 "..math.ceil(reset_refund_percentage*100).."%의 업적 포인트를 돌려 받습니다.",
+["resetlevel"] = "리셋 할 경우, 모든 업그레이드가 지워지며,  그중 100%의 업적 포인트를 돌려 받습니다.",
 ["iteminfo"] = "이 스텟은 기본적인 캐릭터 스텟+ 업적으로 인한 추가 스텟입니다.  번역:오터틀",
 ["availablePoints"] = "능력 \n 포인트: \n ",
 ["overallxp"] = "총합 경험치: ",
@@ -64,10 +66,10 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = ""..allachiv_eventdata["supereat"].."번 음식을 먹으세요",
         ["info"] = "님이 음식을 "..allachiv_eventdata["supereat"].." 번 먹었습니다!",
     },
-    ["danding"] = {
+    ["eatmonsterlasagna"] = {
         ["name"] = "J.M.T",
-        ["description"] = ""..allachiv_eventdata["danding"].." 개의 몬스터 라자냐를 먹으세요",
-        ["info"] = "님이 몬스터 라자냐를 "..allachiv_eventdata["danding"].." 개 먹었습니다!",
+        ["description"] = ""..allachiv_eventdata["eatmonsterlasagna"].." 개의 몬스터 라자냐를 먹으세요",
+        ["info"] = "님이 몬스터 라자냐를 "..allachiv_eventdata["eatmonsterlasagna"].." 개 먹었습니다!",
     },
     ["alldiet"] = {
         ["name"] = "미식가",
@@ -284,30 +286,30 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "입욕제 "..allachiv_eventdata["bathbomb"].." 개를 가지세요",
         ["info"] = "님이 입욕제 "..allachiv_eventdata["bathbomb"].." 개를 소지했습니다!",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"] = "돼지마을 이장",
-        ["description"] = "돼지 "..allachiv_eventdata["goodman"].." 마리와 친구가 되세요",
-        ["info"] = "님이 돼지 "..allachiv_eventdata["goodman"].." 마리와 친구가 되었습니다!",
+        ["description"] = "돼지 "..allachiv_eventdata["pigfriend"].." 마리와 친구가 되세요",
+        ["info"] = "님이 돼지 "..allachiv_eventdata["pigfriend"].." 마리와 친구가 되었습니다!",
     },
-    ["brother"] = {
+    ["friendbunny"] = {
         ["name"] = "토끼인간의 리더",
-        ["description"] = "버니맨 "..allachiv_eventdata["brother"].." 마리와 친구가 되세요",
-        ["info"] = "님이 토끼인간 "..allachiv_eventdata["brother"].." 마리와 친구가 되었습니다!",
+        ["description"] = "버니맨 "..allachiv_eventdata["friendbunny"].." 마리와 친구가 되세요",
+        ["info"] = "님이 토끼인간 "..allachiv_eventdata["friendbunny"].." 마리와 친구가 되었습니다!",
     },
-    ["catperson"] = {
+    ["friendcat"] = {
         ["name"] = "캣맘",
-        ["description"] = "캣쿤 "..allachiv_eventdata["catperson"].." 마리와 친구가 되세요",
-        ["info"] = "님이 캣쿤 "..allachiv_eventdata["catperson"].." 마리와 친구가 되었습니다!",
+        ["description"] = "캣쿤 "..allachiv_eventdata["friendcat"].." 마리와 친구가 되세요",
+        ["info"] = "님이 캣쿤 "..allachiv_eventdata["friendcat"].." 마리와 친구가 되었습니다!",
     },
     ["rocklob"] = {
         ["name"] = "스파링 파트너",
         ["description"] = "돌가재 "..allachiv_eventdata["rocklob"].." 마리와 친구가 되세요",
         ["info"] = "님이 돌가재 "..allachiv_eventdata["rocklob"].." 마리와 친구가 되었습니다!",
     },
-    ["spooder"] = {
+    ["friendspider"] = {
         ["name"] = "사족보행 친구",
-        ["description"] = "거미 "..allachiv_eventdata["spooder"].." 마리와 친구가 되세요",
-        ["info"] = "님이 거미 "..allachiv_eventdata["spooder"].." 마리와 친구가 되었습니다!",
+        ["description"] = "거미 "..allachiv_eventdata["friendspider"].." 마리와 친구가 되세요",
+        ["info"] = "님이 거미 "..allachiv_eventdata["friendspider"].." 마리와 친구가 되었습니다!",
     },
     ["evil"] = {
         ["name"] = "루타바가 요정",
@@ -498,6 +500,46 @@ STRINGS.ACHIEVEMENTS={
         ["name"] = "여왕시해자",
         ["description"] = "여왕거미 "..allachiv_eventdata["spiderqueen"].." 마리를 죽이세요",
         ["info"] = "님이 여왕거미 "..allachiv_eventdata["spiderqueen"].." 마리를 죽였습니다!",
+    },
+    ["spider"] = {
+        ["name"] = "Spider Squisher",
+        ["description"] = "Kill "..allachiv_eventdata["spider"].." spiders",
+        ["info"] = "killed "..allachiv_eventdata["spider"].." spiders",
+    },
+    ["spider_warrior"] = {
+        ["name"] = "Spider Warlord",
+        ["description"] = "Kill "..allachiv_eventdata["spider_warrior"].." spider warriors",
+        ["info"] = "killed "..allachiv_eventdata["spider_warrior"].." spider warrors",
+    },
+    ["hound"] = {
+        ["name"] = "Top Dog",
+        ["description"] = "Kill "..allachiv_eventdata["hound"].." hounds",
+        ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
+    },
+    ["bee"] = {
+        ["name"] = "Bee Bleeder",
+        ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
+        ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
+    },
+    ["frog"] = {
+        ["name"] = "The French Defense",
+        ["description"] = "Kill "..allachiv_eventdata["frog"].." frogs",
+        ["info"] = "killed "..allachiv_eventdata["frog"].." frogs",
+    },
+    ["clockwork"] = {
+        ["name"] = "Vandalism",
+        ["description"] = "Kill "..allachiv_eventdata["clockwork"].." clockworks",
+        ["info"] = "killed "..allachiv_eventdata["clockwork"].." clockworks",
+    },
+    ["eye_of_terror"] = {
+        ["name"] = "Pink Eye",
+        ["description"] = "Kill the Eye of Terror",
+        ["info"] = "killed eye of terror",
+    },
+    ["twins_of_terror"] = {
+        ["name"] = "A Sight for Sore Eyes",
+        ["description"] = "Kill the Twins of Terror",
+        ["info"] = "killed twins of terror",
     },
     ["varg"] = {
         ["name"] = "개조심",
@@ -738,7 +780,7 @@ STRINGS.PERKS={
         ["name"]="발광레벨 +",
         ["description"]="몸주변에서 빛을 냅니다",
     },
-    ["goodman"] = {
+    ["pigfriend"] = {
         ["name"]="친화력 갑",
         ["description"]="주변의 돼지와 토끼인간이 저절로 친구가 됩니다",
     },
