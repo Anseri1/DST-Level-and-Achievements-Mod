@@ -428,14 +428,14 @@ function allachivevent:onwalkfn(inst)
 				end
 			else
 				if self.walkalot ~= true then
-                    counting_logic(inst, "walkalot")
+                    counting_logic(inst, "walkalot", "walktime")
 				end
 			end
             
         else
             --Stop
             if self.stopalot ~= true then
-                counting_logic(inst, "stopalot")
+                counting_logic(inst, "stopalot", "stoptime")
             end
         end
     end)
@@ -498,8 +498,8 @@ end
 
 function allachivevent:sanitycheck(inst)
     inst:DoPeriodicTask(1, function()
-        if inst.components.sanity.current < 1 and self.nosanity ~= true and inst.components.health.currenthealth > 0 then
-            counting_logic(inst, "nosanity")
+        if inst.components.sanity.current <= inst.components.sanity.max*0.10 and self.nosanity ~= true and inst.components.health.currenthealth > 0 then
+            counting_logic(inst, "nosanity", "nosanitytime")
         end
 		if inst.components.sanity.current >= inst.components.sanity.max*0.95 and self.fullsanity ~= true and inst.components.health.currenthealth > 0 then
             counting_logic(inst, "fullsanity")
@@ -682,7 +682,7 @@ function allachivevent:onkilledother(inst)
 			for k,v in pairs(ents) do
 				if v:HasTag("player") then
 					if v.components.allachivevent.twin_of_terror1 ~= true then
-						v.components.allachivevent.twin_terror1 = true
+						v.components.allachivevent.twin_of_terror1 = true
 					end
                     if v.components.allachivevent.twin_of_terror1 and v.components.allachivevent.twin_of_terror2 and v.components.allachivevent.twins_of_terror ~= true then
 						v.components.allachivevent.twins_of_terror = true
@@ -697,7 +697,7 @@ function allachivevent:onkilledother(inst)
 			for k,v in pairs(ents) do
 				if v:HasTag("player") then
 					if v.components.allachivevent.twin_of_terror2 ~= true then
-						v.components.allachivevent.twin_terror2 = true
+						v.components.allachivevent.twin_of_terror2 = true
 					end
                     if v.components.allachivevent.twin_of_terror1 and v.components.allachivevent.twin_of_terror2 and v.components.allachivevent.twins_of_terror ~= true then
 						v.components.allachivevent.twins_of_terror = true

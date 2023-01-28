@@ -62,7 +62,7 @@ function currentmosquitos(self,mosquitos) self.inst.currentmosquitos:set(mosquit
 
 function currentstoptime(self,stoptime) self.inst.currentstoptime:set(stoptime) end
 function currentevilamount(self,evilamount) self.inst.currentevilamount:set(evilamount) end
-function currentdeathamouth(self,deathamouth) self.inst.currentdeathamouth:set(deathamouth) end
+function currentdeathalotamount(self,deathalotamount) self.inst.currentdeathalotamount:set(deathalotamount) end
 function currentnosanitytime(self,nosanitytime) self.inst.currentnosanitytime:set(nosanitytime) end
 function currentsnakeamount(self,snakeamount) self.inst.currentsnakeamount:set(snakeamount) end
 function currentpigfriendamount(self,pigfriendamount) self.inst.currentpigfriendamount:set(pigfriendamount) end
@@ -74,7 +74,7 @@ function currentcookamount(self,cookamount) self.inst.currentcookamount:set(cook
 function currentmineamount(self,mineamount) self.inst.currentmineamount:set(mineamount) end
 function currentbuildamount(self,buildamount) self.inst.currentbuildamount:set(buildamount) end
 function currentattackeddamage(self,attackeddamage) self.inst.currentattackeddamage:set(attackeddamage) end
-function currentonhitdamage(self,onhitdamage) self.inst.currentonhitdamage:set(onhitdamage) end
+function currentangryamount(self,angryamount) self.inst.currentangryamount:set(angryamount) end
 function currentstarvetime(self,starvetime) self.inst.currentstarvetime:set(starvetime) end
 function currenticetime(self,icetime) self.inst.currenticetime:set(icetime) end
 function currentfiretime(self,firetime) self.inst.currentfiretime:set(firetime) end
@@ -109,7 +109,7 @@ function currentruncount(self,runcount) self.inst.currentruncount:set(runcount) 
 function checkintogame(self,intogame) local c = 0 if intogame then c=1 end self.inst.checkintogame:set(c) end
 function checkfirsteat(self,firsteat) local c = 0 if firsteat then c=1 end self.inst.checkfirsteat:set(c) end
 function checksupereat(self,supereat) local c = 0 if supereat then c=1 end self.inst.checksupereat:set(c) end
-function checkdanding(self,danding) local c = 0 if danding then c=1 end self.inst.checkdanding:set(c) end
+function checkeatmonsterlasagna(self,eatmonsterlasagna) local c = 0 if eatmonsterlasagna then c=1 end self.inst.checkeatmonsterlasagna:set(c) end
 function checkmessiah(self,messiah) local c = 0 if messiah then c=1 end self.inst.checkmessiah:set(c) end
 function checkemerald(self,emerald) local c = 0 if emerald then c=1 end self.inst.checkemerald:set(c) end
 function checkcitrin(self,citrin) local c = 0 if citrin then c=1 end self.inst.checkcitrin:set(c) end
@@ -274,7 +274,7 @@ function meta_event_table()
 		intogame = checkintogame,
 		firsteat = checkfirsteat,
 		supereat = checksupereat,
-		danding = checkdanding,
+		eatmonsterlasagna = checkeatmonsterlasagna,
 		messiah = checkmessiah,
 		emerald = checkemerald,
 		walkalot = checkwalkalot,
@@ -369,7 +369,7 @@ function meta_event_table()
 		emeralds = currentemeralds,
 		stoptime = currentstoptime,
 		evilamount = currentevilamount,
-		deathamouth = currentdeathamouth,
+		deathalotamount = currentdeathalotamount,
 		nosanitytime = currentnosanitytime,
 		snakeamount = currentsnakeamount,
 		pigfriendamount = currentpigfriendamount,
@@ -381,7 +381,7 @@ function meta_event_table()
 		buildamount = currentbuildamount,
 		mineamount = currentmineamount,
 		attackeddamage = currentattackeddamage,
-		onhitdamage = currentonhitdamage,
+		angryamount = currentangryamount,
 		icetime = currenticetime,
 		firetime = currentfiretime,
 		moisttime = currentmoisttime,

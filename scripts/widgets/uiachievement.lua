@@ -1951,7 +1951,7 @@ function uiachievement:loadlist()
 		{
 			name = "nosanity",
 			check = self.owner.checknosanity:value(),
-			current = self.owner.currentnosanityamount:value(),
+			current = self.owner.currentnosanitytime:value(),
 		},
 		{
 			name = "icebody",
@@ -2279,12 +2279,12 @@ function uiachievement:loadlist()
 		{
 			name = "walkalot",
 			check = self.owner.checkwalkalot:value(),
-			current = self.owner.currentwalkalotamount:value(),
+			current = self.owner.currentwalktime:value(),
 		},
 		{
 			name = "stopalot",
 			check = self.owner.checkstopalot:value(),
-			current = self.owner.currentstopalotamount:value(),
+			current = self.owner.currentstoptime:value(),
 		},
 		{
 			name = "caveage",
