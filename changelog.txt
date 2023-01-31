@@ -8,6 +8,7 @@ ToDo:
 0.0.2 of anseri's fork changes:
 bugfix insanity achievement now starts counting at 10% or less sanity instead of 0
 fixed most if not all of the erroneous bugs that poped up during playtesting the refactor
+removed saladmander achievement due to it causeing a softlock becuase they don't have a way to respawn, --might replace with lord of the fruit fly at a later date
 
 0.0.1 of anseri's fork changes:
 
