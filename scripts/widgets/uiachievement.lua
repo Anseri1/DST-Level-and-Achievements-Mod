@@ -2024,11 +2024,13 @@ function uiachievement:loadlist()
 			check = self.owner.checkwerepig:value(),
 			current = self.owner.currentwerepig:value(),
 		},
+		--[[
 		{
 			name = "fruitdragon",
 			check = self.owner.checkfruitdragon:value(),
 			current = self.owner.currentfruitdragon:value(),
 		},
+		]]--
 		{
 			name = "sick",
 			check = self.owner.checksick:value(),

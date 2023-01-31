@@ -444,11 +444,13 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "Kill "..allachiv_eventdata["werepig"].." werepigs",
         ["info"] = "killed "..allachiv_eventdata["werepig"].." werepigs",
     },
+    --[[
     ["fruitdragon"] = {
         ["name"] = "Enraged Salad",
         ["description"] = "Kill "..allachiv_eventdata["fruitdragon"].." fiery saladmander",
         ["info"] = "killed "..allachiv_eventdata["fruitdragon"].." enraged saladmander",
     },
+    ]]--
     ["sick"] = {
         ["name"] = "Cold Hearted",
         ["description"] = "Murder Glommer",

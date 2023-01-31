@@ -31,7 +31,7 @@ function currentbullkelp(self,bullkelp) self.inst.currentbullkelp:set(bullkelp) 
 function currenthorrorhound(self,horrorhound) self.inst.currenthorrorhound:set(horrorhound) end
 function currentslurtle(self,slurtle) self.inst.currentslurtle:set(slurtle) end
 function currentwerepig(self,werepig) self.inst.currentwerepig:set(werepig) end
-function currentfruitdragon(self,fruitdragon) self.inst.currentfruitdragon:set(fruitdragon) end
+--function currentfruitdragon(self,fruitdragon) self.inst.currentfruitdragon:set(fruitdragon) end
 function currenttreeguard(self,treeguard) self.inst.currenttreeguard:set(treeguard) end
 function currentspiderqueen(self,spiderqueen) self.inst.currentspiderqueen:set(spiderqueen) end
 function currentvarg(self,varg) self.inst.currentvarg:set(varg) end
@@ -223,7 +223,7 @@ function checkbullkelp(self,bullkelp) local c = 0 if bullkelp then c=1 end self.
 function checkhorrorhound(self,horrorhound) local c = 0 if horrorhound then c=1 end self.inst.checkhorrorhound:set(c) end
 function checkslurtle(self,slurtle) local c = 0 if slurtle then c=1 end self.inst.checkslurtle:set(c) end
 function checkwerepig(self,werepig) local c = 0 if werepig then c=1 end self.inst.checkwerepig:set(c) end
-function checkfruitdragon(self,fruitdragon) local c = 0 if fruitdragon then c=1 end self.inst.checkfruitdragon:set(c) end
+--function checkfruitdragon(self,fruitdragon) local c = 0 if fruitdragon then c=1 end self.inst.checkfruitdragon:set(c) end
 function checktreeguard(self,treeguard) local c = 0 if treeguard then c=1 end self.inst.checktreeguard:set(c) end
 function checkspiderqueen(self,spiderqueen) local c = 0 if spiderqueen then c=1 end self.inst.checkspiderqueen:set(c) end
 function checkvarg(self,varg) local c = 0 if varg then c=1 end self.inst.checkvarg:set(c) end
@@ -461,8 +461,8 @@ function meta_event_table()
 		slurtleamount = currentslurtle,
 		werepig = checkwerepig,
 		werepigamount = currentwerepig,
-		fruitdragon = checkfruitdragon,
-		fruitdragonamount = currentfruitdragon,
+		--fruitdragon = checkfruitdragon,
+		--fruitdragonamount = currentfruitdragon,
 		treeguard = checktreeguard,
 		treeguardamount = currenttreeguard,
 		spiderqueen = checkspiderqueen,

@@ -624,9 +624,11 @@ function allachivevent:onkilledother(inst)
 			mobkill_logic(victim, "werepig")
         end
 
+        --[[
 		if victim and victim.prefab == "fruitdragon" and victim._is_ripe then
 			mobkill_logic(victim, "fruitdragon")
         end
+        ]]--
 
 		if victim and victim.prefab == "leif" or victim.prefab == "leif_sparse" then
 			mobkill_logic(victim, "treeguard")

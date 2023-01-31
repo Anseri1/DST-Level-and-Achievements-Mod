@@ -441,11 +441,13 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "杀死 "..allachiv_eventdata["werepig"].." 头疯猪",
         ["info"] = "杀死 "..allachiv_eventdata["werepig"].." 头疯猪",
     },
+    --[[
     ["fruitdragon"] = {
         ["name"] = "只要火龙果",
         ["description"] = "杀死 "..allachiv_eventdata["fruitdragon"].." 只红色的沙拉曼蛇",
         ["info"] = "杀死 "..allachiv_eventdata["fruitdragon"].." 只红色的沙拉曼蛇",
     },
+    ]]--
     ["sick"] = {
         ["name"] = "击杀格罗姆",
         ["description"] = "击杀格罗姆",
