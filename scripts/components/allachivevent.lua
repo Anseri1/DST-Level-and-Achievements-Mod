@@ -1477,10 +1477,12 @@ function allachivevent:giveCoins(playerName, coinAmount)
 end
 
 function allachivevent:grantAll(inst)
-    for name, _ in pairs(achievements_table) do
-        self[name] = true
+    for _, name in pairs(achievements_table) do
+        if name ~= "all" then
+            self[name] = true
+        end
     end
-    for name, _ in pairs(cave_achievements_table) do
+    for _, name in pairs(cave_achievements_table) do
         self[name] = true
     end
 end
@@ -1491,13 +1493,13 @@ function allachivevent:allget(inst)
         inst:DoPeriodicTask(1, function()
             if self.all ~= true then
                 local all_gotten = true
-                for _, name in pairs(achievements_table) do
-                    if not self[name] then
+                for i, name in pairs(achievements_table) do
+                    if not self[name] and name ~= "all" then
                         all_gotten = false
                         break
                     end
                 end
-                for _, name in pairs(cave_achievements_table) do
+                for i, name in pairs(cave_achievements_table) do
                     if not self[name] then
                         all_gotten = false
                         break
