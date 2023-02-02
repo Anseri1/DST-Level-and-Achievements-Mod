@@ -104,13 +104,13 @@ function allachivevent:intogamefn(inst)
                 --print("LOAD")
                 local achievements = AchievementData[inst:GetDisplayName()]
                 
-                for name, _ in pairs(achievements_table) do
+                for _, name in pairs(achievements_table) do
                     self[name] = achievements[name]
                 end
-                for name, _ in pairs(cave_achievements_table) do
+                for _, name in pairs(cave_achievements_table) do
                     self[name] = achievements[name]
                 end
-                for name, _ in pairs(amount_table) do
+                for _, name in pairs(amount_table) do
                     self[name] = achievements[name]
                 end
                 
@@ -151,7 +151,7 @@ function allachivevent:intogamefn(inst)
         end
 		if(_G.CAVES_CONFIG == false) then
             
-            for name, _ in pairs(cave_achievements_table) do
+            for _, name in pairs(cave_achievements_table) do
                 self[name] = true
             end
 
@@ -1491,13 +1491,13 @@ function allachivevent:allget(inst)
         inst:DoPeriodicTask(1, function()
             if self.all ~= true then
                 local all_gotten = true
-                for name, _ in pairs(achievements_table) do
+                for _, name in pairs(achievements_table) do
                     if not self[name] then
                         all_gotten = false
                         break
                     end
                 end
-                for name, _ in pairs(cave_achievements_table) do
+                for _, name in pairs(cave_achievements_table) do
                     if not self[name] then
                         all_gotten = false
                         break
@@ -1523,13 +1523,13 @@ function allachivevent:allget(inst)
                             self.runcount = self.runcount + 1
 
                             for i, name in pairs(achievements_table) do
-                                self[i] = false
+                                self[name] = false
                             end
                             for i, name in pairs(cave_achievements_table) do
-                                self[i] = false
+                                self[name] = false
                             end
                             for i, name in pairs(amount_table) do
-                                self[i] = 0
+                                self[name] = 0
                             end
 
                             self.eatlist = copylist(foodmenu)

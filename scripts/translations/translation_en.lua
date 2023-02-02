@@ -522,7 +522,7 @@ STRINGS.ACHIEVEMENTS={
         ["info"] = "killed "..allachiv_eventdata["hound"].." hound",
     },
     ["bee"] = {
-        ["name"] = "Bee Bleeder",
+        ["name"] = "The Bees Knees",
         ["description"] = "Kill "..allachiv_eventdata["bee"].." killer bees",
         ["info"] = "killed "..allachiv_eventdata["bee"].." killer bees",
     },
