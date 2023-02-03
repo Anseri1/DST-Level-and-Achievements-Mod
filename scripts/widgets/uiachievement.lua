@@ -101,9 +101,9 @@ local uiachievement = Class(Widget, function(self, owner)
 	self.mainui.removeinfo.label = self.mainui.removeinfo:AddChild(Text(BODYTEXTFONT, 28))
 	self.mainui.removeinfo.label:SetPosition(-48, 40, 0)
 	--self.mainui.removeinfo.label:SetRegionSize(400,100)
-	self.mainui.removeinfo.label:SetMultilineTruncatedString(STRINGS.GUI["resetAchievments"], 5, 330, 500, "", true)
+	self.mainui.removeinfo.label:SetMultilineTruncatedString(STRINGS.GUI["resetPerks"], 5, 330, 500, "", true)
 	--self.mainui.removeinfo.label:SetRegionSize(400,100)
-	--self.mainui.removeinfo.label:SetString(STRINGS.GUI["resetAchievments"])
+	--self.mainui.removeinfo.label:SetString(STRINGS.GUI["resetPerks"])
 
 	self.mainui.removeinfo.removeyes = self.mainui.removeinfo:AddChild(ImageButton("images/button/button_bg.xml", "button_bg.tex"))
 	self.mainui.removeinfo.removeyes:SetPosition(-100, -60, 0)
@@ -246,7 +246,6 @@ local uiachievement = Class(Widget, function(self, owner)
     self.mainbutton.checkbutton:SetHoverText(STRINGS.GUI["viewA"],{ size = 9, offset_x = 90, offset_y = -55, colour = {1,1,1,1}})
 	self.mainbutton.checkbutton:SetScale(0.5,0.5,1)
 	self.mainbutton.checkbutton:SetPosition(35, -19, 0)
-
 	self.mainbutton.checkbutton:SetOnClick(function()
 		if self.mainui.allachiv.shown then
 			self.mainui.allachiv:Hide()
@@ -372,6 +371,7 @@ local uiachievement = Class(Widget, function(self, owner)
 		end
 		self.mainui.removeinfo:Hide()
 		self.mainui.removeinfoXP:Hide()
+		self.mainui.removeinfoAchieve:Hide()
 	end)
 
 	self.size = self.owner.currentzoomlevel:value() or 1
@@ -460,6 +460,60 @@ local uiachievement = Class(Widget, function(self, owner)
 	self.mainui.infobutton = self.mainui:AddChild(Widget("infobutton"))
 	self.mainui.infobutton:SetPosition(339, 85, 0)
 	self.mainui.infobutton:Hide()
+
+	--reset achievements button
+	--Todo refacter this along with the rest of the file
+	self.mainui.infobutton.reset = self.mainui.infobutton:AddChild(ImageButton("images/button/button_bg.xml", "button_bg.tex"))
+	self.mainui.infobutton.reset:SetPosition(40, -435, 0)
+	self.mainui.infobutton.reset:SetScale(1.1,0.75,1)
+	self.mainui.infobutton.reset:SetOnClick(function()
+		self.mainui.removeinfoAchieve:Show()
+		self.mainui.removeinfoAchieve:MoveToFront()
+	end)
+	self.mainui.infobutton.reset.label = self.mainui.infobutton.reset:AddChild(Text(BUTTONFONT, 35))
+	--self.mainui.infobutton.reset.label:SetString(STRINGS.GUI["reset"])
+	self.mainui.infobutton.reset.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 100, 50, "", true)
+	self.mainui.infobutton.reset.label:SetColour(0,0,0,1)
+	self.mainui.removeinfoAchieve = self.mainui:AddChild(Image("images/hud/reset_info.xml", "reset_info.tex"))
+	self.mainui.removeinfoAchieve:SetPosition(445, -180, 0)
+	self.mainui.removeinfoAchieve:SetScale(1.3,1.3,1)
+	self.mainui.removeinfoAchieve:Hide()
+	self.mainui.removeinfoAchieve.label = self.mainui.removeinfoAchieve:AddChild(Text(BODYTEXTFONT, 28))
+	self.mainui.removeinfoAchieve.label:SetPosition(-48, 40, 0)
+	--self.mainui.removeinfoAchieve.label:SetRegionSize(400,100)
+	--self.mainui.removeinfoAchieve.label:SetString(STRINGS.GUI["resetlevel"])
+	self.mainui.removeinfoAchieve.label:SetMultilineTruncatedString(STRINGS.GUI["reset_achieve"], 5, 330, 500, "", true)
+
+	self.mainui.removeinfoAchieve.removeyes = self.mainui.removeinfoAchieve:AddChild(ImageButton("images/button/button_bg.xml", "button_bg.tex"))
+	self.mainui.removeinfoAchieve.removeyes:SetPosition(-100, -60, 0)
+	self.mainui.removeinfoAchieve.removeyes:SetNormalScale(0.6,0.6,1)
+	self.mainui.removeinfoAchieve.removeyes:SetFocusScale(0.7,0.7,1)
+	self.mainui.removeinfoAchieve.removeyes:SetOnClick(function()
+		SendModRPCToServer(MOD_RPC["DSTAchievement"]["reset_all_achievements"])
+		self.mainui.removeinfoAchieve:Hide()
+		--self.mainui.infobutton:Hide()
+		--self.mainui.allachiv:Hide()
+	end)
+	self.mainui.removeinfoAchieve.removeyes.label = self.mainui.removeinfoAchieve.removeyes:AddChild(Text(BUTTONFONT, 28))
+	--self.mainui.removeinfoAchieve.removeyes.label:SetString(STRINGS.GUI["reset"])
+	self.mainui.removeinfoAchieve.removeyes.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 70, 50, "", true)
+	self.mainui.removeinfoAchieve.removeyes.label:SetColour(0,0,0,1)
+	self.mainui.removeinfoAchieve.removeyes.label:SetScale(1,0.8,1)
+
+	self.mainui.removeinfoAchieve.removeno = self.mainui.removeinfoAchieve:AddChild(ImageButton("images/button/button_bg.xml", "button_bg.tex"))
+	self.mainui.removeinfoAchieve.removeno:SetPosition(20, -60, 0)
+	self.mainui.removeinfoAchieve.removeno:SetNormalScale(0.6,0.6,1)
+	self.mainui.removeinfoAchieve.removeno:SetFocusScale(0.7,0.7,1)
+	self.mainui.removeinfoAchieve.removeno:SetOnClick(function()
+		self.mainui.removeinfoAchieve:Hide()
+	end)
+	
+	self.mainui.removeinfoAchieve.removeno.label = self.mainui.removeinfoAchieve.removeno:AddChild(Text(BUTTONFONT, 28))
+	--self.mainui.removeinfoAchieve.removeno.label:SetString(STRINGS.GUI["close"])
+	self.mainui.removeinfoAchieve.removeno.label:SetMultilineTruncatedString(STRINGS.GUI["close"], 1, 70, 50, "", true)
+	self.mainui.removeinfoAchieve.removeno.label:SetColour(0,0,0,1)
+	self.mainui.removeinfoAchieve.removeno.label:SetScale(1,0.8,1)
+	--end of reset achievements button
 	
 	self.mainui.perk_cat = self.mainui:AddChild(Widget("perk_cat"))
 	self.mainui.perk_cat:SetPosition(500, 85, 0)
@@ -1062,6 +1116,7 @@ function uiachievement:updatepage(i)
 
 	if self.achivlist[i].name == "all" then
 		self.achivlisttile[i]:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..(#self.achivlist-1))
+		self.mainui.infobutton.reset:SetHoverText(STRINGS.GUI["comp"]..self.achivlist[i].current.."/"..allachiv_reset_event_data["required_achievements_for_reset"].."\n"..STRINGS.GUI["tokens"]..self.owner.currentreplaytoken:value().."/"..allachiv_reset_event_data["required_replaytoken_for_reset"])
 	end
 	if self.achivlist[i].name == "alldiet" then
 		self.mainui.achievement_bg.info.header:SetString(STRINGS.GUI["foodlist"])
@@ -1080,11 +1135,11 @@ local cat_work = 12
 local cat_have = 12
 local cat_like = 10
 local cat_pain = 11
-local cat_fight = 12
+local cat_fight = 11
 local cat_hunt = 11
 local cat_boss = 12
 local cat_misc = 10
-local cat_slayer = 8
+local cat_slayer = 9
 local cat_mile = 10
 
 function uiachievement:OnUpdate(dt)
@@ -1105,6 +1160,9 @@ function uiachievement:OnUpdate(dt)
 	end
 	if not self.mainui.levelbg.shown then
 		self.mainui.removeinfoXP:Hide()
+	end
+	if not self.mainui.infobutton.shown then
+		self.mainui.removeinfoAchieve:Hide()
 	end
 	
 	self.mainui.achievement_bg.coinamount:SetString(self.owner.currentcoinamount:value())
@@ -1375,12 +1433,16 @@ function uiachievement:buildpage(j,i)
 	self.achivlisttile[i].name = self.achivlisttile[i]:AddChild(Text(BODYTEXTFONT, 45))
 	self.achivlisttile[i].name:SetPosition(7, 18, 0)
 	self.achivlisttile[i].name:SetHAlign(ANCHOR_LEFT)
-	
+
+
+	self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"], 250, 500, "")
+	--[[
 	if self.achivlist[i].name == "all" then
 		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"].." "..self.achivlist[i].runcount+1, 250, 500, "")
 	else
 		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"], 250, 500, "")
 	end
+	]]--
 	local line = self.achivlisttile[i].name:GetString()
 	while #line < #STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"] do
 		self.achivlisttile[i].name:SetSize( self.achivlisttile[i].name:GetSize() - 1 )
@@ -1951,7 +2013,7 @@ function uiachievement:loadlist()
 		{
 			name = "nosanity",
 			check = self.owner.checknosanity:value(),
-			current = self.owner.currentnosanityamount:value(),
+			current = self.owner.currentnosanitytime:value(),
 		},
 		{
 			name = "icebody",
@@ -2024,11 +2086,13 @@ function uiachievement:loadlist()
 			check = self.owner.checkwerepig:value(),
 			current = self.owner.currentwerepig:value(),
 		},
+		--[[
 		{
 			name = "fruitdragon",
 			check = self.owner.checkfruitdragon:value(),
 			current = self.owner.currentfruitdragon:value(),
 		},
+		]]--
 		{
 			name = "sick",
 			check = self.owner.checksick:value(),
@@ -2265,6 +2329,11 @@ function uiachievement:loadlist()
 			current1 = self.owner.checktwin_of_terror1:value(),
 			current2 = self.owner.checktwin_of_terror2:value(),
 		},
+		{
+			name = "celestial_champion",
+			check = self.owner.checkcelestial_champion:value(),
+			current = nil,
+		},
 		--Mile
 		{
 			name = "longage",
@@ -2279,12 +2348,12 @@ function uiachievement:loadlist()
 		{
 			name = "walkalot",
 			check = self.owner.checkwalkalot:value(),
-			current = self.owner.currentwalkalotamount:value(),
+			current = self.owner.currentwalktime:value(),
 		},
 		{
 			name = "stopalot",
 			check = self.owner.checkstopalot:value(),
-			current = self.owner.currentstopalotamount:value(),
+			current = self.owner.currentstoptime:value(),
 		},
 		{
 			name = "caveage",
@@ -2315,7 +2384,7 @@ function uiachievement:loadlist()
 			name = "all",
 			check = self.owner.checkall:value(),
 			current = 0,
-			runcount = self.owner.currentruncount:value(),
+			--runcount = self.owner.currentruncount:value(),
 		},
 	
 	}
@@ -2718,11 +2787,21 @@ function uiachievement:updateAllStrings()
 	self.mainui.achievement_bg.reset.label:SetSize(35)
 	self.mainui.achievement_bg.reset.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 100, 50, "", true)
 	self.mainui.removeinfo.label:SetSize(28)
-	self.mainui.removeinfo.label:SetMultilineTruncatedString(STRINGS.GUI["resetAchievments"], 5, 330, 500, "", true)
+	self.mainui.removeinfo.label:SetMultilineTruncatedString(STRINGS.GUI["resetPerks"], 5, 330, 500, "", true)
 	self.mainui.removeinfo.removeyes.label:SetSize(27)
 	self.mainui.removeinfo.removeyes.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 70, 50, "", true)
 	self.mainui.removeinfo.removeno.label:SetSize(27)
 	self.mainui.removeinfo.removeno.label:SetMultilineTruncatedString(STRINGS.GUI["close"], 1, 70, 50, "", true)
+
+	self.mainui.infobutton.reset.label:SetSize(35)
+	self.mainui.infobutton.reset.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 100, 50, "", true)
+	self.mainui.removeinfoAchieve.label:SetSize(28)
+	self.mainui.removeinfoAchieve.label:SetMultilineTruncatedString(STRINGS.GUI["reset_achieve"], 5, 330, 500, "", true)
+	self.mainui.removeinfoAchieve.removeyes.label:SetSize(28)
+	self.mainui.removeinfoAchieve.removeyes.label:SetMultilineTruncatedString(STRINGS.GUI["reset"], 1, 70, 50, "", true)
+	self.mainui.removeinfoAchieve.removeno.label:SetSize(28)
+	self.mainui.removeinfoAchieve.removeno.label:SetMultilineTruncatedString(STRINGS.GUI["close"], 1, 70, 50, "", true)
+
 	self.mainui.infobutton.cat1.label:SetSize(55)
 	self.mainui.infobutton.cat2.label:SetSize(55)
 	self.mainui.infobutton.cat3.label:SetSize(55)

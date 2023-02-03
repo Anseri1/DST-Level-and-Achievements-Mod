@@ -557,7 +557,7 @@ end
 
 function allachivcoin:fireflylightupcoin(inst)
     local achiv = inst.components.allachivevent
-    if self.coinamount >= self.fireflylightcost and achiv.eye_of_terror == true or achiv.twins_of_terror == true or achiv.runcount > 0 then
+    if self.coinamount >= self.fireflylightcost and achiv.eye_of_terror == true or achiv.twins_of_terror == true then
         self.fireflylightup = self.fireflylightup + 1
         self:coinDoDelta(-self.fireflylightcost)
 		self.starsspent = self.starsspent + self.fireflylightcost
@@ -1110,10 +1110,12 @@ function allachivcoin:supplycoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["supply"]
         self:coinDoDelta(-allachiv_coinuse["supply"])
         self:supplyfn(inst)
+        --[[
         local item1 = SpawnPrefab("redmooneye")
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
         local item2 = SpawnPrefab("bluemooneye")
         inst.components.inventory:GiveItem(item2, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1131,9 +1133,11 @@ function allachivcoin:engineeringcoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["engineering"]
         self:coinDoDelta(-allachiv_coinuse["engineering"])
         self:engineeringfn(inst)
+        --[[
         local item1 = SpawnPrefab("sewing_tape")
         item1.components.stackable:SetStackSize(4)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1151,9 +1155,11 @@ function allachivcoin:naturalistcoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["naturalist"]
         self:coinDoDelta(-allachiv_coinuse["naturalist"])
         self:naturalistfn(inst)
+        --[[
         local item1 = SpawnPrefab("livinglog")
         item1.components.stackable:SetStackSize(4)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1171,9 +1177,11 @@ function allachivcoin:lunarcraftcoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["lunarcraft"]
         self:coinDoDelta(-allachiv_coinuse["lunarcraft"])
         self:lunarcraftfn(inst)
+        --[[
         local item1 = SpawnPrefab("moonglass")
         item1.components.stackable:SetStackSize(7)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1191,9 +1199,11 @@ function allachivcoin:shrinecoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["shrine"]
         self:coinDoDelta(-allachiv_coinuse["shrine"])
         self:shrinefn(inst)
+        --[[
         local item1 = SpawnPrefab("lucky_goldnugget")
         item1.components.stackable:SetStackSize(7)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1212,9 +1222,11 @@ function allachivcoin:readercoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["reader"]
         self:coinDoDelta(-allachiv_coinuse["reader"])
         self:readerfn(inst)
+        --[[
         local item1 = SpawnPrefab("papyrus")
         item1.components.stackable:SetStackSize(6)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1236,6 +1248,7 @@ function allachivcoin:masterchefcoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["masterchef"]
         self:coinDoDelta(-allachiv_coinuse["masterchef"])
         self:mastercheffn(inst)
+        --[[
         local item1 = SpawnPrefab("spice_chili")
         item1.components.stackable:SetStackSize(2)
         inst.components.inventory:GiveItem(item1, nil, inst:GetPosition())
@@ -1245,6 +1258,7 @@ function allachivcoin:masterchefcoin(inst)
         local item3 = SpawnPrefab("spice_sugar")
         item3.components.stackable:SetStackSize(2)
         inst.components.inventory:GiveItem(item3, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end
@@ -1306,8 +1320,10 @@ function allachivcoin:ancientstationcoin(inst)
 		self.starsspent = self.starsspent + allachiv_coinuse["ancientstation"]
         self:coinDoDelta(-allachiv_coinuse["ancientstation"])
         self:ancientstationfn(inst)
+        --[[
 		local item = SpawnPrefab("nightmare_timepiece")
         inst.components.inventory:GiveItem(item, nil, inst:GetPosition())
+        ]]--
         self:ongetcoin(inst)
     end
 end

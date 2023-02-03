@@ -197,6 +197,16 @@ AddModRPCHandler("DSTAchievement", "removeattributepoints", function(player)
 	player.components.levelsystem:removeattributepoints(player)
 end)
 
+
+
+
+AddModRPCHandler("DSTAchievement", "reset_all_achievements", function(player)
+	player.components.allachivevent:reset_all_achievements(player)
+end)
+
+
+
+
 -- AddModRPCHandler("DSTAchievement", "addxp", function(player)
 	-- player.components.levelsystem:addxp(player)
 -- end)

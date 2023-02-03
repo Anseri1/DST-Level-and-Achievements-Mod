@@ -104,13 +104,13 @@ function allachivevent:intogamefn(inst)
                 --print("LOAD")
                 local achievements = AchievementData[inst:GetDisplayName()]
                 
-                for name, _ in pairs(achievements_table) do
+                for _, name in pairs(achievements_table) do
                     self[name] = achievements[name]
                 end
-                for name, _ in pairs(cave_achievements_table) do
+                for _, name in pairs(cave_achievements_table) do
                     self[name] = achievements[name]
                 end
-                for name, _ in pairs(amount_table) do
+                for _, name in pairs(amount_table) do
                     self[name] = achievements[name]
                 end
                 
@@ -151,7 +151,7 @@ function allachivevent:intogamefn(inst)
         end
 		if(_G.CAVES_CONFIG == false) then
             
-            for name, _ in pairs(cave_achievements_table) do
+            for _, name in pairs(cave_achievements_table) do
                 self[name] = true
             end
 
@@ -428,14 +428,14 @@ function allachivevent:onwalkfn(inst)
 				end
 			else
 				if self.walkalot ~= true then
-                    counting_logic(inst, "walkalot")
+                    counting_logic(inst, "walkalot", "walktime")
 				end
 			end
             
         else
             --Stop
             if self.stopalot ~= true then
-                counting_logic(inst, "stopalot")
+                counting_logic(inst, "stopalot", "stoptime")
             end
         end
     end)
@@ -498,8 +498,8 @@ end
 
 function allachivevent:sanitycheck(inst)
     inst:DoPeriodicTask(1, function()
-        if inst.components.sanity.current < 1 and self.nosanity ~= true and inst.components.health.currenthealth > 0 then
-            counting_logic(inst, "nosanity")
+        if inst.components.sanity.current <= inst.components.sanity.max*0.10 and self.nosanity ~= true and inst.components.health.currenthealth > 0 then
+            counting_logic(inst, "nosanity", "nosanitytime")
         end
 		if inst.components.sanity.current >= inst.components.sanity.max*0.95 and self.fullsanity ~= true and inst.components.health.currenthealth > 0 then
             counting_logic(inst, "fullsanity")
@@ -519,7 +519,8 @@ end
 
 --Todo clean up the functions that require passing in the victim
 
-local function bosskill_logic(victim, check_for_prefab, achievement)
+local function bosskill_logic(victim, check_for_prefab, achievement, grantreplaytoken)
+    local grantreplaytoken = grantreplaytoken or false
     if victim and victim.prefab == check_for_prefab then
         local pos = Vector3(victim.Transform:GetWorldPosition())
         local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
@@ -528,6 +529,9 @@ local function bosskill_logic(victim, check_for_prefab, achievement)
                 if v.components.allachivevent[achievement] ~= true then
                     v.components.allachivevent[achievement] = true
                     v.components.allachivevent:seffc(v, achievement)
+                    if grantreplaytoken == true then
+                        v.components.allachivevent.replaytoken = v.components.allachivevent.replaytoken + 1
+                    end
                 end
             end
         end
@@ -624,9 +628,11 @@ function allachivevent:onkilledother(inst)
 			mobkill_logic(victim, "werepig")
         end
 
+        --[[
 		if victim and victim.prefab == "fruitdragon" and victim._is_ripe then
 			mobkill_logic(victim, "fruitdragon")
         end
+        ]]--
 
 		if victim and victim.prefab == "leif" or victim.prefab == "leif_sparse" then
 			mobkill_logic(victim, "treeguard")
@@ -674,7 +680,7 @@ function allachivevent:onkilledother(inst)
 			mobkill_logic(victim, "clockwork")
         end
 
-         bosskill_logic(victim, "eyeofterror", "eye_of_terror")
+        bosskill_logic(victim, "eyeofterror", "eye_of_terror")
 
         if victim and victim.prefab == "twinofterror1" then
 			local pos = Vector3(victim.Transform:GetWorldPosition())
@@ -682,7 +688,7 @@ function allachivevent:onkilledother(inst)
 			for k,v in pairs(ents) do
 				if v:HasTag("player") then
 					if v.components.allachivevent.twin_of_terror1 ~= true then
-						v.components.allachivevent.twin_terror1 = true
+						v.components.allachivevent.twin_of_terror1 = true
 					end
                     if v.components.allachivevent.twin_of_terror1 and v.components.allachivevent.twin_of_terror2 and v.components.allachivevent.twins_of_terror ~= true then
 						v.components.allachivevent.twins_of_terror = true
@@ -697,7 +703,7 @@ function allachivevent:onkilledother(inst)
 			for k,v in pairs(ents) do
 				if v:HasTag("player") then
 					if v.components.allachivevent.twin_of_terror2 ~= true then
-						v.components.allachivevent.twin_terror2 = true
+						v.components.allachivevent.twin_of_terror2 = true
 					end
                     if v.components.allachivevent.twin_of_terror1 and v.components.allachivevent.twin_of_terror2 and v.components.allachivevent.twins_of_terror ~= true then
 						v.components.allachivevent.twins_of_terror = true
@@ -706,6 +712,8 @@ function allachivevent:onkilledother(inst)
 				end
 			end
         end
+
+        bosskill_logic(victim, "alterguardian_phase3", "celestial_champion", true)
 
 		if victim and victim.prefab == "warg" then
 			mobkill_logic(victim, "varg")
@@ -828,8 +836,8 @@ function allachivevent:onkilledother(inst)
             end
         end
 
-        bosskill_logic(victim, "toadstool_dark", "rigid")
-        bosskill_logic(victim, "stalker_atrium", "ancient")
+        bosskill_logic(victim, "toadstool_dark", "rigid", true)
+        bosskill_logic(victim, "stalker_atrium", "ancient", true)
         bosskill_logic(victim, "minotaur", "minotaur")
         bosskill_logic(victim, "dragonfly", "dragonfly")
         bosskill_logic(victim, "malbatross", "malbatross")
@@ -1171,9 +1179,9 @@ function allachivevent:ontimepass(inst)
             self.nosanity = true
             self:seffc(inst,"nosanity")
         end
-        if inst.components.allachivcoin.healthregenamount >= 25 and self.hutch ~= true then
-            self.hutch = true
-            self:seffc(inst,"hutch")
+        if inst.components.allachivcoin.healthregenamount >= 25 and self.rot ~= true then
+            self.rot = true
+            self:seffc(inst,"rot")
         end
         if inst.components.allachivcoin.healthregenamount >= 25 and self.rose ~= true then
             self.rose = true
@@ -1387,9 +1395,9 @@ local function teleport_logic(inst)
 end
 
 function allachivevent:onteleport(inst)
-    inst:ListenForEvent("wormholetravel", teleport_logic(inst))
-    inst:ListenForEvent("soulhop", teleport_logic(inst))
-    inst:ListenForEvent("townportalteleport", teleport_logic(inst))
+    inst:ListenForEvent("wormholetravel", function(inst) teleport_logic(inst) end)
+    inst:ListenForEvent("soulhop", function(inst) teleport_logic(inst) end)
+    inst:ListenForEvent("townportalteleport", function(inst) teleport_logic(inst) end)
 end
 
 function allachivevent:onreroll(inst)
@@ -1401,14 +1409,14 @@ function allachivevent:onreroll(inst)
 					name = inst:GetDisplayName()
 				end
                 local SaveAchieve = {}
-                for name, _ in pairs(achievements_table) do
-                    SaveAchieve[name] = self[name] or false
+                for i, v in pairs(achievements_table) do
+                    SaveAchieve[v] = self[v] or false
                 end
-                for name, _ in pairs(cave_achievements_table) do
-                    SaveAchieve[name] = self[name] or false
+                for i, v in pairs(cave_achievements_table) do
+                    SaveAchieve[v] = self[v] or false
                 end
-                for name, _ in pairs(amount_table) do
-                    SaveAchieve[name] = self[name] or 0
+                for i, v in pairs(amount_table) do
+                    SaveAchieve[v] = self[v] or 0
                 end
 
                 SaveAchieve["eatlist"] = self.eatlist or copylist(foodmenu)
@@ -1475,11 +1483,49 @@ function allachivevent:giveCoins(playerName, coinAmount)
 end
 
 function allachivevent:grantAll(inst)
-    for name, _ in pairs(achievements_table) do
+    for _, name in pairs(achievements_table) do
+        if name ~= "all" then
+            self[name] = true
+        end
+    end
+    for _, name in pairs(cave_achievements_table) do
         self[name] = true
     end
-    for name, _ in pairs(cave_achievements_table) do
-        self[name] = true
+end
+
+function allachivevent:reset_all_achievements(inst)
+    local completed = 0
+    for _, v in pairs(achievements_table) do
+        if self[v] == true then
+            completed = completed + 1
+        end
+    end
+    for _, v in pairs(cave_achievements_table) do
+        if self[v] == true then
+            completed = completed + 1
+        end
+    end
+    if self.replaytoken > 0 and completed >= 100 then
+        self.replaytoken = self.replaytoken - 1
+        for i, name in pairs(achievements_table) do
+            self[name] = false
+        end
+        for i, name in pairs(cave_achievements_table) do
+            self[name] = false
+        end
+        for i, name in pairs(amount_table) do
+            if name ~= "agereset" and name ~= "starspent" and name ~= "starreset" and name ~= "knowledgeamount" and name ~= "replaytoken" then
+                self[name] = 0
+            end
+        end
+
+        self.eatlist = copylist(foodmenu)
+        self.giantPlantList = copylist(giantPlantList)
+        self:updateMeatatarianFoodList()
+
+        self.starreset = inst.components.allachivcoin.starsspent
+        self.agereset = math.ceil(inst.components.age:GetAge() / TUNING.TOTAL_DAY_TIME)
+        self:intogamefn(inst)
     end
 end
 
@@ -1489,13 +1535,13 @@ function allachivevent:allget(inst)
         inst:DoPeriodicTask(1, function()
             if self.all ~= true then
                 local all_gotten = true
-                for name, _ in pairs(achievements_table) do
-                    if not self[name] then
+                for i, name in pairs(achievements_table) do
+                    if not self[name] and name ~= "all" then
                         all_gotten = false
                         break
                     end
                 end
-                for name, _ in pairs(cave_achievements_table) do
+                for i, name in pairs(cave_achievements_table) do
                     if not self[name] then
                         all_gotten = false
                         break
@@ -1506,6 +1552,7 @@ function allachivevent:allget(inst)
                     self.all = true
                     inst:DoTaskInTime(2.5, function()
                         self:seffc(inst, "all")
+                        self.replaytoken = self.replaytoken + 1
                         inst:DoTaskInTime(.3, function()
                             inst.sg:GoToState("mime")
                             if not inst.components.locomotor.wantstomoveforward then inst.sg:AddStateTag("busy") end
@@ -1516,28 +1563,6 @@ function allachivevent:allget(inst)
                                 end)
                             end
                         end)
-                        --print(self.runcount, _G._G.PLAYS_CONFIG)
-                        if self.runcount < _G.PLAYS_CONFIG then
-                            self.runcount = self.runcount + 1
-
-                            for i, name in pairs(achievements_table) do
-                                self[i] = false
-                            end
-                            for i, name in pairs(cave_achievements_table) do
-                                self[i] = false
-                            end
-                            for i, name in pairs(amount_table) do
-                                self[i] = 0
-                            end
-
-                            self.eatlist = copylist(foodmenu)
-                            self.giantPlantList = copylist(giantPlantList)
-                            self:updateMeatatarianFoodList()
-
-                            self.starreset = inst.components.allachivcoin.starsspent
-                            self.agereset = math.ceil(inst.components.age:GetAge() / TUNING.TOTAL_DAY_TIME)
-                            self:intogamefn(inst)
-                        end
                     end)
                 end
             end

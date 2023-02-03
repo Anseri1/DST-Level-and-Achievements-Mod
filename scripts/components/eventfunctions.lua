@@ -31,7 +31,7 @@ function currentbullkelp(self,bullkelp) self.inst.currentbullkelp:set(bullkelp) 
 function currenthorrorhound(self,horrorhound) self.inst.currenthorrorhound:set(horrorhound) end
 function currentslurtle(self,slurtle) self.inst.currentslurtle:set(slurtle) end
 function currentwerepig(self,werepig) self.inst.currentwerepig:set(werepig) end
-function currentfruitdragon(self,fruitdragon) self.inst.currentfruitdragon:set(fruitdragon) end
+--function currentfruitdragon(self,fruitdragon) self.inst.currentfruitdragon:set(fruitdragon) end
 function currenttreeguard(self,treeguard) self.inst.currenttreeguard:set(treeguard) end
 function currentspiderqueen(self,spiderqueen) self.inst.currentspiderqueen:set(spiderqueen) end
 function currentvarg(self,varg) self.inst.currentvarg:set(varg) end
@@ -62,10 +62,10 @@ function currentmosquitos(self,mosquitos) self.inst.currentmosquitos:set(mosquit
 
 function currentstoptime(self,stoptime) self.inst.currentstoptime:set(stoptime) end
 function currentevilamount(self,evilamount) self.inst.currentevilamount:set(evilamount) end
-function currentdeathamouth(self,deathamouth) self.inst.currentdeathamouth:set(deathamouth) end
+function currentdeathalotamount(self,deathalotamount) self.inst.currentdeathalotamount:set(deathalotamount) end
 function currentnosanitytime(self,nosanitytime) self.inst.currentnosanitytime:set(nosanitytime) end
 function currentsnakeamount(self,snakeamount) self.inst.currentsnakeamount:set(snakeamount) end
-function currentfriendpig(self,friendpig) self.inst.currentfriendpig:set(friendpig) end
+function currentpigfriendamount(self,pigfriendamount) self.inst.currentpigfriendamount:set(pigfriendamount) end
 function currentfriendbunnyamount(self,friendbunnyamount) self.inst.currentfriendbunnyamount:set(friendbunnyamount) end
 function currentfishamount(self,fishamount) self.inst.currentfishamount:set(fishamount) end
 function currentpickamount(self,pickamount) self.inst.currentpickamount:set(pickamount) end
@@ -74,7 +74,7 @@ function currentcookamount(self,cookamount) self.inst.currentcookamount:set(cook
 function currentmineamount(self,mineamount) self.inst.currentmineamount:set(mineamount) end
 function currentbuildamount(self,buildamount) self.inst.currentbuildamount:set(buildamount) end
 function currentattackeddamage(self,attackeddamage) self.inst.currentattackeddamage:set(attackeddamage) end
-function currentonhitdamage(self,onhitdamage) self.inst.currentonhitdamage:set(onhitdamage) end
+function currentangryamount(self,angryamount) self.inst.currentangryamount:set(angryamount) end
 function currentstarvetime(self,starvetime) self.inst.currentstarvetime:set(starvetime) end
 function currenticetime(self,icetime) self.inst.currenticetime:set(icetime) end
 function currentfiretime(self,firetime) self.inst.currentfiretime:set(firetime) end
@@ -104,12 +104,12 @@ function currentstarspent(self,starspent) self.inst.currentstarspent:set(starspe
 function currentfriendrocky(self,friendrocky) self.inst.currentfriendrocky:set(friendrocky) end
 function currentteleportamount(self,teleportamount) self.inst.currentteleportamount:set(teleportamount) end
 
-function currentruncount(self,runcount) self.inst.currentruncount:set(runcount) end
+function currentreplaytoken(self,replaytoken) self.inst.currentreplaytoken:set(replaytoken) end
 
 function checkintogame(self,intogame) local c = 0 if intogame then c=1 end self.inst.checkintogame:set(c) end
 function checkfirsteat(self,firsteat) local c = 0 if firsteat then c=1 end self.inst.checkfirsteat:set(c) end
 function checksupereat(self,supereat) local c = 0 if supereat then c=1 end self.inst.checksupereat:set(c) end
-function checkdanding(self,danding) local c = 0 if danding then c=1 end self.inst.checkdanding:set(c) end
+function checkeatmonsterlasagna(self,eatmonsterlasagna) local c = 0 if eatmonsterlasagna then c=1 end self.inst.checkeatmonsterlasagna:set(c) end
 function checkmessiah(self,messiah) local c = 0 if messiah then c=1 end self.inst.checkmessiah:set(c) end
 function checkemerald(self,emerald) local c = 0 if emerald then c=1 end self.inst.checkemerald:set(c) end
 function checkcitrin(self,citrin) local c = 0 if citrin then c=1 end self.inst.checkcitrin:set(c) end
@@ -142,7 +142,7 @@ function checkchopmaster(self,chopmaster) local c = 0 if chopmaster then c=1 end
 function checknoob(self,noob) local c = 0 if noob then c=1 end self.inst.checknoob:set(c) end
 function checkcookmaster(self,cookmaster) local c = 0 if cookmaster then c=1 end self.inst.checkcookmaster:set(c) end
 function checklongage(self,longage) local c = 0 if longage then c=1 end self.inst.checklongage:set(c) end
-function checkluck(self,luck) local c = 0 if luck then c=1 end self.inst.checkluck:set(c) end
+--function checkluck(self,luck) local c = 0 if luck then c=1 end self.inst.checkluck:set(c) end
 function checkblack(self,black) local c = 0 if black then c=1 end self.inst.checkblack:set(c) end
 function checkbuildmaster(self,buildmaster) local c = 0 if buildmaster then c=1 end self.inst.checkbuildmaster:set(c) end
 function checktank(self,tank) local c = 0 if tank then c=1 end self.inst.checktank:set(c) end
@@ -211,8 +211,8 @@ function checksleepsiesta(self,sleepsiesta) local c = 0 if sleepsiesta then c=1 
 function checkreviveamulet(self,reviveamulet) local c = 0 if reviveamulet then c=1 end self.inst.checkreviveamulet:set(c) end
 function checkfeedplayer(self,feedplayer) local c = 0 if feedplayer then c=1 end self.inst.checkfeedplayer:set(c) end
 function checkbathbomb(self,bathbomb) local c = 0 if bathbomb then c=1 end self.inst.checkbathbomb:set(c) end
-function checkshadowchester(self,shadowchester) local c = 0 if shadowchester then c=1 end self.inst.checkshadowchester:set(c) end
-function checksnowchester(self,snowchester) local c = 0 if snowchester then c=1 end self.inst.checksnowchester:set(c) end
+--function checkshadowchester(self,shadowchester) local c = 0 if shadowchester then c=1 end self.inst.checkshadowchester:set(c) end
+--function checksnowchester(self,snowchester) local c = 0 if snowchester then c=1 end self.inst.checksnowchester:set(c) end
 function checkmusichutch(self,musichutch) local c = 0 if musichutch then c=1 end self.inst.checkmusichutch:set(c) end
 function checklavae(self,lavae) local c = 0 if lavae then c=1 end self.inst.checklavae:set(c) end
 function checkevilflower(self,evilflower) local c = 0 if evilflower then c=1 end self.inst.checkevilflower:set(c) end
@@ -223,7 +223,7 @@ function checkbullkelp(self,bullkelp) local c = 0 if bullkelp then c=1 end self.
 function checkhorrorhound(self,horrorhound) local c = 0 if horrorhound then c=1 end self.inst.checkhorrorhound:set(c) end
 function checkslurtle(self,slurtle) local c = 0 if slurtle then c=1 end self.inst.checkslurtle:set(c) end
 function checkwerepig(self,werepig) local c = 0 if werepig then c=1 end self.inst.checkwerepig:set(c) end
-function checkfruitdragon(self,fruitdragon) local c = 0 if fruitdragon then c=1 end self.inst.checkfruitdragon:set(c) end
+--function checkfruitdragon(self,fruitdragon) local c = 0 if fruitdragon then c=1 end self.inst.checkfruitdragon:set(c) end
 function checktreeguard(self,treeguard) local c = 0 if treeguard then c=1 end self.inst.checktreeguard:set(c) end
 function checkspiderqueen(self,spiderqueen) local c = 0 if spiderqueen then c=1 end self.inst.checkspiderqueen:set(c) end
 function checkvarg(self,varg) local c = 0 if varg then c=1 end self.inst.checkvarg:set(c) end
@@ -252,6 +252,7 @@ function checkeye_of_terror(self,eye_of_terror) local c = 0 if eye_of_terror the
 function checktwin_of_terror1(self,twin_of_terror1) local c = 0 if twin_of_terror1 then c=1 end self.inst.checktwin_of_terror1:set(c) end
 function checktwin_of_terror2(self,twin_of_terror2) local c = 0 if twin_of_terror2 then c=1 end self.inst.checktwin_of_terror2:set(c) end
 function checktwins_of_terror(self,twins_of_terror) local c = 0 if twins_of_terror then c=1 end self.inst.checktwins_of_terror:set(c) end
+function checkcelestial_champion(self,celestial_champion) local c = 0 if celestial_champion then c=1 end self.inst.checkcelestial_champion:set(c) end
 
 function currentspider(self,spideramount) self.inst.currentspider:set(spideramount) end
 function currentspider_warrior(self,spider_warrioramount) self.inst.currentspider_warrior:set(spider_warrioramount) end
@@ -274,7 +275,7 @@ function meta_event_table()
 		intogame = checkintogame,
 		firsteat = checkfirsteat,
 		supereat = checksupereat,
-		danding = checkdanding,
+		eatmonsterlasagna = checkeatmonsterlasagna,
 		messiah = checkmessiah,
 		emerald = checkemerald,
 		walkalot = checkwalkalot,
@@ -299,7 +300,7 @@ function meta_event_table()
 		cookmaster = checkcookmaster,
 		cookappren = checkcookappren,
 		longage = checklongage,
-		luck = checkluck,
+		--luck = checkluck,
 		black = checkblack,
 		buildmaster = checkbuildmaster,
 		buildappren = checkbuildappren,
@@ -369,10 +370,10 @@ function meta_event_table()
 		emeralds = currentemeralds,
 		stoptime = currentstoptime,
 		evilamount = currentevilamount,
-		deathamouth = currentdeathamouth,
+		deathalotamount = currentdeathalotamount,
 		nosanitytime = currentnosanitytime,
 		snakeamount = currentsnakeamount,
-		friendpig = currentfriendpig,
+		pigfriendamount = currentpigfriendamount,
 		friendbunnyamount = currentfriendbunnyamount,
 		fishamount = currentfishamount,
 		pickamount = currentpickamount,
@@ -381,7 +382,7 @@ function meta_event_table()
 		buildamount = currentbuildamount,
 		mineamount = currentmineamount,
 		attackeddamage = currentattackeddamage,
-		onhitdamage = currentonhitdamage,
+		angryamount = currentangryamount,
 		icetime = currenticetime,
 		firetime = currentfiretime,
 		moisttime = currentmoisttime,
@@ -420,7 +421,9 @@ function meta_event_table()
 		moonrocks = currentmoonrocks,
 		gnomes = currentgnomes,
 		mosquitos = currentmosquitos,
-		runcount = currentruncount,
+
+		--runcount = currentruncount,
+		replaytoken = currentreplaytoken,
 		
 		eatfish = checkeatfish,
 		eatfishamount = currenteatfish,
@@ -442,8 +445,8 @@ function meta_event_table()
 		feedplayeramount = currentfeedplayer,
 		bathbomb = checkbathbomb,
 		bathbombamount = currentbathbomb,
-		shadowchester = checkshadowchester,
-		snowchester = checksnowchester,
+		--shadowchester = checkshadowchester,
+		--snowchester = checksnowchester,
 		musichutch = checkmusichutch,
 		lavae = checklavae,
 		evilflower = checkevilflower,
@@ -461,8 +464,8 @@ function meta_event_table()
 		slurtleamount = currentslurtle,
 		werepig = checkwerepig,
 		werepigamount = currentwerepig,
-		fruitdragon = checkfruitdragon,
-		fruitdragonamount = currentfruitdragon,
+		--fruitdragon = checkfruitdragon,
+		--fruitdragonamount = currentfruitdragon,
 		treeguard = checktreeguard,
 		treeguardamount = currenttreeguard,
 		spiderqueen = checkspiderqueen,
@@ -503,6 +506,7 @@ function meta_event_table()
 		twin_of_terror1 = checktwin_of_terror1,
 		twin_of_terror2 = checktwin_of_terror2,
 		twins_of_terror = checktwins_of_terror,
+		celestial_champion = checkcelestial_champion,
 
 	}
 

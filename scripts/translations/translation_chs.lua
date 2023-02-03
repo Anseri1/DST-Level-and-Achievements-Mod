@@ -29,7 +29,7 @@ STRINGS.GUI={
     ["levelTitle"] = "等级经验",
     ["close"] = "关闭",
     ["reset"] = "重置",
-    ["resetAchievments"] = "重置后清空所有奖励并只返还 100% 的成就点数. 你还会受到暂时的血量上限惩罚",
+    ["resetPerks"] = "重置后清空所有奖励并只返还 100% 的成就点数. 你还会受到暂时的血量上限惩罚",
     ["food"] = "食物",
     ["life"] = "生存",
     ["work"] = "日常",
@@ -441,11 +441,13 @@ STRINGS.ACHIEVEMENTS={
         ["description"] = "杀死 "..allachiv_eventdata["werepig"].." 头疯猪",
         ["info"] = "杀死 "..allachiv_eventdata["werepig"].." 头疯猪",
     },
+    --[[
     ["fruitdragon"] = {
         ["name"] = "只要火龙果",
         ["description"] = "杀死 "..allachiv_eventdata["fruitdragon"].." 只红色的沙拉曼蛇",
         ["info"] = "杀死 "..allachiv_eventdata["fruitdragon"].." 只红色的沙拉曼蛇",
     },
+    ]]--
     ["sick"] = {
         ["name"] = "击杀格罗姆",
         ["description"] = "击杀格罗姆",
