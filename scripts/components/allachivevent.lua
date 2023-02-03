@@ -1487,6 +1487,34 @@ function allachivevent:grantAll(inst)
     end
 end
 
+--Todo display runcount in button or get rid of it
+function allachivevent:reset_all_achievements(inst)
+    if self.replaytoken > 0 then
+        self.runcount = self.runcount + 1
+
+        self.replaytoken = self.replaytoken - 1
+        for i, name in pairs(achievements_table) do
+            self[name] = false
+        end
+        for i, name in pairs(cave_achievements_table) do
+            self[name] = false
+        end
+        for i, name in pairs(amount_table) do
+            if name ~= "agereset" and name ~= "starspent" and name ~= "starreset" and name ~= "knowledgeamount" and name ~= "runcount" and name ~= "replaytoken" then
+                self[name] = 0
+            end
+        end
+
+        self.eatlist = copylist(foodmenu)
+        self.giantPlantList = copylist(giantPlantList)
+        self:updateMeatatarianFoodList()
+
+        self.starreset = inst.components.allachivcoin.starsspent
+        self.agereset = math.ceil(inst.components.age:GetAge() / TUNING.TOTAL_DAY_TIME)
+        self:intogamefn(inst)
+    end
+end
+
 --All Star
 function allachivevent:allget(inst)
     if self.all ~= true then
@@ -1510,6 +1538,7 @@ function allachivevent:allget(inst)
                     self.all = true
                     inst:DoTaskInTime(2.5, function()
                         self:seffc(inst, "all")
+                        self.replaytoken = self.replaytoken + 1
                         inst:DoTaskInTime(.3, function()
                             inst.sg:GoToState("mime")
                             if not inst.components.locomotor.wantstomoveforward then inst.sg:AddStateTag("busy") end
@@ -1521,27 +1550,10 @@ function allachivevent:allget(inst)
                             end
                         end)
                         --print(self.runcount, _G._G.PLAYS_CONFIG)
-                        if self.runcount < _G.PLAYS_CONFIG then
-                            self.runcount = self.runcount + 1
 
-                            for i, name in pairs(achievements_table) do
-                                self[name] = false
-                            end
-                            for i, name in pairs(cave_achievements_table) do
-                                self[name] = false
-                            end
-                            for i, name in pairs(amount_table) do
-                                self[name] = 0
-                            end
 
-                            self.eatlist = copylist(foodmenu)
-                            self.giantPlantList = copylist(giantPlantList)
-                            self:updateMeatatarianFoodList()
-
-                            self.starreset = inst.components.allachivcoin.starsspent
-                            self.agereset = math.ceil(inst.components.age:GetAge() / TUNING.TOTAL_DAY_TIME)
-                            self:intogamefn(inst)
-                        end
+                        --Todo make this its own button and add a replay token to the future celestal champion achievement
+                        self:reset_all_achievements(inst)
                     end)
                 end
             end

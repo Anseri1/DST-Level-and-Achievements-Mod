@@ -1375,12 +1375,16 @@ function uiachievement:buildpage(j,i)
 	self.achivlisttile[i].name = self.achivlisttile[i]:AddChild(Text(BODYTEXTFONT, 45))
 	self.achivlisttile[i].name:SetPosition(7, 18, 0)
 	self.achivlisttile[i].name:SetHAlign(ANCHOR_LEFT)
-	
+
+
+	self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"], 250, 500, "")
+	--[[
 	if self.achivlist[i].name == "all" then
 		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"].." "..self.achivlist[i].runcount+1, 250, 500, "")
 	else
 		self.achivlisttile[i].name:SetTruncatedString(STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"], 250, 500, "")
 	end
+	]]--
 	local line = self.achivlisttile[i].name:GetString()
 	while #line < #STRINGS.ACHIEVEMENTS[self.achivlist[i].name]["name"] do
 		self.achivlisttile[i].name:SetSize( self.achivlisttile[i].name:GetSize() - 1 )
@@ -2317,7 +2321,7 @@ function uiachievement:loadlist()
 			name = "all",
 			check = self.owner.checkall:value(),
 			current = 0,
-			runcount = self.owner.currentruncount:value(),
+			--runcount = self.owner.currentruncount:value(),
 		},
 	
 	}

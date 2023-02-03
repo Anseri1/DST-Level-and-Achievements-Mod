@@ -55,6 +55,7 @@ amount_table = {
     "starreset",
     "knowledgeamount",
     "runcount",
+    "replaytoken",
     "eatfishamount",
     "eatturkeyamount",
     "eatpepperamount",

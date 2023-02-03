@@ -105,6 +105,7 @@ function currentfriendrocky(self,friendrocky) self.inst.currentfriendrocky:set(f
 function currentteleportamount(self,teleportamount) self.inst.currentteleportamount:set(teleportamount) end
 
 function currentruncount(self,runcount) self.inst.currentruncount:set(runcount) end
+function currentreplaytoken(self,replaytoken) self.inst.currentreplaytoken:set(replaytoken) end
 
 function checkintogame(self,intogame) local c = 0 if intogame then c=1 end self.inst.checkintogame:set(c) end
 function checkfirsteat(self,firsteat) local c = 0 if firsteat then c=1 end self.inst.checkfirsteat:set(c) end
@@ -420,7 +421,9 @@ function meta_event_table()
 		moonrocks = currentmoonrocks,
 		gnomes = currentgnomes,
 		mosquitos = currentmosquitos,
+
 		runcount = currentruncount,
+		replaytoken = currentreplaytoken,
 		
 		eatfish = checkeatfish,
 		eatfishamount = currenteatfish,
