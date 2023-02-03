@@ -1403,14 +1403,14 @@ function allachivevent:onreroll(inst)
 					name = inst:GetDisplayName()
 				end
                 local SaveAchieve = {}
-                for name, _ in pairs(achievements_table) do
-                    SaveAchieve[name] = self[name] or false
+                for i, v in pairs(achievements_table) do
+                    SaveAchieve[v] = self[v] or false
                 end
-                for name, _ in pairs(cave_achievements_table) do
-                    SaveAchieve[name] = self[name] or false
+                for i, v in pairs(cave_achievements_table) do
+                    SaveAchieve[v] = self[v] or false
                 end
-                for name, _ in pairs(amount_table) do
-                    SaveAchieve[name] = self[name] or 0
+                for i, v in pairs(amount_table) do
+                    SaveAchieve[v] = self[v] or 0
                 end
 
                 SaveAchieve["eatlist"] = self.eatlist or copylist(foodmenu)
