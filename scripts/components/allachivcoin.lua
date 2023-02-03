@@ -557,7 +557,7 @@ end
 
 function allachivcoin:fireflylightupcoin(inst)
     local achiv = inst.components.allachivevent
-    if self.coinamount >= self.fireflylightcost and achiv.eye_of_terror == true or achiv.twins_of_terror == true or achiv.runcount > 0 then
+    if self.coinamount >= self.fireflylightcost and achiv.eye_of_terror == true or achiv.twins_of_terror == true then
         self.fireflylightup = self.fireflylightup + 1
         self:coinDoDelta(-self.fireflylightcost)
 		self.starsspent = self.starsspent + self.fireflylightcost

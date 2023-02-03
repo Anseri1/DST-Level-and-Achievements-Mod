@@ -104,7 +104,6 @@ function currentstarspent(self,starspent) self.inst.currentstarspent:set(starspe
 function currentfriendrocky(self,friendrocky) self.inst.currentfriendrocky:set(friendrocky) end
 function currentteleportamount(self,teleportamount) self.inst.currentteleportamount:set(teleportamount) end
 
-function currentruncount(self,runcount) self.inst.currentruncount:set(runcount) end
 function currentreplaytoken(self,replaytoken) self.inst.currentreplaytoken:set(replaytoken) end
 
 function checkintogame(self,intogame) local c = 0 if intogame then c=1 end self.inst.checkintogame:set(c) end
@@ -253,6 +252,7 @@ function checkeye_of_terror(self,eye_of_terror) local c = 0 if eye_of_terror the
 function checktwin_of_terror1(self,twin_of_terror1) local c = 0 if twin_of_terror1 then c=1 end self.inst.checktwin_of_terror1:set(c) end
 function checktwin_of_terror2(self,twin_of_terror2) local c = 0 if twin_of_terror2 then c=1 end self.inst.checktwin_of_terror2:set(c) end
 function checktwins_of_terror(self,twins_of_terror) local c = 0 if twins_of_terror then c=1 end self.inst.checktwins_of_terror:set(c) end
+function checkcelestial_champion(self,celestial_champion) local c = 0 if celestial_champion then c=1 end self.inst.checkcelestial_champion:set(c) end
 
 function currentspider(self,spideramount) self.inst.currentspider:set(spideramount) end
 function currentspider_warrior(self,spider_warrioramount) self.inst.currentspider_warrior:set(spider_warrioramount) end
@@ -422,7 +422,7 @@ function meta_event_table()
 		gnomes = currentgnomes,
 		mosquitos = currentmosquitos,
 
-		runcount = currentruncount,
+		--runcount = currentruncount,
 		replaytoken = currentreplaytoken,
 		
 		eatfish = checkeatfish,
@@ -506,6 +506,7 @@ function meta_event_table()
 		twin_of_terror1 = checktwin_of_terror1,
 		twin_of_terror2 = checktwin_of_terror2,
 		twins_of_terror = checktwins_of_terror,
+		celestial_champion = checkcelestial_champion,
 
 	}
 

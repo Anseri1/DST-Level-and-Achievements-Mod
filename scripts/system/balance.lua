@@ -12,6 +12,11 @@ speedGain = _G.SPEEDGAIN
 absorbGain = _G.ABSORBGAIN
 damageGain = _G.DAMAGEGAIN
 
+allachiv_reset_event_data = {
+	["required_achievements_for_reset"] = 100,
+	["required_replaytoken_for_reset"] = 1
+}
+
 allachiv_eventdata={
 --Food
 ["firsteat"] = nil,
@@ -146,6 +151,7 @@ allachiv_eventdata={
 ["clockwork"] = 15,
 ["eye_of_terror"] = nil,
 ["twins_of_terror"] = nil,
+["celestial_champion"] = nil,
 --Mile
 ["all"] = nil,
 ["longage"] = 70,
@@ -294,6 +300,7 @@ allachiv_coinget={
 ["clockwork"] = 4,
 ["eye_of_terror"] = 5,
 ["twins_of_terror"] = 7,
+["celestial_champion"] = 10,
 --Mile
 ["all"] = 3,
 ["longage"] = 5,

@@ -733,6 +733,7 @@ AddPlayerPostInit(function(inst)
 	inst.checktwin_of_terror1 = GLOBAL.net_shortint(inst.GUID,"checktwin_of_terror1")
 	inst.checktwin_of_terror2 = GLOBAL.net_shortint(inst.GUID,"checktwin_of_terror2")
 	inst.checktwins_of_terror = GLOBAL.net_shortint(inst.GUID,"checktwins_of_terror")
+	inst.checkcelestial_champion = GLOBAL.net_shortint(inst.GUID,"checkcelestial_champion")
 
 	inst.checkvarg = GLOBAL.net_shortint(inst.GUID,"checkvarg")
 	inst.checkkoaelefant = GLOBAL.net_shortint(inst.GUID,"checkkoaelefant")
@@ -744,8 +745,8 @@ AddPlayerPostInit(function(inst)
 	inst.checkfullhunger = GLOBAL.net_shortint(inst.GUID,"checkfullhunger")
 	inst.checkpacifist = GLOBAL.net_shortint(inst.GUID,"checkpacifist")
 
+	inst.currentreplaytoken = GLOBAL.net_shortint(inst.GUID,"currentreplaytoken")
 
-	inst.currentruncount = GLOBAL.net_shortint(inst.GUID,"currentruncount")
 	inst.currentsupereatamount = GLOBAL.net_shortint(inst.GUID,"currentsupereatamount")
 	inst.currenteatmonsterlasagnaamount = GLOBAL.net_shortint(inst.GUID,"currenteatmonsterlasagnaamount")
     inst.currentmessiahamount = GLOBAL.net_shortint(inst.GUID,"currentmessiahamount")

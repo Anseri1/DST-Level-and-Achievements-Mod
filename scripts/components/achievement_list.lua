@@ -54,7 +54,7 @@ amount_table = {
     "teleportamount",
     "starreset",
     "knowledgeamount",
-    "runcount",
+    --"runcount",
     "replaytoken",
     "eatfishamount",
     "eatturkeyamount",
@@ -218,7 +218,8 @@ achievements_table = {
     "eye_of_terror",
     "twin_of_terror1",
     "twin_of_terror2",
-    "twins_of_terror"
+    "twins_of_terror",
+    "celestial_champion"
 }
 cave_achievements_table = {
     "tooyoung",

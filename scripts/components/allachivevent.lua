@@ -519,7 +519,8 @@ end
 
 --Todo clean up the functions that require passing in the victim
 
-local function bosskill_logic(victim, check_for_prefab, achievement)
+local function bosskill_logic(victim, check_for_prefab, achievement, grantreplaytoken)
+    local grantreplaytoken = grantreplaytoken or false
     if victim and victim.prefab == check_for_prefab then
         local pos = Vector3(victim.Transform:GetWorldPosition())
         local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 30)
@@ -528,6 +529,9 @@ local function bosskill_logic(victim, check_for_prefab, achievement)
                 if v.components.allachivevent[achievement] ~= true then
                     v.components.allachivevent[achievement] = true
                     v.components.allachivevent:seffc(v, achievement)
+                    if grantreplaytoken == true then
+                        v.components.allachivevent.replaytoken = v.components.allachivevent.replaytoken + 1
+                    end
                 end
             end
         end
@@ -676,7 +680,7 @@ function allachivevent:onkilledother(inst)
 			mobkill_logic(victim, "clockwork")
         end
 
-         bosskill_logic(victim, "eyeofterror", "eye_of_terror")
+        bosskill_logic(victim, "eyeofterror", "eye_of_terror")
 
         if victim and victim.prefab == "twinofterror1" then
 			local pos = Vector3(victim.Transform:GetWorldPosition())
@@ -708,6 +712,8 @@ function allachivevent:onkilledother(inst)
 				end
 			end
         end
+
+        bosskill_logic(victim, "alterguardian_phase3", "celestial_champion", true)
 
 		if victim and victim.prefab == "warg" then
 			mobkill_logic(victim, "varg")
@@ -1173,9 +1179,9 @@ function allachivevent:ontimepass(inst)
             self.nosanity = true
             self:seffc(inst,"nosanity")
         end
-        if inst.components.allachivcoin.healthregenamount >= 25 and self.hutch ~= true then
-            self.hutch = true
-            self:seffc(inst,"hutch")
+        if inst.components.allachivcoin.healthregenamount >= 25 and self.rot ~= true then
+            self.rot = true
+            self:seffc(inst,"rot")
         end
         if inst.components.allachivcoin.healthregenamount >= 25 and self.rose ~= true then
             self.rose = true
@@ -1389,9 +1395,9 @@ local function teleport_logic(inst)
 end
 
 function allachivevent:onteleport(inst)
-    inst:ListenForEvent("wormholetravel", teleport_logic(inst))
-    inst:ListenForEvent("soulhop", teleport_logic(inst))
-    inst:ListenForEvent("townportalteleport", teleport_logic(inst))
+    inst:ListenForEvent("wormholetravel", function(inst) teleport_logic(inst) end)
+    inst:ListenForEvent("soulhop", function(inst) teleport_logic(inst) end)
+    inst:ListenForEvent("townportalteleport", function(inst) teleport_logic(inst) end)
 end
 
 function allachivevent:onreroll(inst)
@@ -1487,11 +1493,19 @@ function allachivevent:grantAll(inst)
     end
 end
 
---Todo display runcount in button or get rid of it
 function allachivevent:reset_all_achievements(inst)
-    if self.replaytoken > 0 then
-        self.runcount = self.runcount + 1
-
+    local completed = 0
+    for _, v in pairs(achievements_table) do
+        if self[v] == true then
+            completed = completed + 1
+        end
+    end
+    for _, v in pairs(cave_achievements_table) do
+        if self[v] == true then
+            completed = completed + 1
+        end
+    end
+    if self.replaytoken > 0 and completed >= 100 then
         self.replaytoken = self.replaytoken - 1
         for i, name in pairs(achievements_table) do
             self[name] = false
@@ -1500,7 +1514,7 @@ function allachivevent:reset_all_achievements(inst)
             self[name] = false
         end
         for i, name in pairs(amount_table) do
-            if name ~= "agereset" and name ~= "starspent" and name ~= "starreset" and name ~= "knowledgeamount" and name ~= "runcount" and name ~= "replaytoken" then
+            if name ~= "agereset" and name ~= "starspent" and name ~= "starreset" and name ~= "knowledgeamount" and name ~= "replaytoken" then
                 self[name] = 0
             end
         end
@@ -1549,11 +1563,6 @@ function allachivevent:allget(inst)
                                 end)
                             end
                         end)
-                        --print(self.runcount, _G._G.PLAYS_CONFIG)
-
-
-                        --Todo make this its own button and add a replay token to the future celestal champion achievement
-                        self:reset_all_achievements(inst)
                     end)
                 end
             end
