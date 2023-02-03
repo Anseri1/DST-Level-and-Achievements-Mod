@@ -836,8 +836,8 @@ function allachivevent:onkilledother(inst)
             end
         end
 
-        bosskill_logic(victim, "toadstool_dark", "rigid")
-        bosskill_logic(victim, "stalker_atrium", "ancient")
+        bosskill_logic(victim, "toadstool_dark", "rigid", true)
+        bosskill_logic(victim, "stalker_atrium", "ancient", true)
         bosskill_logic(victim, "minotaur", "minotaur")
         bosskill_logic(victim, "dragonfly", "dragonfly")
         bosskill_logic(victim, "malbatross", "malbatross")
