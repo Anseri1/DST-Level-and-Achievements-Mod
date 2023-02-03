@@ -5,6 +5,12 @@ ToDo:
 -add a dungeon system based on the caves and ruins code and maybe the basements mod
 -add an rpg class system where u can spend perk points to level up classes and unlock new skills
 
+0.0.2 of anseri's fork changes:
+bugfix insanity achievement now starts counting at 10% or less sanity instead of 0
+fixed most if not all of the erroneous bugs that poped up during playtesting the refactor
+removed saladmander achievement due to it causeing a softlock becuase they don't have a way to respawn, --might replace with lord of the fruit fly at a later date
+implemented a reset token system for resetting achievements without having to complete them all
+
 0.0.1 of anseri's fork changes:
 
 forked Lavax's level up and achievement mod
@@ -41,6 +47,8 @@ fixed a bug with dim light not applying the *5 to the cost on reload
 
 removed the *5 on the end of dim light's cost function and changed it to require beating the eye/twins or terror instead
 cuz I like the idea of being able to earn the right to use over powered skills through overcoming challenges better than just being more expensive and nothing else
+
+changed reset penalty to only be max health to prevent soft locks and to allow for more strategy at the cost of fragility
 
 refactored most of the code dealing with achievements so that it only takes a few seconds to add a new achievement or make a change instead of taking all day due to the original mods copypasta programming and terrible design practices 
 
